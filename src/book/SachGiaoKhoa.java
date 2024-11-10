@@ -15,4 +15,9 @@ public class SachGiaoKhoa extends Sach{
         this.linhVuc = linhVuc;
         this.trinhDo = trinhDo;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + trinhDo + " " + linhVuc;
+    }
 }

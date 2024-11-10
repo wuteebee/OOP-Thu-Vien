@@ -25,9 +25,14 @@ class Sach {
         this.tacGia = tacGia;
         this.nhaXuatBan = nhaXuatBan;
     }
+
+    @Override
+    public String toString() {
+        return idSach + " " + ten + " " + soLuong + " " + gia + " " + tacGia.getTen() + " " + nhaXuatBan.getTen();
+    }
 }
 
-class DanhSachSach extends Sach {
+class DanhSachSach {
     static int soLuong = 0;
     Sach[] dSS;
 }
