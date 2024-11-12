@@ -1,91 +1,72 @@
-package OOP;
+package fine_ticket;
 
 public class ChiTietPhieuPhat {
-	String iDPhieuPhat;
-	String iDSach;
-	int tinhTrangSach;
-	int tienPhat;
-	int iDDieuKhoan;
-	
-	ChiTietPhieuPhat()
-	{ 
-		iDPhieuPhat = "None";
-		iDSach = "None";
-		tinhTrangSach = 0;
-		tienPhat = 0;
-		iDDieuKhoan = 0;
-	}
-	
-	ChiTietPhieuPhat(String iDPhieuPhat, String iDSach, int tinhTrangSach, int tienPhat, int iDDieuKhoan)
-	{
-		this.iDPhieuPhat = iDPhieuPhat;
-		this.iDSach = iDSach;
-		this.tinhTrangSach = tinhTrangSach;
-		this.tienPhat = tienPhat;
-		this.iDDieuKhoan = iDDieuKhoan;
-		DanhSachChiTietPhieuPhat.soLuong++;
-	}
-	
-	ChiTietPhieuPhat(ChiTietPhieuPhat A)
-	{ 
-		iDPhieuPhat = A.iDPhieuPhat;
-		iDSach = A.iDSach;
-		tinhTrangSach = A.tinhTrangSach;
-		tienPhat = A.tienPhat;
-		iDDieuKhoan = A.iDDieuKhoan;
-	}
-	
-	String getIDPhieuPhat()
-	{
-		return iDPhieuPhat;
-	}
-	
-	String getIDSach()
-	{ 
-		return iDSach;
-	}
-	int getTinhTrangSach()
-	{ 
-		return tinhTrangSach;
-	}
-	
-	int getTienPhat()
-	{ 
-		return tienPhat;
-	}
-	
-	int getIDDieuKhoan()
-	{ 
-		return iDDieuKhoan;
-	}
-	
-	void setIDPhieuPhat(String ID)
-	{ 
-		iDPhieuPhat = ID;
-	}
-	
-	void setIDSach(String ID)
-	{ 
-		iDSach = ID;
-	}
-	
-	void setTinhTrangSach(int x)
-	{ 
-		tinhTrangSach = x;
-	}
-	
-	void setTienPhat(int x)
-	{ 
-		tienPhat = x;
-	}
-	
-	void setIDDieuKhoan(int x)
-	{ 
-		iDDieuKhoan = x;
-	}
-	
-	public String toString()
-	{
-		return String.format("%-10s%-9s%,-5d%-15s%s\n", iDPhieuPhat, iDSach, tinhTrangSach, String.format("%,d", tienPhat) + " dong","Dieu " + iDDieuKhoan);
-	}
+    // ý tưởng:
+    final String idPhieuPhat = "PP" + String.format("%3d", DanhSachPhieuPhat.soLuong);
+    private String idSach;
+    private int tinhTrangSach;
+    private int tienPhat;
+    private int idDieuKhoan;
+
+    public ChiTietPhieuPhat() {
+        idSach = "none";
+        tinhTrangSach = 0;
+        tienPhat = 0;
+        idDieuKhoan = 0;
+    }
+
+    public ChiTietPhieuPhat(String idSach, int tinhTrangSach, int tienPhat, int idDieuKhoan) {
+        this.idSach = idSach;
+        this.tinhTrangSach = tinhTrangSach;
+        this.tienPhat = tienPhat;
+        this.idDieuKhoan = idDieuKhoan;
+    }
+
+    public ChiTietPhieuPhat(ChiTietPhieuPhat A) {
+        idSach = A.idSach;
+        tinhTrangSach = A.tinhTrangSach;
+        tienPhat = A.tienPhat;
+        idDieuKhoan = A.idDieuKhoan;
+    }
+
+    public String getIDChiTietPhieuPhat() {
+        return idPhieuPhat;
+    }
+
+    public String getIDSach() {
+        return idSach;
+    }
+
+    public int getTinhTrangSach() {
+        return tinhTrangSach;
+    }
+
+    public int getTienPhat() {
+        return tienPhat;
+    }
+
+    public int getIDDieuKhoan() {
+        return idDieuKhoan;
+    }
+
+    public void setIDSach(String id) {
+        idSach = id;
+    }
+
+    public void setTinhTrangSach(int x) {
+        tinhTrangSach = x;
+    }
+
+    public void setTienPhat(int x) {
+        tienPhat = x;
+    }
+
+    public void setidDieuKhoan(int x) {
+        idDieuKhoan = x;
+    }
+
+	@Override 
+    public String toString() {
+        return String.format("%-10s%-9s%,-5d%-15s%s\n", idPhieuPhat, idSach, tinhTrangSach, String.format("%,d", tienPhat) + " dong", "Dieu " + idDieuKhoan);
+    }
 }
