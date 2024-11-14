@@ -5,17 +5,23 @@ public class DanhSachSach {
     Sach[] dSS;
 
     public DanhSachSach() {
-        soLuong = 0;
-        dSS = null;
+        this.dSS = new Sach[0];
     }
 
-    public DanhSachSach(Sach sach) {
-        if(dSS == null ) {
-            System.out.println("");
-        }
-        int soLuongDuTinh = this.soLuong + 1;
-        
+    public void themSach (Sach sach) {
+        Sach[] newDSS = new Sach[++soLuong];
+        if (soLuong - 1 >= 0) System.arraycopy(this.dSS, 0, newDSS, 0, soLuong - 1);
+        newDSS[soLuong - 1] = sach;
+        this.dSS = newDSS;
+    }
 
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        for(Sach sach : this.dSS) {
+            output.append(sach).append("\n");
+        }
+        return output.toString();
     }
 }
 

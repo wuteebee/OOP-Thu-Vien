@@ -1,14 +1,21 @@
+import book.DanhSachSach;
+import book.NhaXuatBan;
+import book.TacGia;
+
 import java.util.Scanner;
 
 public class Menu {
     static Scanner input = new Scanner(System.in);
+    MenuChinh menuChinh = new MenuChinh();
 
-    static void MenuChinh() {
+    public void xuatMenu() {
         int vongLap;
         do {
-            vongLap = MenuChinh.xuatMenuChinh();
-            MenuChinh.xuLyMenuChinh(vongLap);
+            vongLap = menuChinh.xuatMenuChinh();
+            menuChinh.xuLyMenuChinh(vongLap);
         } while (vongLap != 0);
+
+        input.close();
     }
 
     static void clearScreen() {
@@ -18,7 +25,7 @@ public class Menu {
 }
 
 class MenuChinh {
-    static int xuatMenuChinh() {
+    int xuatMenuChinh() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -34,22 +41,29 @@ class MenuChinh {
         return luaChon;
     }
 
-    static void xuLyMenuChinh(int luaChon) {
+    void xuLyMenuChinh(int luaChon) {
         int chon;
         switch(luaChon) {
             case 1:
+                MenuNhanVien menuNhanVien = new MenuNhanVien();
                 do {
-                    chon = MenuNhanVien.xuatMenuNhanVien();
-                    MenuNhanVien.xuLyMenuNhanVien(chon);
+                    chon = menuNhanVien.xuatMenuNhanVien();
+                    menuNhanVien.xuLyMenuNhanVien(chon);
                 } while(chon != 0);
                 break;
             case 2:
+                MenuKhachHang menuKhachHang = new MenuKhachHang();
                 do {
-                    chon = MenuKhachHang.xuatMenuKhachHang();
-                    MenuKhachHang.xuLyMenuKhachHang(chon);
+                    chon = menuKhachHang.xuatMenuKhachHang();
+                    menuKhachHang.xuLyMenuKhachHang(chon);
                 } while(chon!= 0);
                 break;
             case 3:
+                MenuNhaCungCap menuNhaCungCap = new MenuNhaCungCap();
+                do {
+                    chon = menuNhaCungCap.xuatMenuNhaCungCap();
+                    menuNhaCungCap.xuLyMenuNhaCungCap(chon);
+                } while(chon!= 0);
                 break;
             default:
                 break;
@@ -58,7 +72,7 @@ class MenuChinh {
 }
 
 class MenuNhanVien {
-    static int xuatMenuNhanVien() {
+    int xuatMenuNhanVien() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -77,7 +91,7 @@ class MenuNhanVien {
         return luaChon;
     }
 
-    static void xuLyMenuNhanVien(int luaChon) {
+    void xuLyMenuNhanVien(int luaChon) {
         int chon;
         switch(luaChon) {
             case 1:
@@ -90,7 +104,10 @@ class MenuNhanVien {
                 System.out.println("Xu ly danh sach NhanVien.");
                 break;
             case 4:
-                System.out.println("Xu ly Them Sach.");
+                do {
+                    chon = xuatMenuThemSach();
+                    xuLyMenuThemSach(chon);
+                } while(chon != 0);
                 break;
             case 5:
                 System.out.println("Xu ly Danh sach Sach.");
@@ -100,10 +117,61 @@ class MenuNhanVien {
         }
     }
 
+    int xuatMenuThemSach() {
+        int luaChon;
+        boolean dieuKien;
+        do {
+            System.out.println("0. Thoat MenuNhanVien.");
+            System.out.println("1. Them Sach.");
+            System.out.println("2. Them SachGiaoKhoa.");
+            System.out.println("3. Them SachThamKhao.");
+            luaChon = Menu.input.nextInt();
+            Menu.clearScreen();
+            dieuKien = luaChon >= 0 && luaChon <= 3;
+            if(!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
+        } while(!dieuKien);
+        return luaChon;
+    }
+
+    void xuLyMenuThemSach(int luaChon) {
+        int chon;
+        String ten;
+        int soLuong;
+        int gia;
+        TacGia tacGia;
+        NhaXuatBan nhaXuatBan;
+        switch(luaChon) {
+            case 1:
+                MenuNhanVien menuNhanVien = new MenuNhanVien();
+                do {
+                    chon = menuNhanVien.xuatMenuNhanVien();
+                    menuNhanVien.xuLyMenuNhanVien(chon);
+                } while(chon != 0);
+                break;
+            case 2:
+                MenuKhachHang menuKhachHang = new MenuKhachHang();
+                do {
+                    chon = menuKhachHang.xuatMenuKhachHang();
+                    menuKhachHang.xuLyMenuKhachHang(chon);
+                } while(chon!= 0);
+                break;
+            case 3:
+                MenuNhaCungCap menuNhaCungCap = new MenuNhaCungCap();
+                do {
+                    chon = menuNhaCungCap.xuatMenuNhaCungCap();
+                    menuNhaCungCap.xuLyMenuNhaCungCap(chon);
+                } while(chon!= 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }
 
 class MenuKhachHang {
-    static int xuatMenuKhachHang() {
+    int xuatMenuKhachHang() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -120,7 +188,7 @@ class MenuKhachHang {
         return luaChon;
     }
 
-    static void xuLyMenuKhachHang(int luaChon) {
+    void xuLyMenuKhachHang(int luaChon) {
         switch(luaChon) {
             case 1:
                 System.out.println("Xu ly them KhachHang.");
@@ -140,8 +208,8 @@ class MenuKhachHang {
     }
 }
 
-class NhaCungCap {
-    static int xuatMenuNhaCungCap() {
+class MenuNhaCungCap {
+    int xuatMenuNhaCungCap() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -158,7 +226,7 @@ class NhaCungCap {
         return luaChon;
     }
 
-    static void xuLyMenuNhaCungCap(int luaChon) {
+    void xuLyMenuNhaCungCap(int luaChon) {
         switch(luaChon) {
             case 1:
                 System.out.println("Xu ly them NhaCungCap.");

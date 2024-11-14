@@ -37,20 +37,12 @@ public class PhieuMuon {
         this.idPhieuMuon = idPhieuMuon;
     }
 
-    public NhanVien getidNhanVien() {
+    public String getidNhanVien() {
         return idNhanVien;
     }
 
-    public void setidNhanVien(NhanVien idNhanVien) {
-        this.idNhanVien = idNhanVien;
-    }
-
-    public TheThuVien getidTheThuVien() {
+    public String getidTheThuVien() {
         return idTheThuVien;
-    }
-
-    public void setidTheThuVien(TheThuVien idTheThuVien) {
-        this.idTheThuVien = idTheThuVien;
     }
 
     public LocalDate getngayMuon() {
