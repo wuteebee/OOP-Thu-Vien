@@ -1,8 +1,8 @@
 package book;
 
 public class DanhSachSach {
-    static int soLuong = 0;
-    Sach[] dSS;
+    public static int soLuong = 0;
+    private Sach[] dSS;
 
     public DanhSachSach() {
         this.dSS = new Sach[0];
