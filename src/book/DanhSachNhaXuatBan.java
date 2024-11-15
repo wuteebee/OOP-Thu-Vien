@@ -4,7 +4,7 @@ import execute.*;
 
 public class DanhSachNhaXuatBan {
     static int soLuong = 0;
-    NhaXuatBan[] dSNXB;
+    private NhaXuatBan[] dSNXB;
 
     public DanhSachNhaXuatBan() {
         this.dSNXB = new NhaXuatBan[0];

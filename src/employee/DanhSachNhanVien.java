@@ -3,8 +3,8 @@ package employee;
 import java.time.LocalDate;
 
 public class DanhSachNhanVien {
-    int soLuong = 0;
-    NhanVien[] dSNV;
+    public static int soLuong = 0;
+    private NhanVien[] dSNV;
 }
 
 

@@ -1,6 +1,7 @@
 package book;
 
 import execute.*;
+import data.*;
 
 public class Sach {
     final String idSach = "S" + String.format("%03d", DanhSachSach.soLuong + 1);
@@ -67,19 +68,18 @@ public class Sach {
         sach.setGia(Menu.input.nextInt());
         Menu.input.nextLine();
 
-        System.out.println(MenuNhanVien.dSTG);
-        TacGia tacGia = MenuNhanVien.dSTG.timIDTacGia();
+        System.out.println(SharedData.dSTG);
+        TacGia tacGia = SharedData.dSTG.timIDTacGia();
         sach.setTacGia(tacGia);
 
-        System.out.println(MenuNhanVien.dSNXB);
-        NhaXuatBan nhaXuatBan = MenuNhanVien.dSNXB.timIDNhaXuatBan();
+        System.out.println(SharedData.dSNXB);
+        NhaXuatBan nhaXuatBan = SharedData.dSNXB.timIDNhaXuatBan();
         sach.setNhaXuatBan(nhaXuatBan);
         return sach;
     }
 
     @Override
     public String toString() {
-//        return idSach + " " + ten + " " + soLuong + " " + gia + " " + tacGia.getTen() + " " + nhaXuatBan.getTen();
         return String.format("%-10s%-30s%-10s%-10d%-20s%-20s", idSach, ten, soLuong, gia, tacGia.getTen(), nhaXuatBan.getTen());
     }
 }

@@ -1,14 +1,10 @@
 package execute;
 
 import book.*;
-import test_data.*;
+import data.*;
 
 public class MenuNhanVien {
-    static public DanhSachSach dSS = new DanhSachSach();
-    static public DanhSachTacGia dSTG = Data.dataDSTG();
-    static public DanhSachNhaXuatBan dSNXB = Data.dataDSXB();
-
-    int xuatMenuNhanVien() {
+    public int xuatMenuNhanVien() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -31,7 +27,7 @@ public class MenuNhanVien {
         return luaChon;
     }
 
-    void xuLyMenuNhanVien(int luaChon) {
+    public void xuLyMenuNhanVien(int luaChon) {
         int chon;
         switch (luaChon) {
             case 1:
@@ -44,39 +40,54 @@ public class MenuNhanVien {
                 System.out.println("Xu ly danh sach NhanVien.");
                 break;
             case 4:
-                System.out.println("Ban muon them bao nhieu sach ");
+                System.out.println("Ban muon them bao nhieu Sach:");
                 int soLuongSach = Menu.input.nextInt();
                 Menu.input.nextLine();
-                do {
-                    chon = xuatMenuThemSach();
-                    System.out.println("soLuongSach: " + soLuongSach + "\nchon: " + chon);
-                    xuLyMenuThemSach(chon);
-                } while (chon != 0 && --soLuongSach != 0);
-                System.out.println(MenuNhanVien.dSS);
-
+                if (soLuongSach != 0)
+                    do {
+                        chon = xuatMenuThemSach();
+                        xuLyMenuThemSach(chon);
+                    } while (chon != 0 && --soLuongSach != 0);
                 break;
             case 5:
-                System.out.println("Xu ly Danh sach Sach.");
+                System.out.println(SharedData.dSS);
                 break;
             case 6:
+                System.out.println("Ban muon them bao nhieu TacGia:");
+                int soLuongTacGia = Menu.input.nextInt();
+                Menu.input.nextLine();
+                if (soLuongTacGia != 0)
+                    do {
+                        chon = xuatMenuThemTacGia();
+                        xuLyMenuThemTacGia(chon);
+                    } while (chon != 0 && --soLuongTacGia != 0);
                 break;
             case 7:
-
+                System.out.println(SharedData.dSTG);
                 break;
             case 8:
+                System.out.println("Ban muon them bao nhieu NhaXuatBan:");
+                int soLuongNhaXuatBan = Menu.input.nextInt();
+                Menu.input.nextLine();
+                if (soLuongNhaXuatBan != 0)
+                    do {
+                        chon = xuatMenuThemNhaXuatBan();
+                        xuLyMenuThemNhaXuatBan(chon);
+                    } while (chon != 0 && --soLuongNhaXuatBan != 0);
                 break;
             case 9:
+                System.out.println(SharedData.dSNXB);
                 break;
             default:
                 break;
         }
     }
 
-    int xuatMenuThemSach() {
+    public int xuatMenuThemSach() {
         int luaChon;
         boolean dieuKien;
         do {
-            System.out.println("0. Thoat MenuNhanVien.");
+            System.out.println("0. Thoat MenuThemSach.");
             System.out.println("1. Them Sach.");
             System.out.println("2. Them SachGiaoKhoa.");
             System.out.println("3. Them SachThamKhao.");
@@ -89,17 +100,66 @@ public class MenuNhanVien {
         return luaChon;
     }
 
-    void xuLyMenuThemSach(int luaChon) {
-        int chon;
+    public void xuLyMenuThemSach(int luaChon) {
         switch (luaChon) {
             case 1:
-                dSS.themSach(new Sach().taoSach());
+                SharedData.dSS.themSach(new Sach().taoSach());
                 break;
             case 2:
-                dSS.themSach(new SachGiaoKhoa().taoSach());
+                SharedData.dSS.themSach(new SachGiaoKhoa().taoSach());
                 break;
             case 3:
-                dSS.themSach(new SachThamKhao().taoSach());
+                SharedData.dSS.themSach(new SachThamKhao().taoSach());
+                break;
+            default:
+                break;
+        }
+    }
+
+    public int xuatMenuThemTacGia() {
+        int luaChon;
+        boolean dieuKien;
+        do {
+            System.out.println("0. Thoat MenuThemTacGia.");
+            System.out.println("1. Tiep tuc them TacGia.");
+            luaChon = Menu.input.nextInt();
+            Menu.input.nextLine();
+            Menu.clearScreen();
+            dieuKien = luaChon >= 0 && luaChon <= 1;
+            if (!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
+        } while (!dieuKien);
+        return luaChon;
+    }
+
+    public void xuLyMenuThemTacGia(int luaChon) {
+        switch (luaChon) {
+            case 1:
+                SharedData.dSTG.themTacGia(new TacGia().taoTacGia());
+                break;
+            default:
+                break;
+        }
+    }
+
+    public int xuatMenuThemNhaXuatBan() {
+        int luaChon;
+        boolean dieuKien;
+        do {
+            System.out.println("0. Thoat MenuThemNhaXuatBan.");
+            System.out.println("1. Tiep tuc them NhaXuatBan.");
+            luaChon = Menu.input.nextInt();
+            Menu.input.nextLine();
+            Menu.clearScreen();
+            dieuKien = luaChon >= 0 && luaChon <= 1;
+            if (!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
+        } while (!dieuKien);
+        return luaChon;
+    }
+
+    public void xuLyMenuThemNhaXuatBan(int luaChon) {
+        switch (luaChon) {
+            case 1:
+                SharedData.dSNXB.themNhaXuatBan(new NhaXuatBan().taoNhaXuatBan());
                 break;
             default:
                 break;

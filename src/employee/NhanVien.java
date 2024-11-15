@@ -3,75 +3,52 @@ package employee;
 import java.time.LocalDate;
 
 public class NhanVien {
-    String idNhanVien;
-    String ten;
-    String ho;
-    LocalDate ngaySinh;
-    Boolean gioiTinh;
-    String soDienThoai;
+    final String idNhanVien = "NV" + String.format("%03d", DanhSachNhanVien.soLuong + 1);
+    private String ho;
+    private String ten;
+    private Boolean gioiTinh;
+    private LocalDate ngaySinh;
+    private String soDienThoai;
 
-    public void NhanVien() {
-        idNhanVien = "none";
-        ten = "none";
+    public NhanVien() {
         ho = "none";
+        ten = "none";
         ngaySinh = LocalDate.now();
         gioiTinh = false;
         soDienThoai = "none";
     }
 
-    public void NhanVien(String idNhanVien, String ten, Boolean gioiTinh, LocalDate ngaySinh, String soDienThoai) {
-        this.idNhanVien = idNhanVien;
+    public void NhanVien(String ho, String ten, Boolean gioiTinh, LocalDate ngaySinh, String soDienThoai) {
+        this.ho = ho;
         this.ten = ten;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.soDienThoai = soDienThoai;
-    }
-
-    public Boolean getGioiTinh() {
-        return gioiTinh;
     }
 
     public void setGioiTinh(Boolean gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
-    public String getHo() {
-        return ho;
-    }
-
     public void setHo(String ho) {
         this.ho = ho;
     }
 
-    public String getIdNhanVien() {
-        return idNhanVien;
-    }
-
-    public void setIdNhanVien(String idNhanVien) {
-        this.idNhanVien = idNhanVien;
-    }
-
-    public LocalDate getNgaySinh() {
-        return ngaySinh;
-    }
 
     public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
-    }
-
-    public String getSoDienThoai() {
-        return soDienThoai;
     }
 
     public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
 
-    public String getTen() {
-        return ten;
-    }
-
     public void setTen(String ten) {
         this.ten = ten;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-10s%-15s%-15s%-10s%-15s%-15s", idNhanVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai);
     }
 }

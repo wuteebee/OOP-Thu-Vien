@@ -1,13 +1,13 @@
-package test_data;
+package data;
 
-import book.DanhSachTacGia;
 import book.DanhSachNhaXuatBan;
+import book.DanhSachTacGia;
 import book.NhaXuatBan;
 import book.TacGia;
 
 import java.time.LocalDate;
 
-public class Data {
+public class TestData {
     static public DanhSachTacGia dataDSTG() {
         DanhSachTacGia dSTG = new DanhSachTacGia();
         dSTG.themTacGia(new TacGia("Ngo Thuong Bao", LocalDate.of(2005, 7, 16), "Vinh Long"));
@@ -19,7 +19,7 @@ public class Data {
         return dSTG;
     }
 
-    static public DanhSachNhaXuatBan dataDSXB() {
+    static public DanhSachNhaXuatBan dataDSNXB() {
         DanhSachNhaXuatBan dSNXB = new DanhSachNhaXuatBan();
         dSNXB.themNhaXuatBan(new NhaXuatBan("Tre", "0123456789", "Ho Chi Minh"));
         dSNXB.themNhaXuatBan(new NhaXuatBan("Kim Dong", "0987654321", "Ha Noi"));

@@ -81,7 +81,7 @@ public class TacGia {
 
     @Override
     public String toString() {
-        return String.format("%-10s%-30s%-15s%-20s", idTacGia, ten, ngaySinh.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), queQuan);
+        return String.format("%-10s%-30s%-15s%-20s", idTacGia, ten, ngaySinh, queQuan);
     }
 
 
