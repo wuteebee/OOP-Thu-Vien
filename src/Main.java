@@ -39,7 +39,7 @@ public class Main {
 //            System.out.println(a.timIDTacGia());
 //        }
 //
-        System.out.println(new NhanVien());
+
         Menu menu = new Menu();
         menu.xuatMenu();
     }

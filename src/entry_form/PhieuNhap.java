@@ -4,27 +4,27 @@ import java.time.LocalDate;
 
 public class PhieuNhap {
     final String idPhieuNhap = "PN" + String.format("%03d", DanhSachChiTietPhieuNhap.soLuong);
-    private String idNhanVien;
+    private String idTheThuVien;
     private String idNhaCungCap;
     private int tongTien;
     private LocalDate ngayNhap;
 
     public PhieuNhap() {
-        this.idNhanVien = "none";
+        this.idTheThuVien = "none";
         this.idNhaCungCap = "none";
         this.tongTien = 0;
         this.ngayNhap = LocalDate.now();
     }
 
-    public PhieuNhap(String idNhanVien, String idNhaCungCap, int tongTien, LocalDate ngayNhap) {
-        this.idNhanVien = idNhanVien;
+    public PhieuNhap(String idTheThuVien, String idNhaCungCap, int tongTien, LocalDate ngayNhap) {
+        this.idTheThuVien = idTheThuVien;
         this.idNhaCungCap = idNhaCungCap;
         this.tongTien = tongTien;
         this.ngayNhap = ngayNhap;
     }
 
     public PhieuNhap(PhieuNhap phieuNhap) {
-        this.idNhanVien = phieuNhap.idNhanVien;
+        this.idTheThuVien = phieuNhap.idTheThuVien;
         this.idNhaCungCap = phieuNhap.idNhaCungCap;
         this.tongTien = phieuNhap.tongTien;
         this.ngayNhap = phieuNhap.ngayNhap;
@@ -34,8 +34,8 @@ public class PhieuNhap {
         return idPhieuNhap;
     }
 
-    public String getIdNhanVien() {
-        return idNhanVien;
+    public String getIdTheThuVien() {
+        return idTheThuVien;
     }
 
     public String getIdNhaCungCap() {
@@ -54,8 +54,8 @@ public class PhieuNhap {
         this.idNhaCungCap = idNhaCungCap;
     }
 
-    public void setIdNhanVien(String idNhanVien) {
-        this.idNhanVien = idNhanVien;
+    public void setIdTheThuVien(String idTheThuVien) {
+        this.idTheThuVien = idTheThuVien;
     }
 
     public void setNgayNhap(LocalDate ngayNhap) {

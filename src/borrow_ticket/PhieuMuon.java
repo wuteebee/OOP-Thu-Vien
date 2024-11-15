@@ -9,21 +9,21 @@ import java.util.Scanner;
 
 public class PhieuMuon {
     private String idPhieuMuon;
-    private String idNhanVien;
+    private String idTheThuVien;
     private String  idTheThuVien;
     private LocalDate ngayMuon, ngayTra;
 
     public PhieuMuon() {
         idPhieuMuon = "none";
-        idNhanVien = "none";
+        idTheThuVien = "none";
         idTheThuVien = "none";
         ngayMuon = LocalDate.now();
         ngayTra = LocalDate.now();
     }
 
-    public PhieuMuon(String idPhieuMuon, String idNhanVien, String idTheThuVien, LocalDate ngayMuon, LocalDate ngayTra) {
+    public PhieuMuon(String idPhieuMuon, String idTheThuVien, String idTheThuVien, LocalDate ngayMuon, LocalDate ngayTra) {
         this.idPhieuMuon = idPhieuMuon;
-        this.idNhanVien = idNhanVien;
+        this.idTheThuVien = idTheThuVien;
         this.idTheThuVien = idTheThuVien;
         this.ngayMuon = ngayMuon;
         this.ngayTra = ngayTra;
@@ -37,8 +37,8 @@ public class PhieuMuon {
         this.idPhieuMuon = idPhieuMuon;
     }
 
-    public String getidNhanVien() {
-        return idNhanVien;
+    public String getidTheThuVien() {
+        return idTheThuVien;
     }
 
     public String getidTheThuVien() {
@@ -67,7 +67,7 @@ public class PhieuMuon {
         System.out.print("ID phieu muon: ");
         idPhieuMuon = sc.nextLine();
         System.out.print("ID nhan vien: ");
-        idNhanVien = sc.nextLine();
+        idTheThuVien = sc.nextLine();
         System.out.print("ID the thu vien: ");
         idTheThuVien = sc.nextLine();
         System.out.print("Ngay muon(dd-mm-yyyy): ");
@@ -80,7 +80,7 @@ public class PhieuMuon {
 
     public String xuatPM() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return String.format("-10%s| -10%s| -10%s| -10%s| -10%s|", idPhieuMuon, idNhanVien, idTheThuVien,
+        return String.format("-10%s| -10%s| -10%s| -10%s| -10%s|", idPhieuMuon, idTheThuVien, idTheThuVien,
                 ngayMuon.format(formatter), ngayTra.format(formatter));
     }
 }

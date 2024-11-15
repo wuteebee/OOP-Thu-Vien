@@ -30,7 +30,7 @@ public class DanhSachNhaXuatBan {
     }
 
     public NhaXuatBan timIDNhaXuatBan() {
-        System.out.println("Nhap ID nha xuat ban:");
+        System.out.println("Nhap ID NhaXuatBan:");
         String idNhaXuatBan = "none";
         int idDaNhap = 0;
         try {
