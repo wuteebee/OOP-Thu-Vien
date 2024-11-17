@@ -9,6 +9,10 @@ public class DanhSachNhanVien {
     public static int soLuong = 0;
     private NhanVien[] dSNV;
 
+    public DanhSachNhanVien() {
+        dSNV = new NhanVien[0];
+    }
+
     public NhanVien[] moRongDanhSach(int soLuongNhanVien) {
         NhanVien[] newDSNV = new NhanVien[soLuong + soLuongNhanVien];
         if (soLuongNhanVien > 0) System.arraycopy(this.dSNV, 0, newDSNV, 0, soLuong);
@@ -41,11 +45,27 @@ public class DanhSachNhanVien {
                     return NhanVien;
             }
         }
-        String idCanTim = "TG" + String.format("%03d", idDaNhap);
+        String idCanTim = "NV" + String.format("%03d", idDaNhap);
         for (NhanVien NhanVien : this.dSNV) {
             if (NhanVien.getIDNhanVien().equals(idCanTim)) return NhanVien;
         }
         return new NhanVien();
+    }
+
+    public NhanVien chinhSuaNhanVien(NhanVien nhanVien) {
+        System.out.println(nhanVien);
+        System.out.println("Chinh sua thong tin NhanVien");
+        nhanVien.suaThongTin();
+        return nhanVien;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (NhanVien NhanVien : this.dSNV) {
+            sb.append(NhanVien).append("\n");
+        }
+        return sb.toString();
     }
 }
 

@@ -10,18 +10,18 @@ import java.util.Scanner;
 public class PhieuMuon {
     private String idPhieuMuon;
     private String idTheThuVien;
-    private String  idTheThuVien;
+    private String  idNhanVien;
     private LocalDate ngayMuon, ngayTra;
 
     public PhieuMuon() {
         idPhieuMuon = "none";
-        idTheThuVien = "none";
+        idNhanVien = "none";
         idTheThuVien = "none";
         ngayMuon = LocalDate.now();
         ngayTra = LocalDate.now();
     }
 
-    public PhieuMuon(String idPhieuMuon, String idTheThuVien, String idTheThuVien, LocalDate ngayMuon, LocalDate ngayTra) {
+    public PhieuMuon(String idPhieuMuon, String idTheThuVien, String idNhanVien, LocalDate ngayMuon, LocalDate ngayTra) {
         this.idPhieuMuon = idPhieuMuon;
         this.idTheThuVien = idTheThuVien;
         this.idTheThuVien = idTheThuVien;
@@ -41,7 +41,7 @@ public class PhieuMuon {
         return idTheThuVien;
     }
 
-    public String getidTheThuVien() {
+    public String getidNhanVien() {
         return idTheThuVien;
     }
 

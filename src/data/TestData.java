@@ -4,6 +4,7 @@ import book.DanhSachNhaXuatBan;
 import book.DanhSachTacGia;
 import book.NhaXuatBan;
 import book.TacGia;
+import employee.*;
 
 import java.time.LocalDate;
 
@@ -25,5 +26,14 @@ public class TestData {
         dSNXB.themNhaXuatBan(new NhaXuatBan("Kim Dong", "0987654321", "Ha Noi"));
         dSNXB.themNhaXuatBan(new NhaXuatBan("Giao Duc Viet Nam", "0135792468", "Ha Noi"));
         return dSNXB;
+    }
+
+    static public DanhSachNhanVien dataDSNV() {
+        DanhSachNhanVien dSNV = new DanhSachNhanVien();
+        dSNV.themNhanVien(new NhanVien("Nguyen", "Pham Tuan Khoi", true, LocalDate.of(2005, 1, 1), "0123456789"));
+        dSNV.themNhanVien(new NhanVien("Nguyen", "Gia Hung", true, LocalDate.of(2005, 8, 25), "0987654321"));
+        dSNV.themNhanVien(new NhanVien("Ngo", "My Tue", false, LocalDate.of(2002, 10, 29), "0987654321"));
+
+        return dSNV;
     }
 }

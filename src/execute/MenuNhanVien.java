@@ -2,6 +2,7 @@ package execute;
 
 import book.*;
 import data.*;
+import employee.NhanVien;
 
 public class MenuNhanVien {
     public int xuatMenuNhanVien() {
@@ -11,16 +12,24 @@ public class MenuNhanVien {
             System.out.println("0. Thoat MenuNhanVien.");
             System.out.println("1. Them NhanVien.");
             System.out.println("2. Chinh sua NhanVien.");
-            System.out.println("3. Danh sach NhanVien.");
-            System.out.println("4. Them Sach.");
-            System.out.println("5. Danh sach Sach.");
-            System.out.println("6. Them TacGia.");
-            System.out.println("7. Danh sach TacGia.");
-            System.out.println("8. Them NhaXuatBan.");
-            System.out.println("9. Danh sach NhaXuatBan.");
+            System.out.println("3. Xoa NhanVien.");
+            System.out.println("4. Danh sach NhanVien.");
+            System.out.println("5. Them Sach.");
+            System.out.println("6. Chinh sua Sach.");
+            System.out.println("7. Xoa Sach.");
+            System.out.println("8. Danh sach Sach.");
+            System.out.println("9. Them TacGia.");
+            System.out.println("10. Chinh sua TacGia.");
+            System.out.println("11. Xoa TacGia.");
+            System.out.println("12. Danh sach TacGia.");
+            System.out.println("13. Them NhaXuatBan.");
+            System.out.println("14. Chinh sua NhaXuatBan.");
+            System.out.println("15. Xoa NhaXuatBan.");
+            System.out.println("16. Danh sach NhaXuatBan.");
             luaChon = Menu.input.nextInt();
+            Menu.input.nextLine();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 9;
+            dieuKien = luaChon >= 0 && luaChon <= 12;
             if (!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
         } while (!dieuKien);
 
@@ -31,16 +40,31 @@ public class MenuNhanVien {
         int chon;
         switch (luaChon) {
             case 1:
-                System.out.println("Xu ly them NhanVien.");
+                System.out.println("case 1");
+                System.out.println("Ban muon them bao nhieu NhanVien:");
+                int soLuongNhanVien = Menu.input.nextInt();
+                Menu.input.nextLine();
+                if (soLuongNhanVien != 0)
+                    do {
+                        chon = xuatMenuThemNhanVien();
+                        xuLyMenuThemNhanVien(chon);
+                    } while (chon != 0 && --soLuongNhanVien != 0);
                 break;
             case 2:
-                System.out.println("Xu ly chinh sua NhanVien.");
+                System.out.println("case 2");
+                System.out.println(SharedData.dSNV.chinhSuaNhanVien(SharedData.dSNV.timIDNhanVien()));
                 break;
             case 3:
-                System.out.println("Xu ly danh sach NhanVien.");
+                System.out.println("case 3");
+                System.out.println("Xu ly xoa NhanVien");
                 break;
             case 4:
-                System.out.println("Ban muon them bao nhieu Sach:");
+                System.out.println("case 4");
+                System.out.println(SharedData.dSNV);
+                break;
+            case 5:
+                System.out.println("case 5");
+                System.out.println(SharedData.dSNV);
                 int soLuongSach = Menu.input.nextInt();
                 Menu.input.nextLine();
                 if (soLuongSach != 0)
@@ -49,10 +73,20 @@ public class MenuNhanVien {
                         xuLyMenuThemSach(chon);
                     } while (chon != 0 && --soLuongSach != 0);
                 break;
-            case 5:
+            case 6:
+                System.out.println("case 6");
+                System.out.println("Chinh sua Sach");
+                break;
+            case 7:
+                System.out.println("case 7");
+                System.out.println("Xu ly xoa Sach");
+                break;
+            case 8:
+                System.out.println("case 8");
                 System.out.println(SharedData.dSS);
                 break;
-            case 6:
+            case 9:
+                System.out.println("case 9");
                 System.out.println("Ban muon them bao nhieu TacGia:");
                 int soLuongTacGia = Menu.input.nextInt();
                 Menu.input.nextLine();
@@ -62,10 +96,20 @@ public class MenuNhanVien {
                         xuLyMenuThemTacGia(chon);
                     } while (chon != 0 && --soLuongTacGia != 0);
                 break;
-            case 7:
+            case 10:
+                System.out.println("case 10");
+                System.out.println("Chinh sua TacGia");
+                break;
+            case 11:
+                System.out.println("case 11");
+                System.out.println("Xoa TacGia");
+                break;
+            case 12:
+                System.out.println("case 12");
                 System.out.println(SharedData.dSTG);
                 break;
-            case 8:
+            case 13:
+                System.out.println("case 13");
                 System.out.println("Ban muon them bao nhieu NhaXuatBan:");
                 int soLuongNhaXuatBan = Menu.input.nextInt();
                 Menu.input.nextLine();
@@ -75,8 +119,42 @@ public class MenuNhanVien {
                         xuLyMenuThemNhaXuatBan(chon);
                     } while (chon != 0 && --soLuongNhaXuatBan != 0);
                 break;
-            case 9:
+            case 14:
+                System.out.println("case 14");
+                System.out.println("Chinh sua NhaXuatBan");
+                break;
+            case 15:
+                System.out.println("case 15");
+                System.out.println("Xoa NhaXuatBan");
+                break;
+            case 16:
+                System.out.println("case 16");
                 System.out.println(SharedData.dSNXB);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public int xuatMenuThemNhanVien() {
+        int luaChon;
+        boolean dieuKien;
+        do {
+            System.out.println("0. Thoat MenuThemNhanVien.");
+            System.out.println("1. Tiep tuc them NhanVien.");
+            luaChon = Menu.input.nextInt();
+            Menu.input.nextLine();
+            Menu.clearScreen();
+            dieuKien = luaChon >= 0 && luaChon <= 3;
+            if (!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
+        } while (!dieuKien);
+        return luaChon;
+    }
+
+    public void xuLyMenuThemNhanVien(int luaChon) {
+        switch (luaChon) {
+            case 1:
+                SharedData.dSNV.themNhanVien(new NhanVien().taoNhanVien());
                 break;
             default:
                 break;

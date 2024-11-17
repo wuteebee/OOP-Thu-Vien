@@ -1,6 +1,7 @@
 import book.*;
 import execute.*;
 import employee.*;
+import data.*;
 
 import javax.swing.text.html.MinimalHTMLWriter;
 import java.time.LocalDate;
@@ -42,6 +43,8 @@ public class Main {
 
         Menu menu = new Menu();
         menu.xuatMenu();
+        System.out.println(SharedData.dSS);
+
     }
 
 

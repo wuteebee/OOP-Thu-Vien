@@ -22,7 +22,7 @@ public class NhanVien {
         soDienThoai = "none";
     }
 
-    public void NhanVien(String ho, String ten, Boolean gioiTinh, LocalDate ngaySinh, String soDienThoai) {
+    public NhanVien(String ho, String ten, Boolean gioiTinh, LocalDate ngaySinh, String soDienThoai) {
         this.ho = ho;
         this.ten = ten;
         this.gioiTinh = gioiTinh;
@@ -67,6 +67,7 @@ public class NhanVien {
 
         System.out.println("Nhap gioiTinh cua NhanVien (1: nam/0: nu):");
         NhanVien.setGioiTinh(Menu.input.nextInt() == 1);
+        Menu.input.nextLine();
 
         System.out.println("Nhap vao ngay thang nam sinh (ddMMyyyy) cua NhanVien:");
         DateTimeFormatter formatter;
@@ -90,8 +91,24 @@ public class NhanVien {
         return NhanVien;
     }
 
+    public void suaThongTin() {
+        System.out.println("Nhap ho cua NhanVien:");
+        ho = Menu.input.nextLine();
+        System.out.println("Nhap ten cua NhanVien:");
+        ten = Menu.input.nextLine();
+        System.out.println("Nhap gioiTinh cua NhanVien (1: nam/0: nu):");
+        gioiTinh = Menu.input.nextInt() == 1;
+        Menu.input.nextLine();
+        System.out.println("Nhap vao ngay thang nam sinh (ddMMyyyy) cua NhanVien:");
+        String chuoiNgaySinh = Menu.input.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        ngaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
+        System.out.println("Nhap vao so dien thoai cua NhanVien:");
+        soDienThoai = Menu.input.nextLine();
+    }
+
     @Override
     public String toString() {
-        return String.format("%-10s%-15s%-15s%-10s%-15s%-15s", idNhanVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai);
+        return String.format("%-10s%-15s%-25s%-10s%-15s%-15s", idNhanVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai);
     }
 }
