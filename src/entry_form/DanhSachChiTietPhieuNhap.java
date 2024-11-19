@@ -4,7 +4,7 @@ public class DanhSachChiTietPhieuNhap {
     static int soLuong;
     private ChiTietPhieuNhap[] dSPN;
 
-     public void themChiTietPhieuNhap(ChiTietPhieuNhap chiTietPhieuNhap) {
+    public void themChiTietPhieuNhap(ChiTietPhieuNhap chiTietPhieuNhap) {
         if (dSPN == null) {
             dSPN = new ChiTietPhieuNhap[1];
             dSPN[0] = chiTietPhieuNhap;
@@ -17,11 +17,22 @@ public class DanhSachChiTietPhieuNhap {
         soLuong++;
     }
 
-
-
-
-
-    
+    public void xoaChiTietPhieuNhap(ChiTietPhieuNhap chiTietPhieuNhap) {
+        if (dSPN == null || soLuong == 0) {
+            return;
+        }
+        ChiTietPhieuNhap[] newDSPN = new ChiTietPhieuNhap[dSPN.length - 1];
+        int index = 0;
+        for (ChiTietPhieuNhap item : dSPN) {
+            if (!item.equals(chiTietPhieuNhap)) {
+                if (index < newDSPN.length) {
+                    newDSPN[index++] = item;
+                }
+            }
+        }
+        dSPN = newDSPN;
+        soLuong--;
+    }
 }
 
 
