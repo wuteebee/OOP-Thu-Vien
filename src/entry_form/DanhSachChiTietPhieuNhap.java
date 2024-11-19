@@ -33,6 +33,8 @@ public class DanhSachChiTietPhieuNhap {
         dSPN = newDSPN;
         soLuong--;
     }
+    //hello
+    
 }
 
 
