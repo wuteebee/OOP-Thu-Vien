@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class NhanVien {
-    final String idNhanVien = "NV" + String.format("%03d", DanhSachNhanVien.soLuong + 1);
+    private String idNhanVien = "NV" + String.format("%03d", DanhSachNhanVien.soLuong + 1);
     private String ho;
     private String ten;
     private Boolean gioiTinh;
@@ -30,8 +30,32 @@ public class NhanVien {
         this.soDienThoai = soDienThoai;
     }
 
+    public LocalDate getNgaySinh() {
+        return this.ngaySinh;
+    }
+
     public String getIDNhanVien() {
         return idNhanVien;
+    }
+
+    public Boolean getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public String getHo() {
+        return ho;
+    }
+
+    public String getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setID(int id) {
+        this.idNhanVien = "NV" + String.format("%03d", id);
     }
 
     public void setGioiTinh(Boolean gioiTinh) {

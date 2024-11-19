@@ -56,7 +56,7 @@ public class MenuNhanVien {
                 break;
             case 3:
                 System.out.println("case 3");
-                System.out.println("Xu ly xoa NhanVien");
+                System.out.println(SharedData.dSNV.xoaNhanVien(SharedData.dSNV.timIDNhanVien()));
                 break;
             case 4:
                 System.out.println("case 4");

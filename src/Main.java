@@ -4,6 +4,7 @@ import employee.*;
 import data.*;
 
 import javax.swing.text.html.MinimalHTMLWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 
@@ -39,11 +40,18 @@ public class Main {
 //        while(true) {
 //            System.out.println(a.timIDTacGia());
 //        }
-//
+
 
         Menu menu = new Menu();
         menu.xuatMenu();
-        System.out.println(SharedData.dSS);
+//        System.out.println(SharedData.dSS);
+//        ImportData importData = new ImportData();
+//        try {
+//            importData.writeExcel();
+//            System.out.println("Dữ liệu đã được ghi vào file NhanVien.xlsx");
+//        } catch (IOException e) {
+//            System.err.println("Có lỗi xảy ra khi ghi file: " + e.getMessage());
+//        }
 
     }
 
