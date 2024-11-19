@@ -7,7 +7,7 @@ public class ChiTietPhieuNhap {
     private int thanhTien;
 
     public ChiTietPhieuNhap() {
-        this.idSach = "none";
+        this.idSach = "non";
         this.soLuong = 0;
         this.thanhTien = 0;
     }
