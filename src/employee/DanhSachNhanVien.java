@@ -73,9 +73,12 @@ public class DanhSachNhanVien {
             idNhanVien = Menu.input.nextLine();
             idDaNhap = Integer.parseInt(idNhanVien);
         } catch (NumberFormatException nfe) {
-            for (NhanVien NhanVien : this.dSNV) {
-                if (NhanVien.getIDNhanVien().equalsIgnoreCase(idNhanVien))
-                    return NhanVien;
+            String format = idNhanVien.substring(0, 2);
+            int id = Integer.parseInt(idNhanVien.substring(2));
+            String exactID = format.toUpperCase() + String.format("%03d", id);
+            for (NhanVien nhanVien : this.dSNV) {
+                if (nhanVien.getIDNhanVien().equals(exactID))
+                    return nhanVien;
             }
         }
         String idCanTim = "NV" + String.format("%03d", idDaNhap);
@@ -115,5 +118,4 @@ public class DanhSachNhanVien {
         return sb.toString();
     }
 }
-
 

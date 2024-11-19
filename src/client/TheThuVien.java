@@ -15,7 +15,7 @@ public class TheThuVien {
     private String soDienThoai;
 
     public TheThuVien() {
-        ho = "none";
+        ho = "non";
         ten = "none";
         ngaySinh = LocalDate.now();
         gioiTinh = false;
