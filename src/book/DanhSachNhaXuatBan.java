@@ -3,6 +3,7 @@ package book;
 import execute.*;
 
 public class DanhSachNhaXuatBan {
+
     static int soLuong = 0;
     private NhaXuatBan[] dSNXB;
 
@@ -12,7 +13,9 @@ public class DanhSachNhaXuatBan {
 
     public NhaXuatBan[] moRongDanhSach(int soLuongNhaXuatBan) {
         NhaXuatBan[] newDSNXB = new NhaXuatBan[soLuong + soLuongNhaXuatBan];
-        if (soLuongNhaXuatBan >= 0) System.arraycopy(this.dSNXB, 0, newDSNXB, 0, soLuong);
+        if (soLuongNhaXuatBan >= 0) {
+            System.arraycopy(this.dSNXB, 0, newDSNXB, 0, soLuong);
+        }
         return this.dSNXB = newDSNXB;
     }
 
@@ -44,10 +47,34 @@ public class DanhSachNhaXuatBan {
             }
         }
         String idCanTim = "NXB" + String.format("%03d", idDaNhap);
-        for(NhaXuatBan nhaXuatBan : this.dSNXB) {
-            if(nhaXuatBan.getIDNhaXuatBan().equals(idCanTim)) return nhaXuatBan;
+        for (NhaXuatBan nhaXuatBan : this.dSNXB) {
+            if (nhaXuatBan.getIDNhaXuatBan().equals(idCanTim)) {
+                return nhaXuatBan;
+            }
         }
         return new NhaXuatBan();
+    }
+
+    public void khoaNhaXuatBan() {
+        System.out.println(toStringFormatted(true));
+        NhaXuatBan nhaXuatBan = timIDNhaXuatBan();
+        if (nhaXuatBan == new NhaXuatBan() || nhaXuatBan.getTrangThai() != true) {
+            System.out.println("Khong tim thay nha xuat ban hoac nha xuat ban da bi khoa!");
+        } else {
+            nhaXuatBan.setTrangThai(false);
+            System.out.println("Da khoa nha xuat ban");
+        }
+    }
+
+    public void moKhoaNhaXuatBan() {
+        System.out.println(toStringFormatted(false));
+        NhaXuatBan nhaXuatBan = timIDNhaXuatBan();
+        if (nhaXuatBan == new NhaXuatBan() || nhaXuatBan.getTrangThai() != false) {
+            System.out.println("Khong tim thay nha xuat ban hoac nha xuat ban da duoc mo khoa!");
+        } else {
+            nhaXuatBan.setTrangThai(false);
+            System.out.println("Da mo khoa nha xuat ban");
+        }
     }
 
     @Override
@@ -55,6 +82,16 @@ public class DanhSachNhaXuatBan {
         StringBuilder output = new StringBuilder();
         for (NhaXuatBan nhaXuatBan : this.dSNXB) {
             output.append("\n").append(nhaXuatBan);
+        }
+        return output.toString();
+    }
+
+    public String toStringFormatted(Boolean trangThai) {
+        StringBuilder output = new StringBuilder();
+        for (NhaXuatBan nhaXuatBan : this.dSNXB) {
+            if (nhaXuatBan.getTrangThai() && trangThai) {
+                output.append("\n").append(nhaXuatBan);
+            }
         }
         return output.toString();
     }

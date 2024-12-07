@@ -1,15 +1,16 @@
 package execute;
 
-public class MenuNhaCungCap {
-    int xuatMenuNhaCungCap() {
+public class MenuQuanLyNhaCungCap {
+    int xuatMenuQuanLyNhaCungCap() {
         int luaChon;
         boolean dieuKien;
         do {
             System.out.println("0. Thoat MenuNhaCungCap.");
-            System.out.println("1. Them NhaCungCap.");
-            System.out.println("2. Chinh sua NhaCungCap.");
-            System.out.println("3. Danh sach NhaCungCap.");
-            System.out.println("4. Cung cap Sach.");
+            System.out.println("1. Them nha cung cap.");
+            System.out.println("2. Chinh sua nha cung cap.");
+            System.out.println("3. Khoa nha cung cap.");
+            System.out.println("4. Mo khoa sua nha cung cap.");
+            System.out.println("5. Danh sach nha cung cap.");
             luaChon = Menu.input.nextInt();
             Menu.clearScreen();
             dieuKien = luaChon >= 0 && luaChon <= 4;
@@ -18,7 +19,7 @@ public class MenuNhaCungCap {
         return luaChon;
     }
 
-    void xuLyMenuNhaCungCap(int luaChon) {
+    void xuLyMenuQuanLyNhaCungCap(int luaChon) {
         switch(luaChon) {
             case 1:
                 System.out.println("Xu ly them NhaCungCap.");

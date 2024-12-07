@@ -6,9 +6,9 @@ public class MenuKhachHang {
         boolean dieuKien;
         do {
             System.out.println("0. Thoat MenuKhachHang.");
-            System.out.println("1. Them KhachHang.");
-            System.out.println("2. Chinh sua KhachHang.");
-            System.out.println("3. Danh sach KhachHang.");
+            System.out.println("1. Them khach hang.");
+            System.out.println("2. Chinh sua khach hang.");
+            System.out.println("3. Danh sach khach hang.");
             System.out.println("4. Muon/Tra/Phat.");
             luaChon = Menu.input.nextInt();
             Menu.clearScreen();

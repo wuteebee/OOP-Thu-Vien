@@ -1,27 +1,27 @@
 package book;
 
-import execute.*;
 import data.*;
+import execute.*;
 
 public class Sach {
     final String idSach = "S" + String.format("%03d", DanhSachSach.soLuong + 1);
     protected String ten;
-    protected int soLuong;
+    protected int tonKho;
     protected int gia;
     protected TacGia tacGia;
     protected NhaXuatBan nhaXuatBan;
 
     public Sach() {
         ten = "none";
-        soLuong = 0;
+        tonKho = 0;
         gia = 0;
         tacGia = new TacGia();
         nhaXuatBan = new NhaXuatBan();
     }
 
-    public Sach(String ten, int soLuong, int gia, TacGia tacGia, NhaXuatBan nhaXuatBan) {
+    public Sach(String ten, int tonKho, int gia, TacGia tacGia, NhaXuatBan nhaXuatBan) {
         this.ten = ten;
-        this.soLuong = soLuong;
+        this.tonKho = tonKho;
         this.gia = gia;
         this.tacGia = tacGia;
         this.nhaXuatBan = nhaXuatBan;
@@ -29,14 +29,14 @@ public class Sach {
 
     public Sach(Sach sach) {
         this.ten = sach.ten;
-        this.soLuong = sach.soLuong;
+        this.tonKho = sach.tonKho;
         this.gia = sach.gia;
         this.tacGia = sach.tacGia;
         this.nhaXuatBan = sach.nhaXuatBan;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setTonKho(int tonKho) {
+        this.tonKho = tonKho;
     }
 
     public void setGia(int gia) {
@@ -61,7 +61,7 @@ public class Sach {
         sach.setTen(Menu.input.nextLine());
 
         System.out.println("Nhap so luong cua Sach:");
-        sach.setSoLuong(Menu.input.nextInt());
+        sach.setTonKho(Menu.input.nextInt());
         Menu.input.nextLine();
 
         System.out.println("Nhap gia cua Sach:");
@@ -80,6 +80,6 @@ public class Sach {
 
     @Override
     public String toString() {
-        return String.format("%-10s%-30s%-10s%-10d%-20s%-20s", idSach, ten, soLuong, gia, tacGia.getTen(), nhaXuatBan.getTen());
+        return String.format("%-10s%-30s%-10s%-10d%-20s%-20s", idSach, ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen());
     }
 }

@@ -1,14 +1,17 @@
 package book;
 
+import execute.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import execute.*;
+import java.time.format.DateTimeParseException;
 
 public class TacGia {
+
     final String idTacGia = "TG" + String.format("%03d", DanhSachTacGia.soLuong + 1);
     private String ten;
     private LocalDate ngaySinh;
     private String queQuan;
+    private Boolean trangThai = true;
 
     public TacGia() {
         this.ten = "none";
@@ -38,6 +41,10 @@ public class TacGia {
         return queQuan;
     }
 
+    public boolean getTrangThai() {
+        return trangThai;
+    }
+
     public void setTen(String ten) {
         this.ten = ten;
     }
@@ -48,6 +55,10 @@ public class TacGia {
 
     public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
     }
 
     public TacGia taoTacGia() {
@@ -79,10 +90,29 @@ public class TacGia {
         return tacGia;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%-10s%-30s%-15s%-20s", idTacGia, ten, ngaySinh, queQuan);
+    public void suaThongTin() {
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.println("Nhap ten Tac Gia:");
+                ten = Menu.input.nextLine();
+                System.out.println("Nhap vao ngay thang nam sinh (ddMMyyyy):");
+                String chuoiNgaySinh = Menu.input.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+                ngaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
+                System.out.println("Nhap vao que quan cua Tac Gia:");
+                queQuan = Menu.input.nextLine();
+                validInput = true;
+            } catch (DateTimeParseException dpe) {
+                System.out.println("Nhap sai dinh dang ngay sinh! Vui long nhap lai.");
+            }
+        }
     }
 
+    @Override
+    public String toString() {
+        return String.format("%-10s%-30s%-15s%-20s%-15s", idTacGia, ten, ngaySinh, queQuan, (trangThai ? "hoat dong" : "khoa"));
+    }
 
 }
