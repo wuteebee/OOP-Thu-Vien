@@ -1,9 +1,10 @@
-// tạo phiếu mượn => tạo chi tiết phiếu mượn => tạo phiếu phạt => tạo chi tiết phiếu phạt
-
 package fine_ticket;
 
+import java.util.Scanner;
+import data.SharedData;
+
 public class PhieuPhat {
-    final String idPhieuPhat = "PP" + String.format("%03d", DanhSachPhieuPhat.soLuong);
+    private String idPhieuPhat = "PP" + String.format("%03d", DanhSachPhieuPhat.maID);
     private String idPhieuMuon;
     private int tongTienPhat;
 
@@ -12,9 +13,9 @@ public class PhieuPhat {
         tongTienPhat = 0;
     }
 
-    public PhieuPhat(String idPhieuMuon, int tongTienPhat) {
+    public PhieuPhat(String idPhieuMuon) {
         this.idPhieuMuon = idPhieuMuon;
-        this.tongTienPhat = tongTienPhat;
+        tongTienPhat = SharedData.dSCTPP.tinhTongTien(idPhieuPhat);
     }
 
     public PhieuPhat(PhieuPhat A) {     
@@ -34,6 +35,10 @@ public class PhieuPhat {
         return tongTienPhat;
     }
 
+    public void setIDPhieuPhat(String id)
+    { 
+    	idPhieuPhat = id;
+    }
     public void setIDPhieuMuon(String id) {
         idPhieuMuon = id;
     }
@@ -44,6 +49,37 @@ public class PhieuPhat {
 
 	@Override 
     public String toString() {
-        return String.format("%-15s%-15s%,d dong\n", idPhieuPhat, idPhieuMuon, tongTienPhat);
+        return String.format("%-20s%-15s%20s", idPhieuPhat, idPhieuMuon, String.format("%,d dong",tongTienPhat));
     }
+	
+	Scanner scan = new Scanner(System.in);
+	public void them() //Bằng bàn phím
+	{
+		System.out.print("ID Phieu Muon: ");
+		int ID = scan.nextInt();
+		while (!laPMDuyNhat(String.format("PM%03d", ID)))
+		{ 
+			System.out.print("Trung lap ID Phieu Muon, nhap lai (Y/N)? ");
+			char ind = scan.next().charAt(0);
+			if (!(ind == 'Y' || ind == 'y'))
+				return;
+			else
+			System.out.print("ID Phieu Muon: ");
+			ID = scan.nextInt();
+		}
+		idPhieuMuon = String.format("PM%03d", ID);
+		System.out.format("So luong chi tiet phieu phat cua phieu %s: ", idPhieuPhat);
+    	int n = scan.nextInt();
+    	tongTienPhat = SharedData.dSCTPP.themChiTietPhieuPhat(n);
+	}
+	
+	private Boolean laPMDuyNhat(String idPM)
+	{
+		for (PhieuPhat i : DanhSachPhieuPhat.dSPP)
+		{
+			if (idPM.equals(i.getIDPhieuMuon()))
+				return false;
+		}
+		return true;
+	}
 }
