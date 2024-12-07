@@ -10,7 +10,7 @@ public class PhieuNhap {
     private LocalDate ngayNhap;
 
     public PhieuNhap() {
-        this.idTheThuVien = "none";
+        this.idTheThuVien = "non";
         this.idNhaCungCap = "none";
         this.tongTien = 0;
         this.ngayNhap = LocalDate.now();
