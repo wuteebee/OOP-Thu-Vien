@@ -163,28 +163,37 @@ public class DanhSachSach {
     }
 
     public void readFile() {
-        Sach sach;
+        SachGiaoKhoa sachGiaoKhoa;
+        SachThamKhao sachThamKhao;
         try {
             Scanner inputDSS = new Scanner(new File("src\\data\\DanhSachSach.txt"));
             inputDSS.useDelimiter(",");
             while (inputDSS.hasNextLine() && inputDSS.hasNext()) {
-                sach = new Sach();
                 String[] thuocTinh = inputDSS.nextLine().split(",");
-                if(thuocTinh[0].equals("GK")) {
-                    ((SachGiaoKhoa)sach).setTrinhDo(thuocTinh[7]);
-                    ((SachGiaoKhoa)sach).setLinhVuc(thuocTinh[8]);
+                if (thuocTinh[0].equals("GK")) {
+                    sachGiaoKhoa = new SachGiaoKhoa();
+                    sachGiaoKhoa.setTrinhDo(thuocTinh[7]);
+                    sachGiaoKhoa.setLinhVuc(thuocTinh[8]);
+                    sachGiaoKhoa.setTen(thuocTinh[1]);
+                    sachGiaoKhoa.setTonKho(Integer.parseInt(thuocTinh[2]));
+                    sachGiaoKhoa.setGia(Integer.parseInt(thuocTinh[3]));
+                    sachGiaoKhoa.setTacGia(SharedData.dSTG.timIDTacGia(thuocTinh[4]));
+                    sachGiaoKhoa.setNhaXuatBan(SharedData.dSNXB.timIDNhaXuatBan(thuocTinh[5]));
+                    sachGiaoKhoa.setTrangThai(Integer.parseInt(thuocTinh[6]) == 1);
+                    SharedData.dSS.themSach(sachGiaoKhoa);
+                } else if (thuocTinh[0].equals("TK")) {
+                    sachThamKhao = new SachThamKhao();
+                    sachThamKhao.setChuyenNganh(thuocTinh[7]);
+                    sachThamKhao.setDeTai(thuocTinh[8]);
+                    sachThamKhao.setTen(thuocTinh[1]);
+                    sachThamKhao.setTonKho(Integer.parseInt(thuocTinh[2]));
+                    sachThamKhao.setGia(Integer.parseInt(thuocTinh[3]));
+                    sachThamKhao.setTacGia(SharedData.dSTG.timIDTacGia(thuocTinh[4]));
+                    sachThamKhao.setNhaXuatBan(SharedData.dSNXB.timIDNhaXuatBan(thuocTinh[5]));
+                    sachThamKhao.setTrangThai(Integer.parseInt(thuocTinh[6]) == 1);
+                    SharedData.dSS.themSach(sachThamKhao);
                 }
-                else if(thuocTinh[0].equals("TK")) {
-                    ((SachThamKhao)sach).setChuyenNganh(thuocTinh[7]);
-                    ((SachThamKhao)sach).setDeTai(thuocTinh[8]);
-                }
-                sach.setTen(thuocTinh[1]);
-                sach.setTonKho(Integer.parseInt(thuocTinh[2]));
-                sach.setGia(Integer.parseInt(thuocTinh[3]));
-                sach.setTacGia(SharedData.dSTG.timIDTacGia(thuocTinh[4]));
-                sach.setNhaXuatBan(SharedData.dSNXB.timIDNhaXuatBan(thuocTinh[5]));
-                sach.setTrangThai(Integer.parseInt(thuocTinh[6]) == 1);
-                SharedData.dSS.themSach(sach);
+
             }
             inputDSS.close();
         } catch (Exception e) {
