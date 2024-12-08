@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class DanhSachPhieuMuon {
-    private PhieuMuon[] dsPM;
+    public PhieuMuon[] dsPM;
     private int soluong;
 
     Scanner sc = new Scanner(System.in);

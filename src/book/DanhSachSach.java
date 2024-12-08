@@ -31,7 +31,7 @@ import execute.Menu;
 
 public class DanhSachSach {
     public static int soLuong = 0;
-    private Sach[] dSSach;
+    public Sach[] dSSach;
 
     public DanhSachSach() {
         System.out.println("TAO MOI");

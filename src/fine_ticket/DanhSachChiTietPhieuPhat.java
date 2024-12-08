@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
+import data.SharedData;
+
 public class DanhSachChiTietPhieuPhat {
-	public static int soLuong = 0;
-	public static ChiTietPhieuPhat[] dSCTPP;
+	private int soLuong = 0;
+	public ChiTietPhieuPhat[] dSCTPP;
 
 	public DanhSachChiTietPhieuPhat() {
 		dSCTPP = new ChiTietPhieuPhat[0];
@@ -21,7 +23,7 @@ public class DanhSachChiTietPhieuPhat {
 			dSCTPP = Arrays.copyOf(dSCTPP, soLuong + 1);
 			dSCTPP[soLuong++] = A;
 			//Cap nhat lai tong tien cho phieu phat;
-			for (PhieuPhat i : DanhSachPhieuPhat.dSPP)
+			for (PhieuPhat i : SharedData.dSPP.dSPP)
 			{ 
 				if (i.getIDPhieuPhat().equals(A.getIDChiTietPhieuPhat()))
 				{
@@ -144,7 +146,7 @@ public class DanhSachChiTietPhieuPhat {
 					System.out.print("Dieu Khoan Vi Pham: ");
 					res[choice].setidDieuKhoan(scan.nextInt());
 					//Cap nhat lai tong tien trong phieu phat
-					for (PhieuPhat i : DanhSachPhieuPhat.dSPP)
+					for (PhieuPhat i : SharedData.dSPP.dSPP)
 					{ 
 						if (i.getIDPhieuPhat().equals(res[choice].getIDChiTietPhieuPhat()))
 						{

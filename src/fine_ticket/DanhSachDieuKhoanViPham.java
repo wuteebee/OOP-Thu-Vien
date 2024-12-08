@@ -7,8 +7,7 @@ import java.util.Arrays;
 
 public class DanhSachDieuKhoanViPham {
 	public static int maDieuKhoan = 1;
-	public static int soLuong = 1;
-	public static DieuKhoanViPham[] dSDK;
+	public DieuKhoanViPham[] dSDK;
 	
 	public DanhSachDieuKhoanViPham()
 	{ 

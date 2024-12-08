@@ -8,8 +8,8 @@ import data.SharedData;
 
 public class DanhSachPhieuPhat {
 	public static int maID = 1; 
-    public static int soLuong = 0;
-    public static PhieuPhat[] dSPP;
+    private int soLuong = 0;
+    public PhieuPhat[] dSPP;
 
     public DanhSachPhieuPhat() {
         dSPP = new PhieuPhat[0];

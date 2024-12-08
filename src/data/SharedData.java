@@ -1,5 +1,6 @@
 package data;
 import book.*;
+import borrow_ticket.*;
 import client.*;
 import employee.*;
 import fine_ticket.*;
@@ -16,4 +17,6 @@ public class SharedData {
     public static DanhSachPhieuPhat dSPP = new DanhSachPhieuPhat();
     public static DanhSachChiTietPhieuPhat dSCTPP = new DanhSachChiTietPhieuPhat();
     public static DanhSachDieuKhoanViPham dSDK = new DanhSachDieuKhoanViPham();
+    
+    public static DanhSachPhieuMuon dSPM = new DanhSachPhieuMuon();
 }
