@@ -54,6 +54,25 @@ public class DanhSachTacGia {
         }
         return new TacGia();
     }
+    public TacGia timIDTacGia(String idTacGia) {
+        int idDaNhap = 0;
+        try {
+            idDaNhap = Integer.parseInt(idTacGia);
+        } catch (NumberFormatException nfe) {
+            for (TacGia tacGia : this.dSTG) {
+                if (tacGia.getIDTacGia().equalsIgnoreCase(idTacGia)) {
+                    return tacGia;
+                }
+            }
+        }
+        String idCanTim = "TG" + String.format("%03d", idDaNhap);
+        for (TacGia tacGia : this.dSTG) {
+            if (tacGia.getIDTacGia().equals(idCanTim)) {
+                return tacGia;
+            }
+        }
+        return new TacGia();
+    }
 
     public TacGia chinhSuaTacGia(TacGia tacGia) {
         System.out.println(tacGia);

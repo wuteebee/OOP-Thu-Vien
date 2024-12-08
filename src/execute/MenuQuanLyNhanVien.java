@@ -265,63 +265,29 @@ public class MenuQuanLyNhanVien {
     }
 
     public void xuLyMenuQuanLyNhanVien(int luaChon) {
-        int chon;
         switch (luaChon) {
             case 1:
-                // System.out.println("case 1");
-                // System.out.println("Ban muon them bao nhieu NhanVien:");
-                // int soLuongNhanVien = Menu.input.nextInt();
-                // Menu.input.nextLine();
-                // if (soLuongNhanVien != 0)
-                //     do {
-                //         chon = xuatMenuThemNhanVien();
-                //         xuLyMenuThemNhanVien(chon);
-                //     } while (chon != 0 && --soLuongNhanVien != 0);
+                System.out.println("Ban muon them bao nhieu nhan vien:");
+                int soLuongNhanVien = Menu.input.nextInt();
+                Menu.input.nextLine();
+                while(soLuongNhanVien-- > 0) {
+                    SharedData.dSNV.themNhanVien(1);
+                }
                 break;
             case 2:
-                System.out.println("case 2");
                 System.out.println(SharedData.dSNV.chinhSuaNhanVien(SharedData.dSNV.timIDNhanVien()));
                 break;
             case 3:
-                System.out.println("case 3");
                 SharedData.dSNV.khoaNhanVien();
                 break;
             case 4:
-                System.out.println("case 4");
                 SharedData.dSNV.moKhoaNhanVien();
                 break;
             case 5:
-                System.out.println("case 5");
                 System.out.println(SharedData.dSNV);
                 break;
             default:
                 break;
         }
     }
-
-    // public int xuatMenuThemNhanVien() {
-    //     int luaChon;
-    //     boolean dieuKien;
-    //     do {
-    //         System.out.println("0. Thoat MenuThemNhanVien.");
-    //         System.out.println("1. Tiep tuc them NhanVien.");
-    //         luaChon = Menu.input.nextInt();
-    //         Menu.input.nextLine();
-    //         Menu.clearScreen();
-    //         dieuKien = luaChon >= 0 && luaChon <= 3;
-    //         if (!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
-    //     } while (!dieuKien);
-    //     return luaChon;
-    // }
-
-    // public void xuLyMenuThemNhanVien(int luaChon) {
-    //     switch (luaChon) {
-    //         case 1:
-    //             SharedData.dSNV.themNhanVien(new NhanVien().taoNhanVien());
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
-
 }

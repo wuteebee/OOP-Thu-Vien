@@ -2,14 +2,16 @@ package book;
 
 import data.*;
 import execute.*;
+import java.util.InputMismatchException;
 
 public class Sach {
-    final String idSach = "S" + String.format("%03d", DanhSachSach.soLuong + 1);
+    protected String idSach = "S" + String.format("%03d", DanhSachSach.soLuong + 1);
     protected String ten;
     protected int tonKho;
     protected int gia;
     protected TacGia tacGia;
     protected NhaXuatBan nhaXuatBan;
+    protected Boolean trangThai = true;
 
     public Sach() {
         ten = "none";
@@ -55,6 +57,18 @@ public class Sach {
         this.tacGia = tacGia;
     }
 
+    public String getIDSach() {
+        return idSach;
+    }
+
+    public void setTrangThai(Boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public Boolean getTrangThai() {
+        return trangThai;
+    }
+
     public Sach taoSach() {
         Sach sach = new Sach();
         System.out.println("Nhap ten cua Sach:");
@@ -69,17 +83,49 @@ public class Sach {
         Menu.input.nextLine();
 
         System.out.println(SharedData.dSTG);
-        TacGia tacGia = SharedData.dSTG.timIDTacGia();
-        sach.setTacGia(tacGia);
+        TacGia TacGia = SharedData.dSTG.timIDTacGia();
+        sach.setTacGia(TacGia);
 
         System.out.println(SharedData.dSNXB);
-        NhaXuatBan nhaXuatBan = SharedData.dSNXB.timIDNhaXuatBan();
-        sach.setNhaXuatBan(nhaXuatBan);
+        NhaXuatBan NhaXuatBan = SharedData.dSNXB.timIDNhaXuatBan();
+        sach.setNhaXuatBan(NhaXuatBan);
         return sach;
+    }
+
+    public void suaThongTin() {
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.println("Nhập tên của Sách:");
+                setTen(Menu.input.nextLine());
+
+                System.out.println("Nhập số lượng của Sách:");
+                setTonKho(Menu.input.nextInt());
+                Menu.input.nextLine(); 
+
+                System.out.println("Nhập giá của Sách:");
+                setGia(Menu.input.nextInt());
+                Menu.input.nextLine();
+
+                System.out.println("Nhập tác giả của Sách:");
+                TacGia TacGia = SharedData.dSTG.timIDTacGia();
+                setTacGia(TacGia);
+
+                System.out.println("Nhập nhà xuất bản của Sách:");
+                NhaXuatBan NhaXuatBan = SharedData.dSNXB.timIDNhaXuatBan();
+                setNhaXuatBan(NhaXuatBan);
+
+                validInput = true; 
+            } catch (InputMismatchException ime) {
+                System.out.println("Nhập sai thông tin! Vui lòng nhập lại.");
+                Menu.input.nextLine(); 
+            }
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("%-10s%-30s%-10s%-10d%-20s%-20s", idSach, ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen());
+        return String.format("%-10s", getIDSach()) + String.format("%-30s%-10s%-10d%-20s%-20s", ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen());
     }
 }

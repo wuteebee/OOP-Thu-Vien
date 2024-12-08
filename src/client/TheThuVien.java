@@ -1,10 +1,10 @@
 package client;
 
-import book.TacGia;
 import execute.Menu;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 
 public class TheThuVien {
     final String idTheThuVien = "NV" + String.format("%03d", DanhSachTheThuVien.soLuong + 1);
@@ -13,6 +13,7 @@ public class TheThuVien {
     private Boolean gioiTinh;
     private LocalDate ngaySinh;
     private String soDienThoai;
+    private Boolean trangThai = true;
 
     public TheThuVien() {
         ho = "non";
@@ -22,7 +23,7 @@ public class TheThuVien {
         soDienThoai = "none";
     }
 
-    public void TheThuVien(String ho, String ten, Boolean gioiTinh, LocalDate ngaySinh, String soDienThoai) {
+    public TheThuVien(String ho, String ten, Boolean gioiTinh, LocalDate ngaySinh, String soDienThoai) {
         this.ho = ho;
         this.ten = ten;
         this.gioiTinh = gioiTinh;
@@ -32,6 +33,10 @@ public class TheThuVien {
 
     public String getIDTheThuVien() {
         return idTheThuVien;
+    }
+
+    public Boolean getTrangThai() {
+        return trangThai;
     }
 
     public void setGioiTinh(Boolean gioiTinh) {
@@ -52,6 +57,10 @@ public class TheThuVien {
 
     public void setTen(String ten) {
         this.ten = ten;
+    }
+
+    public void setTrangThai(Boolean trangThai){
+        this.trangThai = trangThai;
     }
 
     public TheThuVien taoTheThuVien() {
@@ -88,6 +97,41 @@ public class TheThuVien {
         TheThuVien.setNgaySinh(ngaySinh);
         return TheThuVien;
     }
+
+    public void suaThongTin() {
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.println("Nhap ho cua The Thu Vien:");
+                ho = Menu.input.nextLine();
+
+                System.out.println("Nhap ten cua The Thu Vien:");
+                ten = Menu.input.nextLine();
+
+                System.out.println("Nhap gioiTinh cua The Thu Vien (1: nam/0: nu):");
+                gioiTinh = Menu.input.nextInt() == 1;
+                Menu.input.nextLine();
+
+                System.out.println("Nhap vao ngay thang nam sinh (ddMMyyyy) cua The Thu Vien:");
+                String chuoiNgaySinh = Menu.input.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+                ngaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
+
+                System.out.println("Nhap vao so dien thoai cua The Thu Vien:");
+                soDienThoai = Menu.input.nextLine();
+
+                validInput = true;
+            } catch (InputMismatchException ime) {
+                System.out.println("Nhap sai gioi tinh! Vui long nhap lai.");
+                Menu.input.nextLine();
+            } catch (DateTimeParseException dpe) {
+                System.out.println("Nhap sai dinh dang ngay sinh! Vui long nhap lai.");
+            }
+        }
+    }
+
+    
 
     @Override
     public String toString() {

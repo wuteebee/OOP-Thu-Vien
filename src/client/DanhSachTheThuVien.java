@@ -1,12 +1,15 @@
 package client;
 
-import book.TacGia;
 import execute.Menu;
-import java.time.LocalDate;
 
 public class DanhSachTheThuVien {
     public static int soLuong = 0;
     private TheThuVien[] dSTTV;
+
+    public DanhSachTheThuVien() {
+        dSTTV = new TheThuVien[0];
+
+    }
 
     public TheThuVien[] moRongDanhSach(int soLuongTheThuVien) {
         TheThuVien[] newdSTTV = new TheThuVien[soLuong + soLuongTheThuVien];
@@ -45,6 +48,52 @@ public class DanhSachTheThuVien {
             if (theThuVien.getIDTheThuVien().equals(idCanTim)) return theThuVien;
         }
         return new TheThuVien();
+    }
+
+    public TheThuVien chinhSuaTheThuVien(TheThuVien the) {
+        System.out.println(the);
+        System.out.println("Chinh sua thong tin The Thu Vien");
+        the.suaThongTin(); 
+        return the;
+    }
+
+    public void khoaTheThuVien() {
+        System.out.println(toStringFormatted(true));
+        TheThuVien the = timIDTheThuVien();
+        if (the == new TheThuVien() || !the.getTrangThai()) { 
+            System.out.println("Khong tim thay the hoac the da bi khoa!");
+        } else {
+            the.setTrangThai(false); 
+            System.out.println("Da khoa the thu vien");
+        }
+    }
+
+    public void moKhoaTheThuVien() {
+        System.out.println(toStringFormatted(false));
+        TheThuVien the = timIDTheThuVien();
+        if (the == new TheThuVien() || the.getTrangThai()) { 
+            System.out.println("Khong tim thay the hoac the da duoc mo khoa!");
+        } else {
+            the.setTrangThai(true);
+            System.out.println("Da mo khoa the thu vien");
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (TheThuVien the : this.dSTTV) {
+            if (the != null) sb.append(the).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String toStringFormatted(Boolean trangThai) {
+        StringBuilder sb = new StringBuilder();
+        for (TheThuVien the : this.dSTTV) {
+            if (the.getTrangThai() && trangThai) sb.append(the).append("\n");
+        }
+        return sb.toString();
     }
 }
 

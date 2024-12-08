@@ -29,6 +29,11 @@ public class SachGiaoKhoa extends Sach {
         super(sach);
     }
 
+    @Override
+    public String getIDSach() {
+        return idSach;
+    }
+
     public void setTrinhDo(String trinhDo) {
         this.trinhDo = trinhDo;
     }
@@ -48,7 +53,29 @@ public class SachGiaoKhoa extends Sach {
     }
 
     @Override
+    public void suaThongTin() {
+        super.suaThongTin();
+
+       
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.println("NHap trinh do cua sach giao khoa:");
+                setTrinhDo(Menu.input.nextLine());
+
+                System.out.println("Nhap linh vuc cua sach giao khoa:");
+                setLinhVuc(Menu.input.nextLine());
+
+                validInput = true; 
+            } catch (Exception e) {
+                System.out.println("Nhap sai thong tin vui long nhap la!.");
+            }
+        }
+    }
+
+    @Override
     public String toString() {
-        return super.toString().replaceAll(String.format("%-10s", super.idSach), String.format("%-10s", this.idSach)) + String.format("%-20s%-15s%-15s", "Sach giao khoa", this.trinhDo, this.linhVuc);
+        return String.format("%-10s", getIDSach()) + String.format("%-30s%-10s%-10d%-20s%-20s", ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen()) + String.format("%-15s%-15s", this.trinhDo, this.linhVuc);
     }
 }

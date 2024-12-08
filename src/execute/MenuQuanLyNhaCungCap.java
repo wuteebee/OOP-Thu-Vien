@@ -1,6 +1,9 @@
 package execute;
 
+import data.SharedData;
+
 public class MenuQuanLyNhaCungCap {
+
     int xuatMenuQuanLyNhaCungCap() {
         int luaChon;
         boolean dieuKien;
@@ -14,24 +17,34 @@ public class MenuQuanLyNhaCungCap {
             luaChon = Menu.input.nextInt();
             Menu.clearScreen();
             dieuKien = luaChon >= 0 && luaChon <= 4;
-            if(!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
-        } while(!dieuKien);
+            if (!dieuKien) {
+                System.out.println("Lua chon khong hop le, vui long nhap lai!");
+            }
+        } while (!dieuKien);
         return luaChon;
     }
 
     void xuLyMenuQuanLyNhaCungCap(int luaChon) {
-        switch(luaChon) {
+        switch (luaChon) {
             case 1:
-                System.out.println("Xu ly them NhaCungCap.");
+                System.out.println("Ban muon them bao nhieu nha xuat ban:");
+                int soLuongNhaXuatBan = Menu.input.nextInt();
+                Menu.input.nextLine();
+                while (soLuongNhaXuatBan-- > 0) {
+                    SharedData.dSNXB.themNhaXuatBan(1);
+                }
                 break;
             case 2:
-                System.out.println("Xu ly chinh sua NhaCungCap.");
+                System.out.println(SharedData.dSNXB.chinhSuaNhaXuatBan(SharedData.dSNXB.timIDNhaXuatBan()));
                 break;
             case 3:
-                System.out.println("Xu ly danh sach NhaCungCap.");
+                SharedData.dSNXB.khoaNhaXuatBan();
                 break;
             case 4:
-                System.out.println("Xu ly cung cap Sach.");
+                SharedData.dSNXB.khoaNhaXuatBan();
+                break;
+            case 5:
+                System.out.println(SharedData.dSNXB);
                 break;
             default:
                 break;

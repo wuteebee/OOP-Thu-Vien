@@ -30,6 +30,11 @@ public class SachThamKhao extends Sach {
         super(sach);
     }
 
+    @Override
+    public String getIDSach() {
+        return idSach;
+    }
+
     public void setChuyenNganh(String chuyenNganh) {
         this.chuyenNganh = chuyenNganh;
     }
@@ -49,7 +54,29 @@ public class SachThamKhao extends Sach {
     }
 
     @Override
+    public void suaThongTin() {
+        super.suaThongTin(); 
+
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.println("Nhập chuyên ngành của Sách Tham Khảo:");
+                setChuyenNganh(Menu.input.nextLine());
+
+                System.out.println("Nhập đề tài của Sách Tham Khảo:");
+                setDeTai(Menu.input.nextLine());
+
+                validInput = true; 
+            } catch (Exception e) {
+                System.out.println("Nhập sai thông tin! Vui lòng nhập lại.");
+            }
+        }
+    }
+
+    @Override
     public String toString() {
-        return super.toString().replaceAll(String.format("%-10s", super.idSach), String.format("%-10s", this.idSach)) + String.format("%-20s%-15s%-15s", "Sach tham khao", this.chuyenNganh, this.deTai);
+        return String.format("%-10s", getIDSach()) + String.format("%-30s%-10s%-10d%-20s%-20s", ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen()) + String.format("%-15s%-15s", this.chuyenNganh, this.deTai);
+    
     }
 }

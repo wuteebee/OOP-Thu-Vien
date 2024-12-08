@@ -55,6 +55,33 @@ public class DanhSachNhaXuatBan {
         return new NhaXuatBan();
     }
 
+    public NhaXuatBan timIDNhaXuatBan(String idNhaXuatBan) {
+        int idDaNhap = 0;
+        try {
+            idDaNhap = Integer.parseInt(idNhaXuatBan);
+        } catch (NumberFormatException nfe) {
+            for (NhaXuatBan nhaXuatBan : this.dSNXB) {
+                if (nhaXuatBan.getIDNhaXuatBan().equalsIgnoreCase(idNhaXuatBan)) {
+                    return nhaXuatBan;
+                }
+            }
+        }
+        String idCanTim = "NXB" + String.format("%03d", idDaNhap);
+        for (NhaXuatBan nhaXuatBan : this.dSNXB) {
+            if (nhaXuatBan.getIDNhaXuatBan().equals(idCanTim)) {
+                return nhaXuatBan;
+            }
+        }
+        return new NhaXuatBan();
+    }
+
+    public NhaXuatBan chinhSuaNhaXuatBan(NhaXuatBan nhaXuatBan) {
+        System.out.println(nhaXuatBan);
+        System.out.println("Chinh sua thong tin NhanVien");
+        nhaXuatBan.suaThongTin();
+        return nhaXuatBan;
+    }
+
     public void khoaNhaXuatBan() {
         System.out.println(toStringFormatted(true));
         NhaXuatBan nhaXuatBan = timIDNhaXuatBan();

@@ -1,5 +1,7 @@
 package execute;
 
+import data.*;
+
 public class MenuQuanLyKhachHang {
 
     public int xuatMenuQuanLyKhachHang() {
@@ -25,22 +27,26 @@ public class MenuQuanLyKhachHang {
     }
 
     public void xuLyMenuQuanLyKhachHang(int luaChon) {
-        int chon;
         switch (luaChon) {
             case 1:
-
+                System.out.println("Ban muon them bao nhieu khach hang:");
+                int soLuongKhachHang = Menu.input.nextInt();
+                Menu.input.nextLine();
+                while(soLuongKhachHang-- > 0) {
+                    SharedData.dSTTV.themTheThuVien(1);
+                }
                 break;
             case 2:
-
+                System.out.println(SharedData.dSTTV.chinhSuaTheThuVien(SharedData.dSTTV.timIDTheThuVien()));
                 break;
             case 3:
-
+                SharedData.dSTTV.khoaTheThuVien();
                 break;
             case 4:
-
+                SharedData.dSTTV.moKhoaTheThuVien();
                 break;
             case 5:
-
+                System.out.println(SharedData.dSTTV);
                 break;
             default:
                 break;
