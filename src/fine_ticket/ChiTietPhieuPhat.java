@@ -86,7 +86,7 @@ public class ChiTietPhieuPhat {
 			char ind = scan.next().charAt(0);
 			if (!(ind == 'Y' || ind == 'y'))
 				return;
-			else
+			scan.nextLine();
 			System.out.print("Nhap ID Sach: ");
 			ID = scan.nextLine();
 			val = tonTaiIDSach(ID);
@@ -107,6 +107,7 @@ public class ChiTietPhieuPhat {
 	{
 		System.out.print("Bo sung chi tiet phieu cho phieu phat: ");
 		int ID = scan.nextInt();
+		scan.nextLine();
 		while (!tonTaiID(ID))
 		{
 			System.out.print("Khong tim thay ID Phieu Phat de bo sung, nhap lai (Y/N)? ");

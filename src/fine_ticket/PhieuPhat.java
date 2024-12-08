@@ -51,7 +51,7 @@ public class PhieuPhat {
 
 	@Override 
     public String toString() {
-        return String.format("%-20s%-15s%20s", idPhieuPhat, idPhieuMuon, String.format("%,d dong",tongTienPhat));
+        return String.format("%-20s%-15s%-15s", idPhieuPhat, idPhieuMuon, String.format("%,d dong",tongTienPhat));
     }
 	
 	Scanner scan = new Scanner(System.in);
@@ -60,6 +60,7 @@ public class PhieuPhat {
 		System.out.print("ID Phieu Muon: ");
 		int ID = scan.nextInt();
 		
+		/*
 		while (!tonTaiPM(String.format("PM%03d", ID)))
 		{ 
 			System.out.print("Khong ton tai Phieu Muon da nhap trong Danh Sach Phieu Muon, nhap lai (Y/N)? ");
@@ -70,6 +71,7 @@ public class PhieuPhat {
 			System.out.print("ID Phieu Muon: ");
 			ID = scan.nextInt();
 		}
+		*/
 		
 		while (!laPMDuyNhat(String.format("PM%03d", ID)))
 		{ 
@@ -87,6 +89,7 @@ public class PhieuPhat {
     	tongTienPhat = SharedData.dSCTPP.themChiTietPhieuPhat(n);
 	}
 	
+	/*
 	private Boolean tonTaiPM(String ID)
 	{
 		//Neu danh sach phieu muon rong thi return false
@@ -96,11 +99,11 @@ public class PhieuPhat {
 			if(i.getIdPhieuMuon().equals(ID))
 			{ 
 				return true;
-			}
+			} 
 		}
 		return false;
 	}
-	
+	*/
 	private Boolean laPMDuyNhat(String idPM)
 	{
 		for (PhieuPhat i : SharedData.dSPP.dSPP)

@@ -150,7 +150,6 @@ public class DanhSachDieuKhoanViPham {
 				fout.write(dSDK[i] + "\n");
 			}
 			fout.close();
-			System.out.println("LUU DU LIEU THANH CONG");
 		}
 		catch (Exception e)
 		{
@@ -180,7 +179,6 @@ public class DanhSachDieuKhoanViPham {
 				++maDieuKhoan;
 			}
 			fin.close();
-			System.out.println("LAY DU LIEU DIEU KHOAN VI PHAM THANH CONG");
 		}
 		catch (Exception e) 
 		{ 

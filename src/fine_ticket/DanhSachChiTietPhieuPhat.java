@@ -154,7 +154,21 @@ public class DanhSachChiTietPhieuPhat {
 				{
 				case 1:
 					System.out.print("ID Phieu Phat: ");
-					res[choice].setIDChiTietPhieuPhat(String.format("PP%03d", scan.nextInt()));
+					String ID = String.format("PP%03d", scan.nextInt());
+					Boolean exist = false;
+					for (PhieuPhat i : SharedData.dSPP.dSPP)
+					{ 
+						if (i.getIDPhieuPhat().equals(ID))
+						{
+							res[choice].setIDChiTietPhieuPhat(ID);
+							exist = true;
+							break;
+						}
+					}
+					if (exist == false)
+					{ 
+						System.out.println("ID Phieu Phat muon sua thanh khong ton tai");
+					}
 					break;
 				case 2:
 					System.out.print("ID Sach: ");
@@ -163,7 +177,7 @@ public class DanhSachChiTietPhieuPhat {
 						System.out.println("ID Sach khong ton tai trong he thong");
 					}
 					break;
-				case 4:
+				case 3:
 					System.out.print("Dieu Khoan Vi Pham: ");
 					res[choice].setidDieuKhoan(scan.nextInt());
 					//Cap nhat lai tong tien trong phieu phat
@@ -202,8 +216,7 @@ public class DanhSachChiTietPhieuPhat {
 		System.out.println("----------------------------");
 		System.out.println("|  1 - ID Phieu Phat       |");
 		System.out.println("|  2 - ID Sach             |");
-		System.out.println("|  3 - Tinh Trang          |");
-		System.out.println("|  4 - Dieu Khoan Vi Pham  |");
+		System.out.println("|  3 - Dieu Khoan Vi Pham  |");
 		System.out.println("----------------------------");
 		System.out.print("Chon chuc nang: ");
 		int select = scan.nextInt();
@@ -313,7 +326,6 @@ public class DanhSachChiTietPhieuPhat {
 			 fout.write(i.toString() + "\n");
 		 }
 		 fout.close();
-		 System.out.println("LUU DU LIEU CHI TIET PHIEU PHAT THANH CONG");
 		 }
 		 catch (Exception e)
 		 { 
@@ -343,7 +355,6 @@ public class DanhSachChiTietPhieuPhat {
 				++soLuong;
 			}
 			fin.close();	
-			System.out.println("LAY DU LIEU CHI TIET PHIEU PHAT THANH CONG");
 		}
 		catch (Exception e)
 		{ 
