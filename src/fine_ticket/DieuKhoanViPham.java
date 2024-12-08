@@ -48,7 +48,7 @@ public class DieuKhoanViPham {
 	
 	public String toString()
 	{ 
-		return String.format("%-15s%-20s%-25s", IDDieuKhoan, String.format("%,d dong", tienPhat), noiDung);
+		return String.format("%-15s%-20s%-38s", IDDieuKhoan, String.format("%,d dong", tienPhat), noiDung);
 	}
 	
 	Scanner scan = new Scanner(System.in);

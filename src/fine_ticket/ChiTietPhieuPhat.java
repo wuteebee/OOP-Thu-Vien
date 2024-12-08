@@ -1,6 +1,10 @@
 package fine_ticket;
 
 import java.util.Scanner;
+
+import book.Sach;
+import data.SharedData;
+
 public class ChiTietPhieuPhat {
     // ý tưởng:
     private String idPhieuPhat = "PP" + String.format("%03d", DanhSachPhieuPhat.maID);
@@ -58,7 +62,7 @@ public class ChiTietPhieuPhat {
 
     public void setidDieuKhoan(int x) {
         idDieuKhoan = x;
-        tienPhat = DanhSachDieuKhoanViPham.dSDK[x].getTienPhat();
+        tienPhat = SharedData.dSDK.dSDK[x].getTienPhat();
     }
 
 	@Override 
@@ -72,10 +76,27 @@ public class ChiTietPhieuPhat {
 	void them()
 	{ 
 		System.out.print("Nhap ID Sach: ");
+		int ID = scan.nextInt();
+		int val = tonTaiIDSach(String.format("SA%03d", ID));
+		while (val == -1)
+		{ 
+			System.out.print("Khong ton tai ID Sach da nhap trong Danh Sach Sach, nhap lai (Y/N)? ");
+			char ind = scan.next().charAt(0);
+			if (!(ind == 'Y' || ind == 'y'))
+				return;
+			else
+			System.out.print("Nhap ID Sach: ");
+			ID = scan.nextInt();
+		}
 		idSach = String.format("SA%03d", scan.nextInt());
 		System.out.print("Dieu Khoan vi pham: ");
 		idDieuKhoan = scan.nextInt();
-		tienPhat = DanhSachDieuKhoanViPham.dSDK[idDieuKhoan].getTienPhat();
+		if (SharedData.dSDK.dSDK[idDieuKhoan].getTienPhat() == 0)
+		{ 
+			tienPhat = val;
+		}
+		else
+		tienPhat = SharedData.dSDK.dSDK[idDieuKhoan].getTienPhat();
 	}
 	
 	//Bo sung chi tiet phieu phat cho phieu phat da ton tai
@@ -94,18 +115,26 @@ public class ChiTietPhieuPhat {
 		}
 		
 		idPhieuPhat = String.format("PP%03d", ID);
-		System.out.print("ID Sach: ");
-		idSach = String.format("SA%03d", scan.nextInt());
-		System.out.print("Dieu Khoan Vi Pham: ");
-		idDieuKhoan = scan.nextInt();
-		tienPhat = DanhSachDieuKhoanViPham.dSDK[idDieuKhoan].getTienPhat();
+		them();
 		return true;
+	}
+	
+	private int tonTaiIDSach(String ID)
+	{ 
+		for (Sach i : SharedData.dSS.dSSach)
+		{
+			if (i.getIDSach().equals(ID))
+			{ 
+				return i.getGia();
+			}
+		}
+		return -1;
 	}
 	
 	private Boolean tonTaiID(int ID)
 	{ 
 		int exist = 0;
-		for (PhieuPhat i : DanhSachPhieuPhat.dSPP)
+		for (PhieuPhat i : SharedData.dSPP.dSPP)
 		{ 
 			if (i.getIDPhieuPhat().equals(String.format("PP%03d", ID)))
 			{ 
