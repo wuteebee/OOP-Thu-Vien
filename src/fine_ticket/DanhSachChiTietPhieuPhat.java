@@ -1,10 +1,10 @@
 package fine_ticket;
 
-import data.SharedData;
-import java.io.File;
-import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import data.SharedData;
 
 public class DanhSachChiTietPhieuPhat {
 	public int soLuong = 0;
@@ -158,7 +158,10 @@ public class DanhSachChiTietPhieuPhat {
 					break;
 				case 2:
 					System.out.print("ID Sach: ");
-					res[choice].setIDSach(String.format("SA%03d", scan.nextInt()));
+					if (res[choice].tonTaiIDSach(scan.nextLine()) == -1)
+					{
+						System.out.println("ID Sach khong ton tai trong he thong");
+					}
 					break;
 				case 4:
 					System.out.print("Dieu Khoan Vi Pham: ");

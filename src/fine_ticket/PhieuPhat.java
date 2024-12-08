@@ -1,7 +1,9 @@
 package fine_ticket;
 
-import data.SharedData;
 import java.util.Scanner;
+import borrow_ticket.PhieuMuon;
+import borrow_ticket.DanhSachPhieuMuon;
+import data.SharedData;
 
 public class PhieuPhat {
     private String idPhieuPhat = "PP" + String.format("%03d", DanhSachPhieuPhat.maID);
@@ -89,13 +91,13 @@ public class PhieuPhat {
 	{
 		//Neu danh sach phieu muon rong thi return false
 		//Chua co package phieu muon
-		// for (PhieuMuon i : SharedData.dSPM)
-		// { 
-		// 	if(i.getidPhieuMuon().equals(ID))
-		// 	{ 
-		// 		return true;
-		// 	}
-		// }
+		for (PhieuMuon i : SharedData.dSPM.dsPM)
+		{ 
+			if(i.getIdPhieuMuon().equals(ID))
+			{ 
+				return true;
+			}
+		}
 		return false;
 	}
 	
