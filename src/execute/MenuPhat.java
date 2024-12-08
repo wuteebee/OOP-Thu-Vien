@@ -8,16 +8,16 @@ public class MenuPhat {
         int luaChon;
         boolean dieuKien;
         do {
-            System.out.println("0.  Thoat MenuPhat.");
-            System.out.println("1.  Danh sach Phieu Phat.");
-            System.out.println("2.  Them Phieu Phat.");
-            System.out.println("3.  Chinh sua Phieu Phat.");
-            System.out.println("4.  Xoa Phieu Phat.");
-            System.out.println("5.  Tim Phieu Phat.");
-            System.out.println("6.  Danh sach Chi Tiet Phieu Phat.");
-            System.out.println("7.  Them Chi Tiet Phieu Phat.");
-            System.out.println("8.  Chinh Sua Chi Tiet Phieu Phat.");
-            System.out.println("9.  Xoa Chi Tiet Phieu Phat.");
+            System.out.println("0. Thoat MenuPhat.");
+            System.out.println("1. Danh sach Phieu Phat.");
+            System.out.println("2. Them Phieu Phat.");
+            System.out.println("3. Chinh sua Phieu Phat.");
+            System.out.println("4. Xoa Phieu Phat.");
+            System.out.println("5. Tim Phieu Phat.");
+            System.out.println("6. Danh sach Chi Tiet Phieu Phat.");
+            System.out.println("7. Them Chi Tiet Phieu Phat.");
+            System.out.println("8. Chinh Sua Chi Tiet Phieu Phat.");
+            System.out.println("9. Xoa Chi Tiet Phieu Phat.");
             System.out.println("10. Tim Chi Tiet Phieu Phat.");
             System.out.println("11. Quy dinh dieu khoan vi pham.");
             luaChon = Menu.input.nextInt();

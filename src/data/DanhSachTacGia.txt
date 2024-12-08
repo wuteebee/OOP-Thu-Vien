@@ -1,0 +1,6 @@
+Ngo Thuong Bao,16072005,Vinh Long,1,
+Ngo My Linh,25022008,Vinh Long,1,
+Phung Thuong Dat,24072005,Long An,0,
+Tran Bao Nhi,02122005,Ho Chi Minh,0,
+Phan Le Phuc Nguyen,18022005,Long An,1,
+Nguy Ai Thanh,05102005,Tien Giang,1,

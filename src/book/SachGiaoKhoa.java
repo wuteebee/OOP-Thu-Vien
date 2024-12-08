@@ -3,6 +3,7 @@ package book;
 import execute.Menu;
 
 public class SachGiaoKhoa extends Sach {
+
     final String idSach = "SGK" + String.format("%03d", DanhSachSach.soLuong + 1);
     private String trinhDo;
     private String linhVuc;
@@ -56,7 +57,6 @@ public class SachGiaoKhoa extends Sach {
     public void suaThongTin() {
         super.suaThongTin();
 
-       
         boolean validInput = false;
 
         while (!validInput) {
@@ -67,7 +67,7 @@ public class SachGiaoKhoa extends Sach {
                 System.out.println("Nhap linh vuc cua sach giao khoa:");
                 setLinhVuc(Menu.input.nextLine());
 
-                validInput = true; 
+                validInput = true;
             } catch (Exception e) {
                 System.out.println("Nhap sai thong tin vui long nhap la!.");
             }
@@ -77,5 +77,9 @@ public class SachGiaoKhoa extends Sach {
     @Override
     public String toString() {
         return String.format("%-10s", getIDSach()) + String.format("%-30s%-10s%-10d%-20s%-20s", ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen()) + String.format("%-15s%-15s", this.trinhDo, this.linhVuc);
+    }
+
+    public String toStringToFile() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s", "GK", ten, tonKho, gia, tacGia.getIDTacGia(), nhaXuatBan.getIDNhaXuatBan(), (trangThai ? "1" : "0"), trinhDo, linhVuc);
     }
 }

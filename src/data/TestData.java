@@ -43,10 +43,8 @@ public class TestData {
 
     static public DanhSachSach dataDSS() {
         DanhSachSach dSS = new DanhSachSach();
-        dSS.themSach(new Sach("a", 300, 1000000, SharedData.dSTG.timIDTacGia("1"), SharedData.dSNXB.timIDNhaXuatBan("1")));
         dSS.themSach(new SachGiaoKhoa("b", 200, 800000, SharedData.dSTG.timIDTacGia("1"), SharedData.dSNXB.timIDNhaXuatBan("1"), "bb", "bb"));
         dSS.themSach(new SachThamKhao("c", 400, 1200000, SharedData.dSTG.timIDTacGia("1"), SharedData.dSNXB.timIDNhaXuatBan("1"), "cc", "cc"));
-        dSS.themSach(new Sach("d", 150, 600000, SharedData.dSTG.timIDTacGia("1"), SharedData.dSNXB.timIDNhaXuatBan("1")));
         dSS.themSach(new SachThamKhao("e", 250, 900000, SharedData.dSTG.timIDTacGia("1"), SharedData.dSNXB.timIDNhaXuatBan("1"), "ee", "ee"));
         dSS.themSach(new SachGiaoKhoa("f", 350, 1100000, SharedData.dSTG.timIDTacGia("1"), SharedData.dSNXB.timIDNhaXuatBan("1"), "ff", "ff"));
 

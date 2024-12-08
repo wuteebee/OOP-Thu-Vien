@@ -56,6 +56,11 @@ public class TacGia {
     public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
+    public void setNgaySinh(String chuoiNgaySinh) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        LocalDate NgaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
+        this.ngaySinh = NgaySinh;
+    }
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
@@ -113,6 +118,10 @@ public class TacGia {
     @Override
     public String toString() {
         return String.format("%-10s%-30s%-15s%-20s%-15s", idTacGia, ten, ngaySinh, queQuan, (trangThai ? "hoat dong" : "khoa"));
+    }
+
+    public String toStringToFile() {
+        return String.format("%s,%s,%s,%s,", ten, ngaySinh.format(DateTimeFormatter.ofPattern("ddMMyyyy")), queQuan, trangThai ? "1" : "0");
     }
 
 }

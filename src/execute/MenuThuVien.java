@@ -10,10 +10,12 @@ public class MenuThuVien {
             System.out.println("1. Quan ly nhan vien.");
             System.out.println("2. Quan ly khach hang.");
             System.out.println("3. Quan ly sach.");
-            System.out.println("4. Quan ly nha cung cap.");
+            System.out.println("4. Quan ly nha xuat ban.");
+            System.out.println("5. Quan ly tac gia");
             luaChon = Menu.input.nextInt();
+            Menu.input.nextLine();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 4;
+            dieuKien = luaChon >= 0 && luaChon <= 5;
             if (!dieuKien) {
                 System.out.println("Lua chon khong hop le, vui long nhap lai!");
             }
@@ -50,6 +52,12 @@ public class MenuThuVien {
                 do {
                     chon = menuQuanLyNhaCungCap.xuatMenuQuanLyNhaCungCap();
                     menuQuanLyNhaCungCap.xuLyMenuQuanLyNhaCungCap(chon);
+                } while (chon!= 0);
+            case 5:
+                MenuQuanLyTacGia menuQuanLyTacGia = new MenuQuanLyTacGia();
+                do {
+                    chon = menuQuanLyTacGia.xuatMenuQuanLyTacGia();
+                    menuQuanLyTacGia.xuLyMenuQuanLyTacGia(chon);
                 } while (chon!= 0);
                 break;
         }

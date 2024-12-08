@@ -1,6 +1,11 @@
 package book;
 
+import data.SharedData;
 import execute.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class DanhSachNhaXuatBan {
 
@@ -75,6 +80,15 @@ public class DanhSachNhaXuatBan {
         return new NhaXuatBan();
     }
 
+    public NhaXuatBan timTenNhaXuatBan(String tenNhaXuatBan) {
+        for (NhaXuatBan nhaXuatBan : this.dSNXB) {
+            if (nhaXuatBan.getTen().equalsIgnoreCase(tenNhaXuatBan)) {
+                return nhaXuatBan;
+            }
+        }
+        return new NhaXuatBan();
+    }
+
     public NhaXuatBan chinhSuaNhaXuatBan(NhaXuatBan nhaXuatBan) {
         System.out.println(nhaXuatBan);
         System.out.println("Chinh sua thong tin NhanVien");
@@ -122,4 +136,43 @@ public class DanhSachNhaXuatBan {
         }
         return output.toString();
     }
+
+    public String toStringToFile() {
+        StringBuilder sb = new StringBuilder();
+        for (NhaXuatBan nhaXuatBan : dSNXB) {
+            sb.append(nhaXuatBan.toStringToFile()).append("\n");
+        }
+        return sb.toString();
+    }
+
+     public void writeFile() {
+        try {
+            FileWriter outputDSNXB = new FileWriter("src\\data\\DanhSachNhaXuatBan.txt", false);
+            outputDSNXB.write(toStringToFile());
+            outputDSNXB.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile() {
+        NhaXuatBan nhaXuatBan;
+        try {
+            Scanner inputDSNXB = new Scanner(new File("src\\data\\DanhSachNhaXuatBan.txt"));
+            inputDSNXB.useDelimiter(",");
+            while(inputDSNXB.hasNextLine() && inputDSNXB.hasNext()) {
+                nhaXuatBan = new NhaXuatBan();
+                String[] thuocTinh = inputDSNXB.nextLine().split(",");
+                nhaXuatBan.setTen(thuocTinh[0]);
+                nhaXuatBan.setSoDienThoai(thuocTinh[1]);
+                nhaXuatBan.setDiaChi(thuocTinh[2]);
+                nhaXuatBan.setTrangThai(Integer.parseInt(thuocTinh[3]) == 1);
+                SharedData.dSNXB.themNhaXuatBan(nhaXuatBan);
+            }
+            inputDSNXB.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }

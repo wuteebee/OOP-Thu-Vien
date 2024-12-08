@@ -5,7 +5,7 @@ import execute.*;
 import java.util.InputMismatchException;
 
 public class Sach {
-    protected String idSach = "S" + String.format("%03d", DanhSachSach.soLuong + 1);
+    protected String idSach; // = "S" + String.format("%03d", DanhSachSach.soLuong + 1);
     protected String ten;
     protected int tonKho;
     protected int gia;

@@ -1,6 +1,11 @@
 package client;
 
+import data.SharedData;
 import execute.Menu;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class DanhSachTheThuVien {
     public static int soLuong = 0;
@@ -94,6 +99,46 @@ public class DanhSachTheThuVien {
             if (the.getTrangThai() && trangThai) sb.append(the).append("\n");
         }
         return sb.toString();
+    }
+
+    public String toStringToFile() {
+        StringBuilder sb = new StringBuilder();
+        for (TheThuVien theThuVien : dSTTV) {
+            sb.append(theThuVien.toStringToFile()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public void writeFile() {
+        try {
+            FileWriter outputDSTTV = new FileWriter("src\\data\\DanhSachTheThuVien.txt", false);
+            outputDSTTV.write(toStringToFile());
+            outputDSTTV.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile() {
+        TheThuVien theThuVien;
+        try {
+            Scanner inputDSTTV = new Scanner(new File("src\\data\\DanhSachTheThuVien.txt"));
+            inputDSTTV.useDelimiter(",");
+            while(inputDSTTV.hasNextLine() && inputDSTTV.hasNext()) {
+                theThuVien = new TheThuVien();
+                String[] thuocTinh = inputDSTTV.nextLine().split(",");
+                theThuVien.setHo(thuocTinh[0]);
+                theThuVien.setTen(thuocTinh[1]);
+                theThuVien.setGioiTinh(Integer.parseInt(thuocTinh[2]) == 1);
+                theThuVien.setNgaySinh(thuocTinh[3]);
+                theThuVien.setSoDienThoai(thuocTinh[4]);
+                theThuVien.setTrangThai(Integer.parseInt(thuocTinh[5]) == 1);
+                SharedData.dSTTV.themTheThuVien(theThuVien);
+            }
+            inputDSTTV.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
 

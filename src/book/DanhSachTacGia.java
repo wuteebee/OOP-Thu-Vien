@@ -1,6 +1,11 @@
 package book;
 
+import data.SharedData;
 import execute.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class DanhSachTacGia {
 
@@ -74,6 +79,15 @@ public class DanhSachTacGia {
         return new TacGia();
     }
 
+    public TacGia timTenTacGia(String tenTacGia) {
+        for (TacGia tacGia : this.dSTG) {
+            if (tacGia.getTen().equalsIgnoreCase(tenTacGia)) {
+                return tacGia;
+            }
+        }
+        return new TacGia();
+    }
+
     public TacGia chinhSuaTacGia(TacGia tacGia) {
         System.out.println(tacGia);
         System.out.println("Chinh sua thong tin NhanVien");
@@ -102,7 +116,7 @@ public class DanhSachTacGia {
         }
 
         tacGia.setTrangThai(true);
-        System.out.println("Da mo khoa Tac Gia: " + tacGia.getTen());
+        System.out.println("Da mo khoa Tac Gia: ");
     }
 
     @Override
@@ -122,5 +136,43 @@ public class DanhSachTacGia {
             }
         }
         return output.toString();
+    }
+
+    public String toStringToFile() {
+        StringBuilder sb = new StringBuilder();
+        for (TacGia tacGia : dSTG) {
+            sb.append(tacGia.toStringToFile()).append("\n");
+        }
+        return sb.toString();
+    }
+
+     public void writeFile() {
+        try {
+            FileWriter outputDSTG = new FileWriter("src\\data\\DanhSachTacGia.txt", false);
+            outputDSTG.write(toStringToFile());
+            outputDSTG.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile() {
+        TacGia tacGia;
+        try {
+            Scanner inputDSTG = new Scanner(new File("src\\data\\DanhSachTacGia.txt"));
+            inputDSTG.useDelimiter(",");
+            while(inputDSTG.hasNextLine() && inputDSTG.hasNext()) {
+                tacGia = new TacGia();
+                String[] thuocTinh = inputDSTG.nextLine().split(",");
+                tacGia.setTen(thuocTinh[0]);
+                tacGia.setNgaySinh(thuocTinh[1]);
+                tacGia.setQueQuan(thuocTinh[2]);
+                tacGia.setTrangThai(Integer.parseInt(thuocTinh[3]) == 1);
+                SharedData.dSTG.themTacGia(tacGia);
+            }
+            inputDSTG.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

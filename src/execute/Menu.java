@@ -19,7 +19,7 @@ public class Menu {
         // đặt tên Scanner ghi file là outputDSS
 
         input.close();
-        capNhatDuLieu();
+        SharedData.capNhatDuLieu();
     }
 
     static void clearScreen() {
@@ -27,8 +27,6 @@ public class Menu {
         System.out.flush();
     }
 
-    public void capNhatDuLieu() {
-        SharedData.dSNV.toFile();
-    }
+    
 }
 

@@ -8,13 +8,13 @@ public class DanhSachChiTietPhieuNhap {
 
     public void timKiemChiTietPhieuNhap() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập ID phiếu nhập: ");
+        System.out.print("Nhap ID phieu nhap: ");
         String id = scanner.nextLine();
         boolean found = false;
 
         if (dSPN != null) {
             for (ChiTietPhieuNhap chiTiet : dSPN) {
-                if (chiTiet.getIdPhieuNhap().equals(id)) {
+                if (chiTiet.getId_CTPhieuNhap().equals(id)) {
                     System.out.println(chiTiet);
                     found = true;
                     break;
@@ -23,7 +23,7 @@ public class DanhSachChiTietPhieuNhap {
         }
 
         if (!found) {
-            System.out.println("Không tìm thấy chi tiết phiếu nhập với ID: " + id);
+            System.out.println("Khong tim thay chi tiet phieu nhap voi ID: " + id);
         }
     }
 

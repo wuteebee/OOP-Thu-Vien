@@ -47,6 +47,13 @@ public class TheThuVien {
         this.ho = ho;
     }
 
+    public void setNgaySinh(String chuoiNgaySinh) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        LocalDate NgaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
+        
+        this.ngaySinh = NgaySinh;
+    }
+
     public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
@@ -136,5 +143,9 @@ public class TheThuVien {
     @Override
     public String toString() {
         return String.format("%-10s%-15s%-15s%-10s%-15s%-15s", idTheThuVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai);
+    }
+
+    public String toStringToFile() {
+        return String.format("%s,%s,%s,%s,%s,%s", ho, ten, gioiTinh? "1" : "0", ngaySinh.format(DateTimeFormatter.ofPattern("ddMMyyyy")), soDienThoai, trangThai? "1" : "0");
     }
 }

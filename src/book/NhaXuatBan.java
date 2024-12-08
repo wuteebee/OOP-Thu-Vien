@@ -4,6 +4,7 @@ import execute.*;
 import java.util.InputMismatchException;
 
 public class NhaXuatBan {
+
     final String idNhaXuatBan = "NXB" + String.format("%03d", DanhSachNhaXuatBan.soLuong + 1);
     private String ten;
     private String soDienThoai;
@@ -66,23 +67,23 @@ public class NhaXuatBan {
     }
 
     public void suaThongTin() {
-        boolean validInput = false; 
+        boolean validInput = false;
 
-        while (!validInput) { 
+        while (!validInput) {
             try {
                 System.out.println("Nhap ten cua Nha Xuat Ban:");
                 ten = Menu.input.nextLine();
-                
+
                 System.out.println("Nhap so dien thoai cua Nha Xuat Ban:");
                 soDienThoai = Menu.input.nextLine();
-                
+
                 System.out.println("Nhap dia chi cua Nha Xuat Ban:");
                 diaChi = Menu.input.nextLine();
-                
-                validInput = true; 
+
+                validInput = true;
             } catch (InputMismatchException ime) {
                 System.out.println("Nhap sai! Vui long nhap lai.");
-                Menu.input.nextLine(); 
+                Menu.input.nextLine();
             }
         }
     }
@@ -90,5 +91,9 @@ public class NhaXuatBan {
     @Override
     public String toString() {
         return String.format("%-10s%-30s%-15s%-50s", idNhaXuatBan, ten, soDienThoai, diaChi);
+    }
+
+    public String toStringToFile() {
+        return String.format("%s,%s,%s,%s,", ten, soDienThoai, diaChi, trangThai ? "1" : "0");
     }
 }

@@ -1,20 +1,16 @@
 // package book;
-
 // public class DanhSachSach {
 //     public static int soLuong = 0;
 //     private Sach[] dSS;
-
 //     public DanhSachSach() {
 //         this.dSS = new Sach[0];
 //     }
-
 //     public void themSach (Sach sach) {
 //         Sach[] newDSS = new Sach[++soLuong];
 //         if (soLuong - 1 >= 0) System.arraycopy(this.dSS, 0, newDSS, 0, soLuong - 1);
 //         newDSS[soLuong - 1] = sach;
 //         this.dSS = newDSS;
 //     }
-
 //     @Override
 //     public String toString() {
 //         StringBuilder output = new StringBuilder();
@@ -24,12 +20,17 @@
 //         return output.toString();
 //     }
 // }
-
 package book;
 
+import data.SharedData;
 import execute.Menu;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class DanhSachSach {
+
     public static int soLuong = 0;
     public Sach[] dSSach;
 
@@ -56,7 +57,7 @@ public class DanhSachSach {
         for (int n = soLuong + soLuongSach; soLuong < n; ++soLuong) {
             System.out.println("Chon loai sach (1: Sach giao khoa / 2. Sach tham khao):");
             int loaiSach = Menu.input.nextInt();
-            Menu.input.nextLine(); 
+            Menu.input.nextLine();
             Sach sach;
             if (loaiSach == 1) {
                 sach = new SachGiaoKhoa().taoSach();
@@ -78,14 +79,14 @@ public class DanhSachSach {
                 return sach;
             }
         }
-        return new Sach(); 
+        return new Sach();
     }
 
     public Sach chinhSuaSach(Sach sach) {
         System.out.println(sach);
         System.out.println("Chỉnh sửa thông tin sách");
-        
-        sach.suaThongTin(); 
+
+        sach.suaThongTin();
 
         if (sach instanceof SachGiaoKhoa) {
             ((SachGiaoKhoa) sach).suaThongTin();
@@ -95,8 +96,6 @@ public class DanhSachSach {
         }
         return sach;
     }
-
-
 
     public void khoaSach() {
         System.out.println(toString());
@@ -113,10 +112,10 @@ public class DanhSachSach {
         System.out.println(toString());
         Sach sach = timIDSach();
         if (sach == new Sach() || sach.getTrangThai()) {
-            System.out.println("Không tìm thấy sách hoặc sách đã được mở khóa!");
+            System.out.println("Khon tim thay sach hoac sach da duoc mo khoa!");
         } else {
             sach.setTrangThai(true);
-            System.out.println("Đã mở khóa sách");
+            System.out.println("Da mo khoa sach!");
         }
     }
 
@@ -124,7 +123,9 @@ public class DanhSachSach {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Sach sach : this.dSSach) {
-            if (sach != null) sb.append(sach).append("\n");
+            if (sach != null) {
+                sb.append(sach).append("\n");
+            }
         }
         return sb.toString();
     }
@@ -132,8 +133,62 @@ public class DanhSachSach {
     public String toStringFormatted(Boolean trangThai) {
         StringBuilder sb = new StringBuilder();
         for (Sach sach : this.dSSach) {
-            if (sach.getTrangThai() && trangThai) sb.append(sach).append("\n");
+            if (sach.getTrangThai() && trangThai) {
+                sb.append(sach).append("\n");
+            }
         }
         return sb.toString();
+    }
+
+    public String toStringToFile() {
+        StringBuilder sb = new StringBuilder();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                sb.append(((SachGiaoKhoa) sach).toStringToFile()).append("\n");
+            } else if (sach instanceof SachThamKhao) {
+                sb.append(((SachThamKhao) sach).toStringToFile()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    public void writeFile() {
+        try {
+            FileWriter outputDSS = new FileWriter("src\\data\\DanhSachSach.txt", false);
+            outputDSS.write(toStringToFile());
+            outputDSS.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile() {
+        Sach sach;
+        try {
+            Scanner inputDSS = new Scanner(new File("src\\data\\DanhSachSach.txt"));
+            inputDSS.useDelimiter(",");
+            while (inputDSS.hasNextLine() && inputDSS.hasNext()) {
+                sach = new Sach();
+                String[] thuocTinh = inputDSS.nextLine().split(",");
+                if(thuocTinh[0].equals("GK")) {
+                    ((SachGiaoKhoa)sach).setTrinhDo(thuocTinh[7]);
+                    ((SachGiaoKhoa)sach).setLinhVuc(thuocTinh[8]);
+                }
+                else if(thuocTinh[0].equals("TK")) {
+                    ((SachThamKhao)sach).setChuyenNganh(thuocTinh[7]);
+                    ((SachThamKhao)sach).setDeTai(thuocTinh[8]);
+                }
+                sach.setTen(thuocTinh[1]);
+                sach.setTonKho(Integer.parseInt(thuocTinh[2]));
+                sach.setGia(Integer.parseInt(thuocTinh[3]));
+                sach.setTacGia(SharedData.dSTG.timIDTacGia(thuocTinh[4]));
+                sach.setNhaXuatBan(SharedData.dSNXB.timIDNhaXuatBan(thuocTinh[5]));
+                sach.setTrangThai(Integer.parseInt(thuocTinh[6]) == 1);
+                SharedData.dSS.themSach(sach);
+            }
+            inputDSS.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

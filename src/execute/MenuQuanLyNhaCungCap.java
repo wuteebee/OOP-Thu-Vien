@@ -4,19 +4,20 @@ import data.SharedData;
 
 public class MenuQuanLyNhaCungCap {
 
-    int xuatMenuQuanLyNhaCungCap() {
+    public int xuatMenuQuanLyNhaCungCap() {
         int luaChon;
         boolean dieuKien;
         do {
-            System.out.println("0. Thoat MenuNhaCungCap.");
-            System.out.println("1. Them nha cung cap.");
-            System.out.println("2. Chinh sua nha cung cap.");
-            System.out.println("3. Khoa nha cung cap.");
-            System.out.println("4. Mo khoa sua nha cung cap.");
-            System.out.println("5. Danh sach nha cung cap.");
+            System.out.println("0. Thoat MenuNhaXuatBan.");
+            System.out.println("1. Them Xuat Ban.");
+            System.out.println("2. Chinh sua Nha Xuat Ban.");
+            System.out.println("3. Khoa Nha Xuat Ban.");
+            System.out.println("4. Mo khoa Nha Xuat Ban.");
+            System.out.println("5. Danh sach Nha Xuat Ban.");
             luaChon = Menu.input.nextInt();
+            Menu.input.nextLine();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 4;
+            dieuKien = luaChon >= 0 && luaChon <= 5;
             if (!dieuKien) {
                 System.out.println("Lua chon khong hop le, vui long nhap lai!");
             }
@@ -24,7 +25,7 @@ public class MenuQuanLyNhaCungCap {
         return luaChon;
     }
 
-    void xuLyMenuQuanLyNhaCungCap(int luaChon) {
+    public void xuLyMenuQuanLyNhaCungCap(int luaChon) {
         switch (luaChon) {
             case 1:
                 System.out.println("Ban muon them bao nhieu nha xuat ban:");

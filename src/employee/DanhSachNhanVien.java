@@ -125,17 +125,17 @@ public class DanhSachNhanVien {
         return sb.toString();
     }
 
-    public void toFile() {
+    public void writeFile() {
         try {
             FileWriter outputDSS = new FileWriter("src\\data\\DanhSachNhanVien.txt", false);
             outputDSS.write(toStringToFile());
             outputDSS.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); 
         }
     }
 
-    public void fromFile() {
+    public void readFile() {
         NhanVien nhanVien;
         try {
             Scanner inputDSS = new Scanner(new File("src\\data\\DanhSachNhanVien.txt"));
