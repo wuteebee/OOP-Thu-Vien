@@ -18,5 +18,7 @@ public class SharedData {
     public static DanhSachChiTietPhieuPhat dSCTPP = new DanhSachChiTietPhieuPhat();
     public static DanhSachDieuKhoanViPham dSDK = new DanhSachDieuKhoanViPham();
     
+    
+    
     public static DanhSachPhieuMuon dSPM = new DanhSachPhieuMuon();
 }

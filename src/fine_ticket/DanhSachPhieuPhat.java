@@ -16,7 +16,7 @@ public class DanhSachPhieuPhat {
     }
     
     Scanner scan = new Scanner(System.in);
-    public void themPhieuPhat(PhieuPhat phieuPhat) { //Bằng tham số
+    public void themPhieuPhat1(PhieuPhat phieuPhat) { //Bằng tham số
     	dSPP = Arrays.copyOf(dSPP, soLuong + 1);
     	dSPP[soLuong] = phieuPhat;
         ++soLuong;
@@ -40,6 +40,11 @@ public class DanhSachPhieuPhat {
     
     public PhieuPhat timPhieuPhat()
     { 
+    	if (soLuong == 0)
+    	{ 
+    		System.out.println("Danh sach phieu phat rong");
+    		return null;
+    	}
     	System.out.print("Tim ID Phieu Phat: ");
     	int ID = scan.nextInt();
     	String search = String.format("PP%03d",ID);
@@ -58,9 +63,12 @@ public class DanhSachPhieuPhat {
     
     public void suaPhieuPhat()
     { 
-    	xuat();
     	//Chỉ sửa được ID phiếu mượn
     	PhieuPhat search = timPhieuPhat();
+    	if (search == null)
+    	{ 
+    		return;
+    	}
     	System.out.print("ID Phieu Muon moi: ");
     	int pm = scan.nextInt();
     	String ID = String.format("PM%03d", pm);
@@ -71,6 +79,7 @@ public class DanhSachPhieuPhat {
     public void xoaPhieuPhat()
     { 
     	PhieuPhat search = timPhieuPhat();
+    	if (search == null) return;
     	for (int i = 0; i < soLuong; i++)
     	{
     		if (dSPP[i] == search)
@@ -85,11 +94,15 @@ public class DanhSachPhieuPhat {
     		}
     	}
     	xuat();
-    	SharedData.dSPP.xuat();
     }
+    
     public void xuat()
     { 
-    	
+    	if (soLuong == 0)
+    	{ 
+    		System.out.println("Danh sach phieu phat rong");
+    		return;
+    	}
     	System.out.println("----------------------------------------------------");
 		System.out.println("|               Danh Sach Phieu Phat               |");
 		System.out.println("----------------------------------------------------");
@@ -123,6 +136,9 @@ public class DanhSachPhieuPhat {
     { 
     	try
     	{ 
+    		File ds = new File("DanhSachChiTietPhieuPhat.txt");
+			if (!ds.exists())
+				return;
     		Scanner fin = new Scanner(new File("DanhSachPhieuPhat.txt"));
     		while (fin.hasNextLine() && fin.hasNext())
     		{ 

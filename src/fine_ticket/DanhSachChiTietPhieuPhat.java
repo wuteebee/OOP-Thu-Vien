@@ -17,6 +17,11 @@ public class DanhSachChiTietPhieuPhat {
 	Scanner scan = new Scanner(System.in);
 
 	public void boSungChiTietPhieuPhat() {
+		if (soLuong == 0)
+		{
+			System.out.println("Danh sach Chi Tiet Phieu Phat rong");
+			return;
+		}
 		ChiTietPhieuPhat A = new ChiTietPhieuPhat();
 		if (A.boSung())
 		{
@@ -48,6 +53,11 @@ public class DanhSachChiTietPhieuPhat {
 	}
 
 	public void xuat() {
+		if (soLuong == 0)
+		{ 
+			System.out.println("Danh sach Chi Tiet Phieu Phat rong");
+			return;
+		}
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("|                      Danh Sach Chi Tiet Phieu Phat                     |");
 		System.out.println("--------------------------------------------------------------------------");
@@ -60,6 +70,11 @@ public class DanhSachChiTietPhieuPhat {
 	}
 
 	public ChiTietPhieuPhat[] timChiTietPhieuPhat() {
+		if (soLuong == 0)
+		{
+			System.out.println("Danh sach chi tiet phieu phat rong");
+			return null;
+		}
 		System.out.print("Nhap ID Phieu Phat: ");
 		int ID = scan.nextInt();
 		String search = String.format("PP%03d", ID);
@@ -93,8 +108,11 @@ public class DanhSachChiTietPhieuPhat {
 
 	public void suaChiTietPhieuPhat() 
 	 { 
-		xuat();
 		ChiTietPhieuPhat[] res = timChiTietPhieuPhat();
+		if (res == null)
+		{
+			return;
+		}
 		int sl_res = 0;
 		for (ChiTietPhieuPhat i : res)
 		{ 
@@ -192,6 +210,8 @@ public class DanhSachChiTietPhieuPhat {
 	public void xoaChiTietPhieuPhat()
 	{
 		ChiTietPhieuPhat[] res = timChiTietPhieuPhat();
+		if (res == null)
+			return;
 		int sl = 0;
 		for (ChiTietPhieuPhat i : res)
 		{ 
@@ -224,12 +244,12 @@ public class DanhSachChiTietPhieuPhat {
 				return;
 			}
 		}
-		
 		xuat();
 	}
 	
 	public void xoaTatCaCTPP(String ID)
 	{ 
+		if (soLuong == 0) return;
 		int i = 0;
 		while (i < soLuong)
 		{ 
@@ -249,6 +269,7 @@ public class DanhSachChiTietPhieuPhat {
 	
 	public int tinhTongTien(String IDPhieuPhat)
 	{ 
+		if (soLuong == 0) return 0;
 		int tong = 0;
 		for (int i = 0; i < soLuong; ++i)
 		{ 
@@ -262,6 +283,8 @@ public class DanhSachChiTietPhieuPhat {
 	 
 	public void sortCTPP()
 	{
+		if (soLuong == 0)
+			return;
 		for (int i = 0; i < soLuong - 1; i++)
 		{ 
 			for (int j = i + 1; j < soLuong; j++)
@@ -296,9 +319,13 @@ public class DanhSachChiTietPhieuPhat {
 	 }
 	
 	public void readFile()
-	{ 
+	{
 		try
 		{
+			File ds = new File("DanhSachChiTietPhieuPhat.txt");
+			if (!ds.exists())
+				return;
+			dSCTPP = new ChiTietPhieuPhat[0];
 			Scanner fin = new Scanner(new File("DanhSachChiTietPhieuPhat.txt"));
 			while (fin.hasNextLine() && fin.hasNext())
 			{
@@ -313,7 +340,7 @@ public class DanhSachChiTietPhieuPhat {
 				++soLuong;
 			}
 			fin.close();	
-			 System.out.println("LAY DU LIEU CHI TIET PHIEU PHAT THANH CONG");
+			System.out.println("LAY DU LIEU CHI TIET PHIEU PHAT THANH CONG");
 		}
 		catch (Exception e)
 		{ 

@@ -88,8 +88,10 @@ public class PhieuPhat {
 	}
 	
 	private Boolean tonTaiPM(String ID)
-	{ 
-		for (PhieuMuon i : DanhSachPhieuMuon.dsPM)
+	{
+		//Neu danh sach phieu muon rong thi return false
+		//Chua co package phieu muon
+		for (PhieuMuon i : SharedData.dSPM.dsPM)
 		{ 
 			if(i.getIdPhieuMuon().equals(ID))
 			{ 

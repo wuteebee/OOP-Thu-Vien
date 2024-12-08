@@ -113,6 +113,11 @@ public class DanhSachDieuKhoanViPham {
 	}
 	public void xuat()
 	{ 
+		if (maDieuKhoan == 1)
+		{
+			System.out.println("Danh sach dieu khoan vi pham chua duoc them");
+			return;
+		}
 		for (int i = 0; i < 67; i++)
 		{ 
 			System.out.print("-");
@@ -157,6 +162,11 @@ public class DanhSachDieuKhoanViPham {
 	{ 
 		try
 		{ 
+			File ds = new File ("DanhSachDieuKhoanViPham.txt");
+			if (!ds.exists())
+			{ 
+				return;
+			}
 			Scanner fin = new Scanner(new File("DanhSachDieuKhoanViPham.txt"));
 			while (fin.hasNext() && fin.hasNextLine())
 			{

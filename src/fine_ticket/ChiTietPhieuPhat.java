@@ -77,7 +77,8 @@ public class ChiTietPhieuPhat {
 	{ 
 		System.out.print("Nhap ID Sach: ");
 		int ID = scan.nextInt();
-		while (!tonTaiIDSach(String.format("SA%03d", ID)))
+		int val = tonTaiIDSach(String.format("SA%03d", ID));
+		while (val == -1)
 		{ 
 			System.out.print("Khong ton tai ID Sach da nhap trong Danh Sach Sach, nhap lai (Y/N)? ");
 			char ind = scan.next().charAt(0);
@@ -90,6 +91,11 @@ public class ChiTietPhieuPhat {
 		idSach = String.format("SA%03d", scan.nextInt());
 		System.out.print("Dieu Khoan vi pham: ");
 		idDieuKhoan = scan.nextInt();
+		if (SharedData.dSDK.dSDK[idDieuKhoan].getTienPhat() == 0)
+		{ 
+			tienPhat = val;
+		}
+		else
 		tienPhat = SharedData.dSDK.dSDK[idDieuKhoan].getTienPhat();
 	}
 	
@@ -113,16 +119,16 @@ public class ChiTietPhieuPhat {
 		return true;
 	}
 	
-	private Boolean tonTaiIDSach(String ID)
+	private int tonTaiIDSach(String ID)
 	{ 
 		for (Sach i : SharedData.dSS.dSSach)
 		{
 			if (i.getIDSach().equals(ID))
 			{ 
-				return true;
+				return i.getGia();
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	private Boolean tonTaiID(int ID)

@@ -34,12 +34,10 @@ public class DanhSachSach {
     public Sach[] dSSach;
 
     public DanhSachSach() {
-        System.out.println("TAO MOI");
         dSSach = new Sach[0];
     }
 
     public Sach[] moRongDanhSach(int soLuongSach) {
-        System.out.println("DA MO RONG");
         Sach[] newDSSach = new Sach[soLuong + soLuongSach];
         if (soLuong > 0) {
             System.arraycopy(this.dSSach, 0, newDSSach, 0, soLuong);
