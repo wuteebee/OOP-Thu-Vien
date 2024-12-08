@@ -1,7 +1,5 @@
 package execute;
 
-import data.SharedData;
-
 public class MenuKhachHang {
     int xuatMenuKhachHang() {
         int luaChon;
@@ -34,17 +32,12 @@ public class MenuKhachHang {
                 break;
             case 4:
                 System.out.println("Xu ly vi pham.");
-                SharedData.dSPP.readFile();
-                SharedData.dSCTPP.readFile();
-                SharedData.dSDK.readFile();
                 MenuPhat menuPhat = new MenuPhat();
                 do
                 {
                 chon = menuPhat.xuatMenuPhat();
                 menuPhat.xuLyMenuPhat(chon);
                 } while (chon != 0);
-                SharedData.dSPP.writeFile();
-                SharedData.dSCTPP.writeFile();
                 break;
             default:
                 break;

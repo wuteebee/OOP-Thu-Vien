@@ -1,10 +1,10 @@
 package fine_ticket;
 
-import data.SharedData;
-import java.io.File;
-import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import data.SharedData;
 
 public class DanhSachChiTietPhieuPhat {
 	public int soLuong = 0;
@@ -154,13 +154,30 @@ public class DanhSachChiTietPhieuPhat {
 				{
 				case 1:
 					System.out.print("ID Phieu Phat: ");
-					res[choice].setIDChiTietPhieuPhat(String.format("PP%03d", scan.nextInt()));
+					String ID = String.format("PP%03d", scan.nextInt());
+					Boolean exist = false;
+					for (PhieuPhat i : SharedData.dSPP.dSPP)
+					{ 
+						if (i.getIDPhieuPhat().equals(ID))
+						{
+							res[choice].setIDChiTietPhieuPhat(ID);
+							exist = true;
+							break;
+						}
+					}
+					if (exist == false)
+					{ 
+						System.out.println("ID Phieu Phat muon sua thanh khong ton tai");
+					}
 					break;
 				case 2:
 					System.out.print("ID Sach: ");
-					res[choice].setIDSach(String.format("SA%03d", scan.nextInt()));
+					if (res[choice].tonTaiIDSach(scan.nextLine()) == -1)
+					{
+						System.out.println("ID Sach khong ton tai trong he thong, nhap Y va chon lai chuc nang 2 de nhap lai ID Sach");
+					}
 					break;
-				case 4:
+				case 3:
 					System.out.print("Dieu Khoan Vi Pham: ");
 					res[choice].setidDieuKhoan(scan.nextInt());
 					//Cap nhat lai tong tien trong phieu phat
@@ -199,11 +216,11 @@ public class DanhSachChiTietPhieuPhat {
 		System.out.println("----------------------------");
 		System.out.println("|  1 - ID Phieu Phat       |");
 		System.out.println("|  2 - ID Sach             |");
-		System.out.println("|  3 - Tinh Trang          |");
-		System.out.println("|  4 - Dieu Khoan Vi Pham  |");
+		System.out.println("|  3 - Dieu Khoan Vi Pham  |");
 		System.out.println("----------------------------");
 		System.out.print("Chon chuc nang: ");
 		int select = scan.nextInt();
+		scan.nextLine();
 		return select;
 	}
 	
@@ -310,7 +327,6 @@ public class DanhSachChiTietPhieuPhat {
 			 fout.write(i.toString() + "\n");
 		 }
 		 fout.close();
-		 System.out.println("LUU DU LIEU CHI TIET PHIEU PHAT THANH CONG");
 		 }
 		 catch (Exception e)
 		 { 
@@ -340,7 +356,6 @@ public class DanhSachChiTietPhieuPhat {
 				++soLuong;
 			}
 			fin.close();	
-			System.out.println("LAY DU LIEU CHI TIET PHIEU PHAT THANH CONG");
 		}
 		catch (Exception e)
 		{ 

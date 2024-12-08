@@ -25,6 +25,9 @@ public class SharedData {
         dSNXB.readFile();
         dSTG.readFile();
         dSS.readFile();
+        dSPP.readFile();
+        dSCTPP.readFile();
+        dSDK.readFile();
     }
 
     public static void capNhatDuLieu() {
@@ -33,6 +36,8 @@ public class SharedData {
         dSNXB.writeFile();
         dSTG.writeFile();
         dSS.writeFile();
+        dSPP.writeFile();
+        dSCTPP.writeFile();
     }
 }
 

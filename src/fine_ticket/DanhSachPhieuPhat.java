@@ -52,8 +52,11 @@ public class DanhSachPhieuPhat {
     	{
     		if (search.equals(dSPP[i].getIDPhieuPhat()))
     		{
-    	        System.out.format("|  %-20s%-15s%s    |\n", "ID Phieu Phat", "ID Phieu Muon" , "Tien phat");
+    			System.out.println("--------------------------------------------------------");
+    	        System.out.format("|  %-20s%-15s%-15s  |\n", "ID Phieu Phat", "ID Phieu Muon" , "Tien phat");
             	System.out.println("|  " + dSPP[i] + "  |");
+    			System.out.println("--------------------------------------------------------");
+
     			return dSPP[i];
     		}
     	}
@@ -93,8 +96,7 @@ public class DanhSachPhieuPhat {
     			return;
     		}
     	}
-    	xuat();
-    }
+}
     
     public void xuat()
     { 
@@ -103,15 +105,15 @@ public class DanhSachPhieuPhat {
     		System.out.println("Danh sach phieu phat rong");
     		return;
     	}
-    	System.out.println("----------------------------------------------------");
-		System.out.println("|               Danh Sach Phieu Phat               |");
-		System.out.println("----------------------------------------------------");
-        System.out.format("|  %-20s%-15s%s    |\n", "ID Phieu Phat", "ID Phieu Muon" , "Tien phat");
+    	System.out.println("--------------------------------------------------------");
+		System.out.println("|                 Danh Sach Phieu Phat                 |");
+		System.out.println("--------------------------------------------------------");
+        System.out.format("|  %-20s%-15s%-15s  |\n", "ID Phieu Phat", "ID Phieu Muon" , "Tien phat");
 		for (int i = 0; i < soLuong; i++) 
 		{
         	System.out.println("|  " + dSPP[i] + "  |");
 		}
-		System.out.println("----------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
     }
     
     public void writeFile()
@@ -124,7 +126,6 @@ public class DanhSachPhieuPhat {
     		fout.write(i.toString() + "\n");
     	}
     	fout.close();
-		System.out.println("LUU DU LIEU PHIEU PHAT THANH CONG");
     	}
     	catch (Exception e)
     	{
@@ -152,7 +153,6 @@ public class DanhSachPhieuPhat {
     			++maID;
     		}
     		fin.close();
-    		System.out.println("LAY DU LIEU PHIEU PHAT THANH CONG");
     	}
     	catch (Exception e)
     	{ 
