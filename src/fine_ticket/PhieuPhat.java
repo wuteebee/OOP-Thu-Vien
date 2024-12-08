@@ -1,6 +1,8 @@
 package fine_ticket;
 
 import java.util.Scanner;
+import borrow_ticket.PhieuMuon;
+import borrow_ticket.DanhSachPhieuMuon;
 import data.SharedData;
 
 public class PhieuPhat {
@@ -57,6 +59,18 @@ public class PhieuPhat {
 	{
 		System.out.print("ID Phieu Muon: ");
 		int ID = scan.nextInt();
+		
+		while (!tonTaiPM(String.format("PM%03d", ID)))
+		{ 
+			System.out.print("Khong ton tai Phieu Muon da nhap trong Danh Sach Phieu Muon, nhap lai (Y/N)? ");
+			char ind = scan.next().charAt(0);
+			if (!(ind == 'Y' || ind == 'y'))
+				return;
+			else
+			System.out.print("ID Phieu Muon: ");
+			ID = scan.nextInt();
+		}
+		
 		while (!laPMDuyNhat(String.format("PM%03d", ID)))
 		{ 
 			System.out.print("Trung lap ID Phieu Muon, nhap lai (Y/N)? ");
@@ -73,9 +87,23 @@ public class PhieuPhat {
     	tongTienPhat = SharedData.dSCTPP.themChiTietPhieuPhat(n);
 	}
 	
+	private Boolean tonTaiPM(String ID)
+	{
+		//Neu danh sach phieu muon rong thi return false
+		//Chua co package phieu muon
+		for (PhieuMuon i : SharedData.dSPM.dsPM)
+		{ 
+			if(i.getIdPhieuMuon().equals(ID))
+			{ 
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private Boolean laPMDuyNhat(String idPM)
 	{
-		for (PhieuPhat i : DanhSachPhieuPhat.dSPP)
+		for (PhieuPhat i : SharedData.dSPP.dSPP)
 		{
 			if (idPM.equals(i.getIDPhieuMuon()))
 				return false;

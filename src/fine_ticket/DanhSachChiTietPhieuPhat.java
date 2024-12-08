@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
+import data.SharedData;
+
 public class DanhSachChiTietPhieuPhat {
-	public static int soLuong = 0;
-	public static ChiTietPhieuPhat[] dSCTPP;
+	public int soLuong = 0;
+	public ChiTietPhieuPhat[] dSCTPP;
 
 	public DanhSachChiTietPhieuPhat() {
 		dSCTPP = new ChiTietPhieuPhat[0];
@@ -15,13 +17,18 @@ public class DanhSachChiTietPhieuPhat {
 	Scanner scan = new Scanner(System.in);
 
 	public void boSungChiTietPhieuPhat() {
+		if (SharedData.dSPP.soLuong == 0)
+		{
+			System.out.println("Danh sach Chi Tiet Phieu Phat rong");
+			return;
+		}
 		ChiTietPhieuPhat A = new ChiTietPhieuPhat();
 		if (A.boSung())
 		{
 			dSCTPP = Arrays.copyOf(dSCTPP, soLuong + 1);
 			dSCTPP[soLuong++] = A;
 			//Cap nhat lai tong tien cho phieu phat;
-			for (PhieuPhat i : DanhSachPhieuPhat.dSPP)
+			for (PhieuPhat i : SharedData.dSPP.dSPP)
 			{ 
 				if (i.getIDPhieuPhat().equals(A.getIDChiTietPhieuPhat()))
 				{
@@ -46,6 +53,11 @@ public class DanhSachChiTietPhieuPhat {
 	}
 
 	public void xuat() {
+		if (soLuong == 0)
+		{ 
+			System.out.println("Danh sach Chi Tiet Phieu Phat rong");
+			return;
+		}
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("|                      Danh Sach Chi Tiet Phieu Phat                     |");
 		System.out.println("--------------------------------------------------------------------------");
@@ -58,6 +70,11 @@ public class DanhSachChiTietPhieuPhat {
 	}
 
 	public ChiTietPhieuPhat[] timChiTietPhieuPhat() {
+		if (soLuong == 0)
+		{
+			System.out.println("Danh sach chi tiet phieu phat rong");
+			return null;
+		}
 		System.out.print("Nhap ID Phieu Phat: ");
 		int ID = scan.nextInt();
 		String search = String.format("PP%03d", ID);
@@ -91,8 +108,11 @@ public class DanhSachChiTietPhieuPhat {
 
 	public void suaChiTietPhieuPhat() 
 	 { 
-		xuat();
 		ChiTietPhieuPhat[] res = timChiTietPhieuPhat();
+		if (res == null)
+		{
+			return;
+		}
 		int sl_res = 0;
 		for (ChiTietPhieuPhat i : res)
 		{ 
@@ -144,7 +164,7 @@ public class DanhSachChiTietPhieuPhat {
 					System.out.print("Dieu Khoan Vi Pham: ");
 					res[choice].setidDieuKhoan(scan.nextInt());
 					//Cap nhat lai tong tien trong phieu phat
-					for (PhieuPhat i : DanhSachPhieuPhat.dSPP)
+					for (PhieuPhat i : SharedData.dSPP.dSPP)
 					{ 
 						if (i.getIDPhieuPhat().equals(res[choice].getIDChiTietPhieuPhat()))
 						{
@@ -190,6 +210,8 @@ public class DanhSachChiTietPhieuPhat {
 	public void xoaChiTietPhieuPhat()
 	{
 		ChiTietPhieuPhat[] res = timChiTietPhieuPhat();
+		if (res == null)
+			return;
 		int sl = 0;
 		for (ChiTietPhieuPhat i : res)
 		{ 
@@ -222,12 +244,12 @@ public class DanhSachChiTietPhieuPhat {
 				return;
 			}
 		}
-		
 		xuat();
 	}
 	
 	public void xoaTatCaCTPP(String ID)
 	{ 
+		if (soLuong == 0) return;
 		int i = 0;
 		while (i < soLuong)
 		{ 
@@ -247,6 +269,7 @@ public class DanhSachChiTietPhieuPhat {
 	
 	public int tinhTongTien(String IDPhieuPhat)
 	{ 
+		if (soLuong == 0) return 0;
 		int tong = 0;
 		for (int i = 0; i < soLuong; ++i)
 		{ 
@@ -260,6 +283,8 @@ public class DanhSachChiTietPhieuPhat {
 	 
 	public void sortCTPP()
 	{
+		if (soLuong == 0)
+			return;
 		for (int i = 0; i < soLuong - 1; i++)
 		{ 
 			for (int j = i + 1; j < soLuong; j++)
@@ -279,7 +304,7 @@ public class DanhSachChiTietPhieuPhat {
 	 {
 		 try
 		 {
-		 FileWriter fout = new FileWriter("DanhSachChiTietPhieuPhat.txt");
+		 FileWriter fout = new FileWriter("src/data/DanhSachChiTietPhieuPhat.txt");
 		 for (ChiTietPhieuPhat i : dSCTPP)
 		 {
 			 fout.write(i.toString() + "\n");
@@ -294,10 +319,14 @@ public class DanhSachChiTietPhieuPhat {
 	 }
 	
 	public void readFile()
-	{ 
+	{
 		try
 		{
-			Scanner fin = new Scanner(new File("DanhSachChiTietPhieuPhat.txt"));
+			File ds = new File("src/data/DanhSachChiTietPhieuPhat.txt");
+			if (!ds.exists())
+				return;
+			dSCTPP = new ChiTietPhieuPhat[0];
+			Scanner fin = new Scanner(new File("src/data/DanhSachChiTietPhieuPhat.txt"));
 			while (fin.hasNextLine() && fin.hasNext())
 			{
 				dSCTPP = Arrays.copyOf(dSCTPP, soLuong + 1);
@@ -311,7 +340,7 @@ public class DanhSachChiTietPhieuPhat {
 				++soLuong;
 			}
 			fin.close();	
-			 System.out.println("LAY DU LIEU CHI TIET PHIEU PHAT THANH CONG");
+			System.out.println("LAY DU LIEU CHI TIET PHIEU PHAT THANH CONG");
 		}
 		catch (Exception e)
 		{ 

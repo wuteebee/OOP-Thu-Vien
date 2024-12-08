@@ -37,6 +37,10 @@ public class Sach {
         this.nhaXuatBan = sach.nhaXuatBan;
     }
 
+    public int getGia()
+    {
+    	return gia;
+    }
     public void setTonKho(int tonKho) {
         this.tonKho = tonKho;
     }
