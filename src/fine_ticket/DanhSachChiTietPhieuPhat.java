@@ -1,12 +1,12 @@
 package fine_ticket;
 
-import java.util.Arrays;
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Arrays;
+import java.util.Scanner;
 public class DanhSachChiTietPhieuPhat {
 	public static int soLuong = 0;
-	public static ChiTietPhieuPhat[] dSCTPP;
+	public ChiTietPhieuPhat[] dSCTPP;
 
 	public DanhSachChiTietPhieuPhat() {
 		dSCTPP = new ChiTietPhieuPhat[0];

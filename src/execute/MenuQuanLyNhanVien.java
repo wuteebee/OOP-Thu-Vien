@@ -285,6 +285,7 @@ public class MenuQuanLyNhanVien {
                 break;
             case 5:
                 System.out.println(SharedData.dSNV);
+                // System.out.println(SharedData.dSNV.toStringToFile());
                 break;
             default:
                 break;

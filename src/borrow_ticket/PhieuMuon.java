@@ -1,48 +1,51 @@
 package borrow_ticket;
 
-import employee.*;
-import client.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class PhieuMuon {
-    private String idPhieuMuon;
-    private String idTheThuVien;
-    private String  idNhanVien;
+    private String idPhieuMuon = "PM" + String.format("%03d", DanhSachPhieuMuon.maID);
+    private String IDTheThuVien;
+    private String  IDNhanVien;
     private LocalDate ngayMuon, ngayTra;
 
     public PhieuMuon() {
-        idPhieuMuon = "none";
-        idNhanVien = "none";
-        idTheThuVien = "none";
+        IDNhanVien = "none";
+        IDTheThuVien = "none";
         ngayMuon = LocalDate.now();
-        ngayTra = LocalDate.now();
+        ngayTra = ngayMuon.plusDays(7);
     }
 
-    public PhieuMuon(String idPhieuMuon, String idTheThuVien, String idNhanVien, LocalDate ngayMuon, LocalDate ngayTra) {
-        this.idPhieuMuon = idPhieuMuon;
-        this.idTheThuVien = idTheThuVien;
-        this.idTheThuVien = idTheThuVien;
+    public PhieuMuon(String IDTheThuVien, String IDNhanVien, LocalDate ngayMuon, LocalDate ngayTra) {
+        this.IDTheThuVien = IDTheThuVien;
+        this.IDNhanVien = IDNhanVien;
         this.ngayMuon = ngayMuon;
         this.ngayTra = ngayTra;
     }
 
-    public String getIdPhieuMuon() {
+    public String getidPhieuMuon() {
         return idPhieuMuon;
     }
-
-    public void setIdPhieuMuon(String idPhieuMuon) {
+    public void setidPhieuMuon(String idPhieuMuon) {
         this.idPhieuMuon = idPhieuMuon;
     }
 
-    public String getidTheThuVien() {
-        return idTheThuVien;
+    public String getIDTheThuVien() {
+        return IDTheThuVien;
     }
 
-    public String getidNhanVien() {
-        return idTheThuVien;
+    public void setIDTheThuVien(String IDTheThuVien) {
+        this.IDTheThuVien = IDTheThuVien;
+    }
+
+    public String getIDNhanVien() {
+        return IDNhanVien;
+    }
+
+    public void setIDNhanVien(String IDNhanVien) {
+        this.IDNhanVien = IDNhanVien;
     }
 
     public LocalDate getngayMuon() {
@@ -64,23 +67,21 @@ public class PhieuMuon {
     Scanner sc = new Scanner(System.in);
 
     public void nhapPM() {
-        System.out.print("ID phieu muon: ");
-        idPhieuMuon = sc.nextLine();
-        System.out.print("ID nhan vien: ");
-        idTheThuVien = sc.nextLine();
-        System.out.print("ID the thu vien: ");
-        idTheThuVien = sc.nextLine();
-        System.out.print("Ngay muon(dd-mm-yyyy): ");
+        System.out.print("ID The Thu Vien: ");
+        this.IDTheThuVien = sc.nextLine();
+        System.out.print("ID Nhan Vien: ");
+        this.IDNhanVien = sc.nextLine();
+        System.out.print("Ngay Muon (dd-mm-yyyy): ");
         String ngay = sc.nextLine();
-        ngayMuon = LocalDate.parse(ngay);
-        System.out.print("Ngay tra(dd-mm-yyyy): ");
-        ngay = sc.nextLine();
-        ngayTra = LocalDate.parse(ngay);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.ngayMuon = LocalDate.parse(ngay, formatter);
+        this.ngayTra = ngayMuon.plusDays(7);
     }
 
-    public String xuatPM() {
+    @Override
+    public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return String.format("-10%s| -10%s| -10%s| -10%s| -10%s|", idPhieuMuon, idTheThuVien, idTheThuVien,
+        return String.format("%-20s| %-20s| %-20s| %-20s| %-20s|", idPhieuMuon, IDTheThuVien, IDNhanVien,
                 ngayMuon.format(formatter), ngayTra.format(formatter));
     }
 }

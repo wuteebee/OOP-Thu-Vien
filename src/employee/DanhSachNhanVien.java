@@ -1,8 +1,14 @@
 package employee;
 
+import data.*;
 import execute.Menu;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class DanhSachNhanVien {
+
     public static int soLuong = 0;
     private NhanVien[] dSNV;
 
@@ -12,7 +18,9 @@ public class DanhSachNhanVien {
 
     public NhanVien[] moRongDanhSach(int soLuongNhanVien) {
         NhanVien[] newDSNV = new NhanVien[soLuong + soLuongNhanVien];
-        if (soLuongNhanVien > 0) System.arraycopy(this.dSNV, 0, newDSNV, 0, soLuong);
+        if (soLuongNhanVien > 0) {
+            System.arraycopy(this.dSNV, 0, newDSNV, 0, soLuong);
+        }
         return this.dSNV = newDSNV;
     }
 
@@ -24,7 +32,7 @@ public class DanhSachNhanVien {
 
     public void themNhanVien(int soLuongNhanVien) {
         moRongDanhSach(soLuongNhanVien);
-        for(int n = soLuong + soLuongNhanVien; soLuong < n; ++soLuong) {
+        for (int n = soLuong + soLuongNhanVien; soLuong < n; ++soLuong) {
             this.dSNV[soLuong] = new NhanVien().taoNhanVien();
         }
     }
@@ -41,13 +49,16 @@ public class DanhSachNhanVien {
             int id = Integer.parseInt(idNhanVien.substring(2));
             String exactID = format.toUpperCase() + String.format("%03d", id);
             for (NhanVien nhanVien : this.dSNV) {
-                if (nhanVien.getIDNhanVien().equals(exactID))
+                if (nhanVien.getIDNhanVien().equals(exactID)) {
                     return nhanVien;
+                }
             }
         }
         String idCanTim = "NV" + String.format("%03d", idDaNhap);
         for (NhanVien NhanVien : this.dSNV) {
-            if (NhanVien.getIDNhanVien().equals(idCanTim)) return NhanVien;
+            if (NhanVien.getIDNhanVien().equals(idCanTim)) {
+                return NhanVien;
+            }
         }
         return new NhanVien();
     }
@@ -62,7 +73,7 @@ public class DanhSachNhanVien {
     public void khoaNhanVien() {
         System.out.println(toStringFormatted(true));
         NhanVien nhanVien = timIDNhanVien();
-        if(nhanVien == new NhanVien() || nhanVien.getTrangThai() != true) {
+        if (nhanVien == new NhanVien() || nhanVien.getTrangThai() != true) {
             System.out.println("Khong tim thay nhan vien hoac nhan vien da bi khoa!");
         } else {
             nhanVien.setTrangThai(false);
@@ -73,7 +84,7 @@ public class DanhSachNhanVien {
     public void moKhoaNhanVien() {
         System.out.println(toStringFormatted(false));
         NhanVien nhanVien = timIDNhanVien();
-        if(nhanVien == new NhanVien() || nhanVien.getTrangThai() != false) {
+        if (nhanVien == new NhanVien() || nhanVien.getTrangThai() != false) {
             System.out.println("Khong tim thay nhan vien hoac nhan vien da duoc mo khoa!");
         } else {
             nhanVien.setTrangThai(true);
@@ -87,7 +98,9 @@ public class DanhSachNhanVien {
 //                sb.append(DanhSachNhanVien.soLuong).append("\n");
 //                sb.append(this.dSNV.length).append("\n");
         for (NhanVien nhanVien : this.dSNV) {
-            if(nhanVien != null) sb.append(nhanVien).append("\n");
+            if (nhanVien != null) {
+                sb.append(nhanVien).append("\n");
+            }
         }
         return sb.toString();
     }
@@ -97,10 +110,50 @@ public class DanhSachNhanVien {
 //                sb.append(DanhSachNhanVien.soLuong).append("\n");
 //                sb.append(this.dSNV.length).append("\n");
         for (NhanVien nhanVien : this.dSNV) {
-            if(nhanVien.getTrangThai() && trangThai) sb.append(nhanVien).append("\n");
+            if (nhanVien.getTrangThai() && trangThai) {
+                sb.append(nhanVien).append("\n");
+            }
         }
         return sb.toString();
     }
 
-}
+    public String toStringToFile() {
+        StringBuilder sb = new StringBuilder();
+        for (NhanVien nhanVien : dSNV) {
+            sb.append(nhanVien.toStringToFile()).append("\n");
+        }
+        return sb.toString();
+    }
 
+    public void toFile() {
+        try {
+            FileWriter outputDSS = new FileWriter("src\\data\\DanhSachNhanVien.txt", false);
+            outputDSS.write(toStringToFile());
+            outputDSS.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void fromFile() {
+        NhanVien nhanVien;
+        try {
+            Scanner inputDSS = new Scanner(new File("src\\data\\DanhSachNhanVien.txt"));
+            inputDSS.useDelimiter(",");
+            while(inputDSS.hasNextLine() && inputDSS.hasNext()) {
+                nhanVien = new NhanVien();
+                String[] thuocTinh = inputDSS.nextLine().split(",");
+                nhanVien.setHo(thuocTinh[0]);
+                nhanVien.setTen(thuocTinh[1]);
+                nhanVien.setGioiTinh(Integer.parseInt(thuocTinh[2]) == 1);
+                nhanVien.setNgaySinh(thuocTinh[3]);
+                nhanVien.setSoDienThoai(thuocTinh[4]);
+                nhanVien.setTrangThai(Integer.parseInt(thuocTinh[5]) == 1);
+                SharedData.dSNV.themNhanVien(nhanVien);
+            }
+            inputDSS.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}

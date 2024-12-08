@@ -1,7 +1,7 @@
 package entry_form;
 
 public class ChiTietPhieuNhap {
-    final String idPhieuNhap = "PN" + String.format("%03d", DanhSachChiTietPhieuNhap.soLuong);
+    private String idPhieuNhap;
     private String idSach;
     private int soLuong;
     private int thanhTien;
