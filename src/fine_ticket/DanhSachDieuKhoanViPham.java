@@ -118,22 +118,22 @@ public class DanhSachDieuKhoanViPham {
 			System.out.println("Danh sach dieu khoan vi pham chua duoc them");
 			return;
 		}
-		for (int i = 0; i < 67; i++)
+		for (int i = 0; i < 80; i++)
 		{ 
 			System.out.print("-");
 		}
-		System.out.println("\n|                  Danh Sach Quy Dinh Dieu Khoan                  |");
-		for (int i = 0; i < 67; i++)
+		System.out.println("\n|                          Danh Sach Quy Dinh Dieu Khoan                       |");
+		for (int i = 0; i < 80; i++)
 		{ 
 			System.out.print("-");
 		}
-		System.out.format("\n|   %-15s%-20s%-25s  |", "Dieu Khoan", "Muc Phat", "Noi dung");
+		System.out.format("\n|   %-15s%-20s%-38s  |", "Dieu Khoan", "Muc Phat", "Noi dung");
 		System.out.println();
 		for (int i = 1; i < maDieuKhoan; i++)
 		{ 
 			System.out.println("|   " + dSDK[i] + "  |");
 		}
-		for (int i = 0; i < 67; i++)
+		for (int i = 0; i < 80; i++)
 		{ 
 			System.out.print("-");
 		}
@@ -144,7 +144,7 @@ public class DanhSachDieuKhoanViPham {
 	{ 
 		try
 		{
-			FileWriter fout = new FileWriter("DanhSachDieuKhoanViPham.txt");
+			FileWriter fout = new FileWriter("src/data/DanhSachDieuKhoanViPham.txt");
 			for (int i = 1; i < maDieuKhoan; i++)
 			{ 
 				fout.write(dSDK[i] + "\n");
@@ -162,12 +162,12 @@ public class DanhSachDieuKhoanViPham {
 	{ 
 		try
 		{ 
-			File ds = new File ("DanhSachDieuKhoanViPham.txt");
+			File ds = new File ("src/data/DanhSachDieuKhoanViPham.txt");
 			if (!ds.exists())
 			{ 
 				return;
 			}
-			Scanner fin = new Scanner(new File("DanhSachDieuKhoanViPham.txt"));
+			Scanner fin = new Scanner(new File("src/data/DanhSachDieuKhoanViPham.txt"));
 			while (fin.hasNext() && fin.hasNextLine())
 			{
 				dSDK = Arrays.copyOf(dSDK, maDieuKhoan + 1);

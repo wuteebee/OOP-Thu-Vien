@@ -36,6 +36,7 @@ public class MenuKhachHang {
                 System.out.println("Xu ly vi pham.");
                 SharedData.dSPP.readFile();
                 SharedData.dSCTPP.readFile();
+                SharedData.dSDK.readFile();
                 MenuPhat menuPhat = new MenuPhat();
                 do
                 {

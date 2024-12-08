@@ -8,7 +8,7 @@ import data.SharedData;
 
 public class DanhSachPhieuPhat {
 	public static int maID = 1; 
-    private int soLuong = 0;
+	public int soLuong = 0;
     public PhieuPhat[] dSPP;
 
     public DanhSachPhieuPhat() {
@@ -118,7 +118,7 @@ public class DanhSachPhieuPhat {
     { 
     	try
     	{
-    	FileWriter fout = new FileWriter("DanhSachPhieuPhat.txt");
+    	FileWriter fout = new FileWriter("src/data/DanhSachPhieuPhat.txt");
     	for (PhieuPhat i : dSPP)
     	{ 
     		fout.write(i.toString() + "\n");
@@ -128,7 +128,7 @@ public class DanhSachPhieuPhat {
     	}
     	catch (Exception e)
     	{
-    		System.out.println("File writing unsuccessful");
+    		System.out.println("File writing unsuccessful/incomplete due to " + e.toString());
     	}
     }
     
@@ -136,10 +136,10 @@ public class DanhSachPhieuPhat {
     { 
     	try
     	{ 
-    		File ds = new File("DanhSachChiTietPhieuPhat.txt");
+    		File ds = new File("src/data/DanhSachPhieuPhat.txt");
 			if (!ds.exists())
 				return;
-    		Scanner fin = new Scanner(new File("DanhSachPhieuPhat.txt"));
+    		Scanner fin = new Scanner(new File("src/data/DanhSachPhieuPhat.txt"));
     		while (fin.hasNextLine() && fin.hasNext())
     		{ 
     			dSPP = Arrays.copyOf(dSPP, soLuong + 1);

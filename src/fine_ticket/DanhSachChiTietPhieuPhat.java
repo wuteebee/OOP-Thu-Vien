@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import data.SharedData;
 
 public class DanhSachChiTietPhieuPhat {
-	private int soLuong = 0;
+	public int soLuong = 0;
 	public ChiTietPhieuPhat[] dSCTPP;
 
 	public DanhSachChiTietPhieuPhat() {
@@ -17,7 +17,7 @@ public class DanhSachChiTietPhieuPhat {
 	Scanner scan = new Scanner(System.in);
 
 	public void boSungChiTietPhieuPhat() {
-		if (soLuong == 0)
+		if (SharedData.dSPP.soLuong == 0)
 		{
 			System.out.println("Danh sach Chi Tiet Phieu Phat rong");
 			return;
@@ -304,7 +304,7 @@ public class DanhSachChiTietPhieuPhat {
 	 {
 		 try
 		 {
-		 FileWriter fout = new FileWriter("DanhSachChiTietPhieuPhat.txt");
+		 FileWriter fout = new FileWriter("src/data/DanhSachChiTietPhieuPhat.txt");
 		 for (ChiTietPhieuPhat i : dSCTPP)
 		 {
 			 fout.write(i.toString() + "\n");
@@ -322,11 +322,11 @@ public class DanhSachChiTietPhieuPhat {
 	{
 		try
 		{
-			File ds = new File("DanhSachChiTietPhieuPhat.txt");
+			File ds = new File("src/data/DanhSachChiTietPhieuPhat.txt");
 			if (!ds.exists())
 				return;
 			dSCTPP = new ChiTietPhieuPhat[0];
-			Scanner fin = new Scanner(new File("DanhSachChiTietPhieuPhat.txt"));
+			Scanner fin = new Scanner(new File("src/data/DanhSachChiTietPhieuPhat.txt"));
 			while (fin.hasNextLine() && fin.hasNext())
 			{
 				dSCTPP = Arrays.copyOf(dSCTPP, soLuong + 1);
