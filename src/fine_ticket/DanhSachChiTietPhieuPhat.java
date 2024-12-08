@@ -174,7 +174,7 @@ public class DanhSachChiTietPhieuPhat {
 					System.out.print("ID Sach: ");
 					if (res[choice].tonTaiIDSach(scan.nextLine()) == -1)
 					{
-						System.out.println("ID Sach khong ton tai trong he thong");
+						System.out.println("ID Sach khong ton tai trong he thong, nhap Y va chon lai chuc nang 2 de nhap lai ID Sach");
 					}
 					break;
 				case 3:
@@ -220,6 +220,7 @@ public class DanhSachChiTietPhieuPhat {
 		System.out.println("----------------------------");
 		System.out.print("Chon chuc nang: ");
 		int select = scan.nextInt();
+		scan.nextLine();
 		return select;
 	}
 	
