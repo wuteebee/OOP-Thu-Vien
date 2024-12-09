@@ -30,19 +30,19 @@ public class MenuNhap {
       public void xuLyMenuQuanLyKhachHang(int choice) {
             switch (choice) {
                 case 1:
-                    danhSach.timPhieuNhap();
+                    SharedData.dSPN.timPhieuNhap();
                     break;
                 case 2:
-                    danhSach.writeFile();
+                   SharedData.dSPN.writeFile();
                     break;
                 case 3:
-                    danhSach.xuat();
+                    SharedData.dSPN.xuat();
                     break;
                 case 4:
-                    danhSach.xoaPhieuNhap();
+                  SharedData.dSPN.xoaPhieuNhap();
                     break;
                 case 5:
-                    danhSach.suaPhieuNhap();
+                    SharedData.dSPN.suaPhieuNhap();
                     break;
                 default:
                     break;
