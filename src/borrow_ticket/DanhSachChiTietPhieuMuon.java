@@ -125,7 +125,7 @@ public class DanhSachChiTietPhieuMuon {
 
     public void readfile () {
         try (Scanner filesc = new Scanner (new File(
-            "/Users/daosongloc/Documents/OOP-Thu-Vien/src/borrow_ticket/DanhSachCTPM.txt"))) {
+            "src\\borrow_ticket\\DanhSachCTPM.txt"))) {
             while (filesc.hasNext()) {
                 String idPhieuMuon = filesc.next();
                 if (!kiemTraIDPhieuMuon(idPhieuMuon)) {

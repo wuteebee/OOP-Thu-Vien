@@ -1,3 +1,5 @@
 Tre,0123456789,Ho Chi Minh,1,
 Kim Dong,0987654321,Ha Noi,1,
 Giao Duc Viet Nam,0135792468,Ha Noi,1,
+NXB Hoi Nha Van,02438222135,Hanoi,1,
+NXB Kim Dong,02439434730,Hanoi,1,

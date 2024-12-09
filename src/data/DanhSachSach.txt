@@ -1,4 +1,20 @@
-GK,b,200,800000,TG001,NXB001,1,bb,bb
-TK,c,400,1200000,TG001,NXB001,1,cc,cc
-TK,e,250,900000,TG001,NXB001,1,ee,ee
-GK,f,350,1100000,TG001,NXB001,1,ff,ff
+GK,Sach Giao Khoa Toan 1,100,50000,TG001,Tre,1,Cao Dang,Toan
+GK,Sach Giao Khoa Van 1,150,60000,TG002,Kim Dong,1,Cao Dang,Văn
+TK,Sach Tham Khao Toan Cao Cap,50,150000,TG001,Giao Duc Viet Nam,1,Khoa Hoc,Xac Suat
+TK,Sach Tham Khao Van Hoc Nang Cao,30,200000,TG002,NXB Hoi Nha Van,1,Khoa Hoc,Viet Van
+GK,Sach Giao Khoa Ly 1,200,55000,TG003,Kim Dong,1,Cao Dang,Lý
+TK,Sach Tham Khao Ly Thuyet,25,250000,TG003,Tre,1,Khoa Hoc,Lý Thuyết
+GK,Sach Giao Khoa Hoa 1,120,58000,TG004,Giao Duc Viet Nam,1,Cao Dang,Hóa
+TK,Sach Tham Khao Hoa Hoc Nang Cao,60,180000,TG004,NXB Hoi Nha Van,1,Khoa Hoc,Hóa Học
+GK,Sach Giao Khoa Su 1,80,62000,TG005,Kim Dong,1,Cao Dang,Sử
+TK,Sach Tham Khao Su Hoc Nang Cao,40,220000,TG005,Giao Duc Viet Nam ,1,Khoa Hoc,Lich Su
+GK,Sach Giao Khoa Toan 1,100,50000,TG001,Tre,1,
+GK,Sach Giao Khoa Van 1,150,60000,TG002,Kim Dong,1,
+TK,Sach Tham Khao Toan Cao Cap,50,150000,TG001,Giao Duc Viet Nam,1,
+TK,Sach Tham Khao Van Hoc Nang Cao,30,200000,TG002,NXB Hoi Nha Van,1,
+GK,Sach Giao Khoa Ly 1,200,55000,TG003,Tre,1,
+TK,Sach Tham Khao Ly Thuyet,25,250000,TG003,KIm Dong,1,
+GK,Sach Giao Khoa Hoa 1,120,58000,TG004,Giao Duc Viet Nam,1,
+TK,Sach Tham Khao Hoa Hoc Nang Cao,60,180000,TG004,NXB Hoi Nha Van,1,
+GK,Sach Giao Khoa Su 1,80,62000,TG005,Kim Dong,1,
+TK,Sach Tham Khao Su Hoc Nang Cao,40,220000,TG005,Giao Duc Viet Nam ,1,

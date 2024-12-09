@@ -89,7 +89,7 @@ public class DanhSachPhieuMuon {
 
     public void readFile() {
         try (Scanner sc = new Scanner(new File(
-            "/Users/daosongloc/Documents/OOP-Thu-Vien/src/borrow_ticket/DanhSachPhieuMuon.txt"))) {
+            "src\\borrow_ticket\\DanhSachPhieuMuon.txt"))) {
             while (sc.hasNextLine()) {
                 dsPM = Arrays.copyOf(dsPM, soluong + 1);
                 dsPM[soluong] = new PhieuMuon();
