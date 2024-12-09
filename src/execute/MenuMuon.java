@@ -1,21 +1,28 @@
 package execute;
-
+import borrow_ticket.PhieuMuon;
 import data.SharedData;
 
 public class MenuMuon {
-    public int xuatMenuQuanLyKhachHang() {
+    public int xuatMenuMuon() {
         int luaChon;
         boolean dieuKien;
         do {
             System.out.println("0. Thoat MenuMuon.");
-            System.out.println("1. Them phieu muon.");
-            System.out.println("2. Chinh sua phieu muon.");
-            System.out.println("3. Xoa phieu muon");
-            System.out.println("4. Danh sach phieu muon.");
+            System.out.println("1. Danh sach phieu muon.");
+            System.out.println("2. Them phieu muon.");
+            System.out.println("3. Chinh sua phieu muon.");
+            System.out.println("4. Xoa phieu muon");
+            System.out.println("5. Tim phieu muon.");
+            System.out.println("6. Danh sach chi tiet phieu muon.");
+            System.out.println("7. Them chi tiet phieu muon.");
+            System.out.println("8. Chinh sua chi tiet phieu muon.");
+            System.out.println("9. Xoa chi tiet phieu muon");
+            System.out.println("10. Tim chi tiet phieu muon.");
+            System.out.print("Vui lòng chọn: ");
             luaChon = Menu.input.nextInt();
             Menu.input.nextLine();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 4;
+            dieuKien = luaChon >= 0 && luaChon <= 10;
             if (!dieuKien) {
                 System.out.println("Lua chon khong hop le, vui long nhap lai!");
             }
@@ -24,27 +31,46 @@ public class MenuMuon {
         return luaChon;
     }
 
-    public void xuLyMenuQuanLyKhachHang(int luaChon) {
+    public void xuLyMenuMuon(int luaChon) {
         switch (luaChon) {
-            case 1:
-                System.out.println("Ban muon them bao nhieu phieu muon:");
-                int soLuongPhieuMuon = Menu.input.nextInt();
-                Menu.input.nextLine();
-                while(soLuongPhieuMuon-- > 0) {
-                    SharedData.dSTTV.themTheThuVien(1);
-                }
+            case 1: 
+                SharedData.dSPM.xuatds();
                 break;
             case 2:
-                System.out.println(SharedData.dSTTV.chinhSuaTheThuVien(SharedData.dSTTV.timIDTheThuVien()));
+                SharedData.dSPM.themPM();
                 break;
             case 3:
-                SharedData.dSTTV.khoaTheThuVien();
+                SharedData.dSPM.suaPhieuMuon();
                 break;
             case 4:
-                SharedData.dSTTV.moKhoaTheThuVien();
+                System.out.print("Nhap ID phieu muon can xoa: ");
+                SharedData.dSPM.xoaPhieuMuon();
                 break;
             case 5:
-                System.out.println(SharedData.dSTTV);
+                System.out.print("Nhap ID phieu muon can tim: ");
+                PhieuMuon search = SharedData.dSPM.timPM();
+                if (search != null)
+                    System.out.println(search);
+                else System.out.println("Khong tim thay phieu muon vua nhap !");
+                break;
+            case 6:
+                SharedData.dSCTPM.xuatdsCTPM();
+                break;
+            case 7:
+                SharedData.dSCTPM.themCTPM();
+                break;
+            case 8:
+                System.out.print("Nhap ID phieu muon can sua: ");
+                String sua = Menu.input.nextLine();
+                SharedData.dSCTPM.suaCTPM(sua);
+                break;
+            case 9:
+                System.out.print("Nhap ID CTPM can xoa: ");
+                String xoa = Menu.input.nextLine();
+                SharedData.dSCTPM.xoaCTPM(xoa);
+                break;
+            case 10:
+                SharedData.dSCTPM.timCTPM();
                 break;
             default:
                 break;

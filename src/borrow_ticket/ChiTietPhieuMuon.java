@@ -96,6 +96,6 @@ public class ChiTietPhieuMuon {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return String.format("%-20s| %-20s| %-20s|", idPhieuMuon, getIdSach(), ngayThucTra.format(formatter));
+        return String.format("| %-20s| %-20s| %-20s|", idPhieuMuon, getIdSach(), ngayThucTra.format(formatter));
     }
 }

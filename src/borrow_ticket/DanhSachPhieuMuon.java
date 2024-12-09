@@ -1,18 +1,24 @@
 package borrow_ticket;
 
+import data.SharedData;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+//import data.SharedData;
+
 public class DanhSachPhieuMuon {
-    private PhieuMuon []dsPM;
+    public static PhieuMuon []dsPM;
     public static int maID = 1;
     public static int soluong = 0;
 
-    public PhieuMuon[] getDsPM() {
+    public static PhieuMuon[] getDsPM() {
         return dsPM;
     }
 
@@ -24,24 +30,31 @@ public class DanhSachPhieuMuon {
     }
 
     public void xuatds() {
-        System.out.println(String.format("%-20s| %-20s| %-20s| %-20s| %-20s|", "ID Phieu Muon", "ID The Thu Vien", "ID Nhan Vien",
+        System.out.println("       -----------   ----------   ----------  DANH SACH PHIEU MUON  ----------   ----------   ----------");
+        System.out.println(String.format("| %-20s| %-20s| %-20s| %-20s| %-20s|", "ID Phieu Muon", "ID The Thu Vien", "ID Nhan Vien",
                 "Ngay muon", "Ngay tra"));
         for (int i = 0; i < soluong; i++)
             System.out.println(dsPM[i].toString());
+        System.out.println("       -----------   ----------   ----------  DANH SACH PHIEU MUON  ----------   ----------   ----------");
     }
     
-    public void themPM(PhieuMuon pm) {
-        if (dsPM == null) 
-            dsPM = new PhieuMuon[1];  
-        else 
-            dsPM = Arrays.copyOf(dsPM, soluong + 1);
-        dsPM[soluong] = pm;
-        soluong++;
-        maID++;
+    public void themPM() {
+    	System.out.print("So luong phieu muon can them: ");
+    	int n = sc.nextInt();
+    	for (int i=0; i<n; i++){
+            System.out.println("Nhap phieu muon thu " + (i+1) );
+    		dsPM = Arrays.copyOf(dsPM, soluong + 1);
+    		dsPM[soluong] = new PhieuMuon();
+    		dsPM[soluong].nhapPM();
+            System.out.println("Da them thanh cong phieu muon: " + dsPM[soluong].toString());
+    		++soluong;
+    		++maID;
+    	}
     }
 
-    public PhieuMuon timKiemPhieuMuon(String id) {
-        for (PhieuMuon phieuMuon : dsPM) {
+    public PhieuMuon timPM() {
+        String id = sc.nextLine();
+        for (PhieuMuon phieuMuon : DanhSachPhieuMuon.dsPM) {
             if (phieuMuon.getidPhieuMuon().equals(id)) 
                 return phieuMuon;  
         }
@@ -56,40 +69,41 @@ public class DanhSachPhieuMuon {
         return -1;
     }
 
-    public boolean xoaPhieuMuon(String idPhieuMuon) {
-        int viTri = timkiemViTriPM(idPhieuMuon);
-        if (viTri == -1) {
-            return false;
+    public void xoaPhieuMuon() {
+        PhieuMuon pm = timPM();
+        if (pm == null) {
+            System.out.println("Khong tim thay phieu muon vua nhap ! ");
+            return;
         }
-        
-        for (int i = viTri; i < soluong - 1; i++) {
-            dsPM[i] = dsPM[i + 1];
+        for (PhieuMuon i : dsPM) {
+            if ( i == pm ) {
+                SharedData.dSCTPM.xoaCTPM(i.getidPhieuMuon());
+                for (int j=0; j < soluong-1; j++) {
+                    dsPM[j] = dsPM[j + 1];
+                }
+                dsPM[soluong - 1] = null; 
+                soluong--;
+            }
         }
-        dsPM[soluong - 1] = null; 
-        soluong--;
-        return true;
+        System.out.println("Da xoa phieu muon va chi tiet phieu muon ");
     }
 
     public void suaPhieuMuon() {
-        System.out.print("Nhap ID phieu muon ban muon chinh sua: ");
-        String idcansua = sc.nextLine();
-        
-        PhieuMuon pm = timKiemPhieuMuon(idcansua);
+        System.out.print("Nhap ID phieu muon ban can chinh sua: ");
+        PhieuMuon pm = timPM();
         if (pm == null) {
-            System.out.println("Khong co phieu muon voi ID " + idcansua);
+            System.out.println("Khong co phieu muon vua nhap !");
             return;
         }
-        System.out.println("Phieu muon voi ID = " + idcansua);
-        System.out.println(pm.toString());
+        System.out.println("Phieu muon voi ID: " + pm);
         pm.nhapPM(); 
 
-        System.out.println("Phieu muon da duoc cap nhap: ");
+        System.out.println("Phieu muon da duoc cap nhap ! ");
         System.out.println(pm.toString());
     }
 
-    public void readFile() {
-        try (Scanner sc = new Scanner(new File(
-            "src\\borrow_ticket\\DanhSachPhieuMuon.txt"))) {
+    public void readFile(String filename) {
+        try (Scanner sc = new Scanner(new File(filename))) {
             while (sc.hasNextLine()) {
                 dsPM = Arrays.copyOf(dsPM, soluong + 1);
                 dsPM[soluong] = new PhieuMuon();
@@ -108,9 +122,29 @@ public class DanhSachPhieuMuon {
                 soluong++;
                 maID++;
             }
-            xuatds();
+            System.out.println("Đọc thành công file: "+ filename);
+            //xuatds();
         } catch (FileNotFoundException e) {
-            System.out.println("File khong ton tai: " + e);
+            System.out.println("Lỗi đọc file: " + e.getMessage());
+        } catch (DateTimeParseException e) {
+        System.out.println("Lỗi định dạng ngày tháng: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Lỗi định dạng số: " + e.getMessage());
+        }
+    }
+    public void writeFile(String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            writer.write(String.format("%-20s| %-20s| %-20s| %-20s| %-20s|", "ID Phieu Muon", "ID The Thu Vien", "ID Nhan Vien",
+            "Ngay muon", "Ngay tra"));
+            writer.newLine();
+
+            for (PhieuMuon pm : dsPM) {
+                writer.write(pm.toString());
+                writer.newLine();
+            }
+            System.out.println("Ghi danh sách phiếu mượn thành công vào file: " + filename);
+        } catch (Exception e) {
+            System.out.println("Lỗi ghi file: " + e.toString());
         }
     }
     

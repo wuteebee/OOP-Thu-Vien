@@ -23,7 +23,7 @@ public class SharedData {
     public static DanhSachPhieuNhap dSPN = new DanhSachPhieuNhap();
 
     public static DanhSachPhieuMuon dSPM = new DanhSachPhieuMuon();
-    public static DanhSachChiTietPhieuMuon dSCTM = new DanhSachChiTietPhieuMuon();
+    public static DanhSachChiTietPhieuMuon dSCTPM = new DanhSachChiTietPhieuMuon();
 
     public static void importData() {
         // nhân viên khách hàng sách
@@ -33,7 +33,8 @@ public class SharedData {
         dSTG.readFile();
         dSS.readFile();
         // phiéu mượn 
-        dSPM.readFile();
+        dSPM.readFile("DanhSachPhieuMuon.txt");
+        dSCTPM.readFile("DanhSachCTPM.txt");
         // phiếu phạt 
         dSDK.readFile();
         dSPP.readFile();
@@ -52,7 +53,8 @@ public class SharedData {
         dSTG.writeFile();
         dSS.writeFile();
         // phiếu mượn 
-        // dSPM.writeFile();
+        dSPM.writeFile("null");
+        dSCTPM.writeFile("null");
         // phiếu phạt
         dSPP.writeFile();
         dSCTPP.writeFile();

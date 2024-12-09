@@ -306,6 +306,132 @@ public class DanhSachSach {
         return sachThamKhao;
     }
 
+    public Map<String, Integer> tatCaTrinhDo() {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                stringMap.put(((SachGiaoKhoa) sach).getTrinhDo(), 0);
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(count++);
+        }
+        return stringMap;
+    }
+
+    public Map<String, Integer> tatCaLinhVuc() {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                stringMap.put(((SachGiaoKhoa) sach).getLinhVuc(), 0);
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(count++);
+        }
+        return stringMap;
+    }
+
+    public void thongKeTrinhDoLinhVuc() {
+        Map<String, Integer> trinhDoMap = tatCaTrinhDo();
+        Map<String, Integer> linhVucMap = tatCaLinhVuc();
+        int soTrinhDo = 0;
+        int soLinhVuc = 0;
+
+        for (Map.Entry<String, Integer> mapElement : trinhDoMap.entrySet()) {
+            soTrinhDo = mapElement.getValue();
+        }
+        ++soTrinhDo;
+
+        for (Map.Entry<String, Integer> mapElement : linhVucMap.entrySet()) {
+            soLinhVuc = mapElement.getValue();
+        }
+        ++soLinhVuc;
+        // System.out.println(soTrinhDo + " " + soLinhVuc);
+        int viTriTrinhDo;
+        int viTriLinhVuc;
+        // System.out.println(toString());
+        int[][] thongKe = new int[soTrinhDo][soLinhVuc];
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                System.out.println("CHAY");
+                viTriTrinhDo = trinhDoMap.get(((SachGiaoKhoa) sach).getTrinhDo());
+                viTriLinhVuc = linhVucMap.get(((SachGiaoKhoa) sach).getLinhVuc());
+                thongKe[viTriTrinhDo][viTriLinhVuc]++;
+            }
+        }
+        // System.out.println(trinhDoMap);
+        // System.out.println(linhVucMap);
+        System.out.print(String.format("%-20s", ""));
+        for (Map.Entry<String, Integer> mapElement : trinhDoMap.entrySet()) {
+            System.out.print(String.format("%-20s", mapElement.getKey()));
+        }
+        viTriTrinhDo = 0; // tang 
+        viTriLinhVuc = 0;
+        System.out.println();
+        for (Map.Entry<String, Integer> mapElement : linhVucMap.entrySet()) {
+            System.out.print(String.format("%-20s", mapElement.getKey()));
+            for (viTriTrinhDo = 0; viTriTrinhDo < soTrinhDo; ++viTriTrinhDo) {
+                System.out.print(String.format("%-20d", thongKe[viTriTrinhDo][viTriLinhVuc]));
+            }
+            viTriLinhVuc++;
+            System.out.println();
+        }
+    }
+
+    public void thongKeChuyenNganhDeTai() {
+        Map<String, Integer> chuyenNganhMap = new HashMap<>();
+        Map<String, Integer> deTaiMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                chuyenNganhMap.put(((SachThamKhao) sach).getChuyenNganh(), 0);
+                deTaiMap.put(((SachThamKhao) sach).getDeTai(), 0);
+            }
+        }
+
+        int soChuyenNganh = 0;
+        int soDeTai = 0;
+
+        for (Map.Entry<String, Integer> mapElement : chuyenNganhMap.entrySet()) {
+            mapElement.setValue(soChuyenNganh++);
+        }
+        for (Map.Entry<String, Integer> mapElement : deTaiMap.entrySet()) {
+            mapElement.setValue(soDeTai++);
+        }
+        
+
+        int viTriChuyenNganh = 0;
+        int viTriDeTai = 0;
+        int[][] thongKe = new int[soChuyenNganh][soDeTai];
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                viTriChuyenNganh = chuyenNganhMap.get(((SachThamKhao) sach).getChuyenNganh());
+                viTriDeTai = deTaiMap.get(((SachThamKhao) sach).getDeTai());
+                ++thongKe[viTriChuyenNganh][viTriDeTai];
+            }
+        }
+
+        System.out.print(String.format("%-20s", ""));
+        for (Map.Entry<String, Integer> mapElement : chuyenNganhMap.entrySet()) {
+            System.out.print(String.format("%-20s", mapElement.getKey()));
+        }
+        System.out.println();
+        // System.out.println(soChuyenNganh + " " + soDeTai);
+        viTriChuyenNganh = 0;
+        viTriDeTai = 0;
+        for (Map.Entry<String, Integer> mapElement : deTaiMap.entrySet()) {
+            System.out.print(String.format("%-20s", mapElement.getKey()));
+            for(viTriChuyenNganh = 0; viTriChuyenNganh < soChuyenNganh; ++viTriChuyenNganh) {
+                System.out.print(String.format("%-20d", thongKe[viTriChuyenNganh][viTriDeTai]));
+            }
+            ++viTriDeTai;
+            System.out.println();
+        }
+
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

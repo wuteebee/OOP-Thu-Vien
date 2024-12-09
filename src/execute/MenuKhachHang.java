@@ -43,8 +43,12 @@ public class MenuKhachHang {
                 } while (chon != 0);
                 break;
             case 5:
-                // goi menu muon sach
-                // new MenuMuon();
+                System.out.println("Xu ly phieu muon.");
+                MenuMuon menuMuon = new MenuMuon();
+                do {
+                    chon = menuMuon.xuatMenuMuon();
+                    menuMuon.xuLyMenuMuon(chon);
+                } while (chon != 0);
                 break;
             default:
                 break;

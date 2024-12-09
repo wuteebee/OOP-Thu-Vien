@@ -15,7 +15,7 @@ public class PhieuMuon {
         IDTheThuVien = "none";
         IDNhanVien = "none";
         ngayMuon = LocalDate.now();
-        ngayTra = LocalDate.now();
+        ngayTra = ngayMuon.plusDays(7);
     }
 
     public PhieuMuon(String IDTheThuVien, String IDNhanVien, LocalDate ngayMuon, LocalDate ngayTra) {
@@ -81,7 +81,7 @@ public class PhieuMuon {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return String.format("%-20s| %-20s| %-20s| %-20s| %-20s|", idPhieuMuon, IDTheThuVien, IDNhanVien,
+        return String.format("| %-20s| %-20s| %-20s| %-20s| %-20s|", idPhieuMuon, IDTheThuVien, IDNhanVien,
                 ngayMuon.format(formatter), ngayTra.format(formatter));
     }
 }
