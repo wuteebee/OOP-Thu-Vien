@@ -3,7 +3,7 @@ import java.util.Scanner;
 import data.*;
 
 public class MenuNhap {
-    public static void main(String[] args) {
+    public static void xuly(String[] args) {
         int choice;
         do {
             System.out.println("0. Thoat MenuNhap");
@@ -13,8 +13,8 @@ public class MenuNhap {
             System.out.println("4. Xoa phieu nhap");
             System.out.println("5. Sua phieu nhap");
             System.out.print("Nhap lua chon cua ban: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); 
+            choice = Menu.input.nextInt();
+            Menu.input.nextLine(); 
 
             switch (choice) {
                 case 1:
