@@ -317,7 +317,60 @@ public class DanhSachChiTietPhieuPhat {
 		}
 	}
 	
-	 public void writeFile()
+	public void thongKe() // Thong ke tong tien phat them ma sach
+	{ 
+		System.out.println("Thong ke tong tien phat theo ma sach");
+		String[] maSach = new String[0];
+		int n = 0;
+		if (soLuong == 0) 
+			return;
+		System.out.format("%-10s|%s\n", "ID Sach", "Tong tien");
+		for (ChiTietPhieuPhat i : dSCTPP)
+		{
+			Boolean tontai = false;
+			int sum = 0;
+			for (String s : maSach)
+			{ 
+				if (i.getIDSach().equals(s))
+				{
+					tontai = true;
+					break;
+				}
+			}
+			if (tontai == true)
+			{ 
+				continue;
+			}
+			else
+			{
+				maSach = Arrays.copyOf(maSach, n + 1);
+				maSach[n] = i.getIDSach();
+			}
+			for (ChiTietPhieuPhat j : dSCTPP)
+			{ 
+				if (j.getIDSach().equals(maSach[n]))
+				{
+					sum += j.getTienPhat();
+				}
+			}
+			System.out.format("%-10s|%s\n" ,maSach[n], String.format("%,d dong", sum));
+			++n;
+		}
+	}
+	
+	public void timKiemNangCao()
+	{ 
+		System.out.print("In chi tiet phieu phat vi pham dieu khoan 1 va co loai sach la sach giao khoa");
+		for (ChiTietPhieuPhat i : dSCTPP)
+		{ 
+			if (i.getIDDieuKhoan() == (1)  && i.getIDSach().substring(0, 3).equals("SGK"))
+			{ 
+				System.out.println(i);
+			}
+		}
+	}
+	
+	public void writeFile()
 	 {
 		 try
 		 {
@@ -351,7 +404,7 @@ public class DanhSachChiTietPhieuPhat {
 				dSCTPP[soLuong].setIDSach(fin.next());
 				dSCTPP[soLuong].setTienPhat(fin.nextInt());
 				fin.next(); //Skip "dong" trong file txt
-				fin.next(); //Skip "Dieu" trong file txt
+				fin.next(); //Skip "Dieu" trong file txt		
 				dSCTPP[soLuong].setidDieuKhoan(fin.nextInt());
 				++soLuong;
 			}
