@@ -128,6 +128,7 @@ public class NhanVien extends NguoiDung {
     //     }
     //     return NhanVien;
     // }
+    @Override
     public void tao() {
         boolean validInput = false;
         NhanVien nhanVien = new NhanVien();
