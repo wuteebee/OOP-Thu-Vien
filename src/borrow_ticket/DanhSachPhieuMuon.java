@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class DanhSachPhieuMuon {
     public static PhieuMuon []dsPM;
     public static int maID = 1;
-    public static int soluong = 0;
+    public int soluong = 0;
     
     Scanner sc = new Scanner(System.in);
 
@@ -44,6 +44,14 @@ public class DanhSachPhieuMuon {
         }
         return null;
     }
+
+    // public PhieuMuon timKiemPhieuMuon(String id) {
+    //     for (PhieuMuon phieuMuon : dsPM) {
+    //         if (phieuMuon.getidPhieuMuon().equals(id)) 
+    //             return phieuMuon;  
+    //     }
+    //     return null;
+    // }
 
     public int timkiemViTriPM(String id) {
         for (int i = 0; i < soluong; i++) {
@@ -89,7 +97,7 @@ public class DanhSachPhieuMuon {
 
     public void readFile() {
         try (Scanner sc = new Scanner(new File(
-            "/Users/daosongloc/Documents/OOP-Thu-Vien/src/borrow_ticket/DanhSachPhieuMuon.txt"))) {
+            "E:\\DoAnOOP\\Library\\src\\borrow_ticket\\DanhSachPhieuMuon.txt"))) {
             while (sc.hasNextLine()) {
                 dsPM = Arrays.copyOf(dsPM, soluong + 1);
                 dsPM[soluong] = new PhieuMuon();
