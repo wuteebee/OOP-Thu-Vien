@@ -36,9 +36,9 @@ public class SharedData {
         // phiéu mượn 
         dSPM.readFile();
         // phiếu phạt 
+        dSDK.readFile();
         dSPP.readFile();
         dSCTPP.readFile();
-        dSDK.readFile();
         // phiếu nhập
         dSPN.readFile();
 
