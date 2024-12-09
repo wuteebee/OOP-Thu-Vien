@@ -1,7 +1,6 @@
 package entry_form;
 
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class PhieuNhap {
     
@@ -69,21 +68,7 @@ public class PhieuNhap {
         this.idSach = idSach;
     }
 
-    public void suaPhieuNhap() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap ID Phieu Nhap: ");
-        idPhieuNhap = sc.nextLine();
-        System.out.println("Nhap ID Nha Cung Cap: ");
-        idNhaCungCap = sc.nextLine();
-        System.out.println("Nhap Tong Tien: ");
-        tongTien = sc.nextInt();
-        System.out.println("Nhap Ngay Nhap (yyyy-MM-dd): ");
-        ngayNhap = LocalDate.parse(sc.nextLine());
-        System.out.println("Nhap So Luong Sach: ");
-        soLuongSach = sc.nextInt();
-        System.out.println("Nhap ID Sach: ");
-        idSach = sc.nextLine();
-    }
+    
 
     @Override
     public String toString() {

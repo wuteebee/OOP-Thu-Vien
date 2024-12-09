@@ -31,7 +31,10 @@ public class DanhSachPhieuNhap {
         this.dsPN[soLuong - 1] = phieuNhap;
     }
 
-    public void xoaPhieuNhap(String idPhieuNhap) {
+    public void xoaPhieuNhap() {
+        System.out.println("\t\t\tXOA PHIEU NHAP");
+        System.out.print("Nhap ID Phieu Nhap can xoa: ");
+        String idPhieuNhap = new Scanner(System.in).nextLine();
         for (int i = 0; i < soLuong; i++) {
             if (dsPN[i].getIdPhieuNhap().equals(idPhieuNhap)) {
                 PhieuNhap[] newdsPN = new PhieuNhap[soLuong - 1];
@@ -42,32 +45,131 @@ public class DanhSachPhieuNhap {
                 }
                 dsPN = newdsPN;
                 soLuong--;
+                System.out.println("Xoa phieu nhap thanh cong.");
                 break;
             }
         }
+        //cập nhật file sau khi xóa
+        try (FileWriter writer = new FileWriter("src/data/DanhSachPhieuNhap.txt")) {
+            for (int i = 0; i < soLuong; i++) {
+                writer.write(dsPN[i].getIdPhieuNhap() + " ");
+                writer.write(dsPN[i].getIdNhaCungCap() + " ");
+                writer.write(dsPN[i].getTongTien() + " ");
+                writer.write(dsPN[i].getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " ");
+                writer.write(dsPN[i].getSoLuongSach() + " ");
+                writer.write(dsPN[i].getIdSach() + "\n");
+            }
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public PhieuNhap timPhieuNhap(String idPhieuNhap) {
+    public void suaPhieuNhap() {
+        System.out.println("\t\t\tSUA PHIEU NHAP");
+        System.out.print("Nhap ID Phieu Nhap can sua: ");
+        String idPhieuNhap = new Scanner(System.in).nextLine();
+        Scanner scanner = new Scanner(System.in);
+
+        boolean found = false;
         for (int i = 0; i < soLuong; i++) {
             if (dsPN[i].getIdPhieuNhap().equals(idPhieuNhap)) {
-                return dsPN[i];
+                found = true;
+                PhieuNhap phieuNhapMoi = new PhieuNhap();
+                System.out.print("ID Phieu Nhap: ");
+                phieuNhapMoi.setIdPhieuNhap(scanner.nextLine());
+                System.out.print("ID Nha Cung Cap: ");
+                phieuNhapMoi.setIdNhaCungCap(scanner.nextLine());
+                System.out.print("Tong Tien: ");
+                phieuNhapMoi.setTongTien(scanner.nextInt());
+                scanner.nextLine(); // Consume newline
+                System.out.print("Ngay Nhap (dd/mm/yyyy): ");
+                phieuNhapMoi.setNgayNhap(convertStringToDate(scanner.nextLine()));
+                System.out.print("So Luong Sach: ");
+                phieuNhapMoi.setSoLuongSach(scanner.nextInt());
+                scanner.nextLine(); // Consume newline
+                System.out.print("ID Sach: ");
+                phieuNhapMoi.setIdSach(scanner.nextLine());
+                dsPN[i] = phieuNhapMoi;
+                break;
             }
         }
-        return null;
+
+        if (!found) {
+            System.out.println("Khong tim thay ID Phieu Nhap.");
+            return;
+        }
+        // Update the file after modification
+        try (FileWriter writer = new FileWriter("src/data/DanhSachPhieuNhap.txt")) {
+            for (int i = 0; i < soLuong; i++) {
+                writer.write(dsPN[i].getIdPhieuNhap() + " ");
+                writer.write(dsPN[i].getIdNhaCungCap() + " ");
+                writer.write(dsPN[i].getTongTien() + " ");
+                writer.write(dsPN[i].getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " ");
+                writer.write(dsPN[i].getSoLuongSach() + " ");
+                writer.write(dsPN[i].getIdSach() + "\n");
+            }
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Sua phieu nhap thanh cong.");
     }
 
-    public PhieuNhap suaPhieuNhap(PhieuNhap phieuNhap) {
-        System.out.println(phieuNhap);
-        System.out.println("Chinh sua thong tin phieu nhap");
-        phieuNhap.suaPhieuNhap();
-        return phieuNhap;
-    }
-
-    public void xuat(PhieuNhap[] dsPN) {
+    public void timPhieuNhap() {
+        System.out.println(" \t\t TIM KIEM PHIEU NHAP"); 
+        boolean found = false;
+        System.out.print("Nhap ID Phieu Nhap can tim: ");
+        String idPhieuNhap = new Scanner(System.in).nextLine();
+        System.out.printf("%-15s %-17s %-15s %-15s %-15s %-15s\n", "ID Phieu Nhap", "ID Nha Cung Cap", "Tong Tien", "Ngay Nhap", "So Luong Sach", "ID Sach");
         for (int i = 0; i < soLuong; i++) {
-            System.out.println(dsPN[i]);
+            if (dsPN[i].getIdPhieuNhap().equals(idPhieuNhap)) {
+                found = true;
+                System.out.printf("%-15s %-17s %-15d %-15s %-15d %-15s\n",
+                        dsPN[i].getIdPhieuNhap(),
+                        dsPN[i].getIdNhaCungCap(),
+                        dsPN[i].getTongTien(),
+                        dsPN[i].getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        dsPN[i].getSoLuongSach(),
+                        dsPN[i].getIdSach());
+                return;
+            }
+
+        }
+        if (!found) {
+            System.out.println("Khong tim thay ID Phieu Nhap.");
         }
     }
+
+    public void xuat() {
+        System.out.print(" \t\t\t\t----PHIEU NHAP----\n");
+        System.out.printf("%-15s %-17s %-15s %-15s %-15s %-15s\n", "ID Phieu Nhap", "ID Nha Cung Cap", "Tong Tien", "Ngay Nhap", "So Luong Sach", "ID Sach");
+        for (int i = 0; i < soLuong; i++) {
+            System.out.printf("%-15s %-17s %-15d %-15s %-15d %-15s\n",
+                    dsPN[i].getIdPhieuNhap(),
+                    dsPN[i].getIdNhaCungCap(),
+                    dsPN[i].getTongTien(),
+                    dsPN[i].getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    dsPN[i].getSoLuongSach(),
+                    dsPN[i].getIdSach());
+        }
+// Dấu -: Căn lề trái.
+// Số 15: Độ rộng tối thiểu của cột là 15 ký tự. Nếu dữ liệu ngắn hơn 15 ký tự, khoảng trống sẽ được thêm vào bên phải.
+// s: Định dạng kiểu chuỗi (String).
+
+// d: Định dạng kiểu số nguyên (Integer).
+// \n: Xuống dòng sau khi in.
+    }
+
+    public boolean kiemTraIdDuyNhat(String idPhieuNhap) {
+        for (int i = 0; i < soLuong; i++) {
+            if (dsPN[i].getIdPhieuNhap().equals(idPhieuNhap)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public LocalDate convertStringToDate(String date) {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
@@ -101,6 +203,7 @@ public class DanhSachPhieuNhap {
     }
 
     public void writeFile() {
+        System.out.println("\t\t\tTHEM PHIEU NHAP");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhap so luong phieu nhap: ");
         int n = scanner.nextInt();
@@ -110,10 +213,18 @@ public class DanhSachPhieuNhap {
             for (int i = 0; i < n; i++) {
                 PhieuNhap phieuNhap = new PhieuNhap();
                 System.out.println("Nhap thong tin phieu nhap thu " + (i + 1) + ":");
+                //id phieu nhap
                 System.out.print("ID Phieu Nhap: ");
-                phieuNhap.setIdPhieuNhap(scanner.nextLine());
+                String idPhieuNhap = scanner.nextLine();
+                while (!kiemTraIdDuyNhat(idPhieuNhap)) {
+                    System.out.println("ID da ton tai. Vui long nhap lai: ");
+                    idPhieuNhap = scanner.nextLine();
+                }
+                phieuNhap.setIdPhieuNhap(idPhieuNhap);
+                //id nha cung cap
                 System.out.print("ID Nha Cung Cap: ");
                 phieuNhap.setIdNhaCungCap(scanner.nextLine());
+                //tong tien
                 System.out.print("Tong Tien: ");
                 phieuNhap.setTongTien(scanner.nextInt());
                 scanner.nextLine(); // Consume newline
@@ -130,19 +241,14 @@ public class DanhSachPhieuNhap {
                 writer.write(phieuNhap.getIdPhieuNhap() + " ");
                 writer.write(phieuNhap.getIdNhaCungCap() + " ");
                 writer.write(phieuNhap.getTongTien() + " ");
-                writer.write(phieuNhap.getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " "); // Changed to String
+                writer.write(phieuNhap.getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " ");
                 writer.write(phieuNhap.getSoLuongSach() + " ");
                 writer.write(phieuNhap.getIdSach() + "\n");
+                System.out.println("Them phieu nhap thanh cong.");
             }
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void print() {
-        for (int i = 0; i < soLuong; i++) {
-            System.out.println(dsPN[i]);
         }
     }
 
