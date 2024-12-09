@@ -3,6 +3,8 @@ package fine_ticket;
 import java.util.Scanner;
 
 import book.Sach;
+import book.SachGiaoKhoa;
+import book.SachThamKhao;
 import data.SharedData;
 
 public class ChiTietPhieuPhat {
@@ -76,19 +78,20 @@ public class ChiTietPhieuPhat {
 	void them()
 	{ 
 		System.out.print("Nhap ID Sach: ");
-		int ID = scan.nextInt();
-		int val = tonTaiIDSach(String.format("SA%03d", ID));
+		String ID = scan.nextLine();
+		int val = tonTaiIDSach(ID);
 		while (val == -1)
 		{ 
 			System.out.print("Khong ton tai ID Sach da nhap trong Danh Sach Sach, nhap lai (Y/N)? ");
 			char ind = scan.next().charAt(0);
 			if (!(ind == 'Y' || ind == 'y'))
 				return;
-			else
+			scan.nextLine();
 			System.out.print("Nhap ID Sach: ");
-			ID = scan.nextInt();
+			ID = scan.nextLine();
+			val = tonTaiIDSach(ID);
 		}
-		idSach = String.format("SA%03d", scan.nextInt());
+		idSach = ID;
 		System.out.print("Dieu Khoan vi pham: ");
 		idDieuKhoan = scan.nextInt();
 		if (SharedData.dSDK.dSDK[idDieuKhoan].getTienPhat() == 0)
@@ -104,6 +107,7 @@ public class ChiTietPhieuPhat {
 	{
 		System.out.print("Bo sung chi tiet phieu cho phieu phat: ");
 		int ID = scan.nextInt();
+		scan.nextLine();
 		while (!tonTaiID(ID))
 		{
 			System.out.print("Khong tim thay ID Phieu Phat de bo sung, nhap lai (Y/N)? ");
@@ -119,11 +123,15 @@ public class ChiTietPhieuPhat {
 		return true;
 	}
 	
-	private int tonTaiIDSach(String ID)
+	int tonTaiIDSach(String ID)
 	{ 
 		for (Sach i : SharedData.dSS.dSSach)
 		{
-			if (i.getIDSach().equals(ID))
+			if (i instanceof SachGiaoKhoa && ((SachGiaoKhoa)i).getIDSach().equals(ID)) 
+			{ 
+				return i.getGia();
+			}
+			else if (i instanceof SachThamKhao && ((SachThamKhao)i).getIDSach().equals(ID)) 
 			{ 
 				return i.getGia();
 			}

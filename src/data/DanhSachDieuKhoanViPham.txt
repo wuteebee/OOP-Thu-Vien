@@ -1,0 +1,3 @@
+Dieu 1        15,000 dong        Qua han tra sach
+Dieu 2        30,000 dong        Sach bi Xuong cap trong qua trinh muon
+Dieu 3        0 dong             Mat sach hoac sach mat gia tri su dung
