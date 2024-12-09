@@ -30,9 +30,22 @@ public class SachThamKhao extends Sach {
         super(sach);
     }
 
+    @Override 
+    public String getTen() {
+        return super.getTen();
+    }
+
     @Override
     public String getIDSach() {
         return idSach;
+    }
+
+    public String getChuyenNganh() {
+        return chuyenNganh;
+    }
+
+    public String getDeTai() {
+        return deTai;
     }
 
     public void setChuyenNganh(String chuyenNganh) {

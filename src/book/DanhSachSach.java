@@ -172,7 +172,7 @@ public class DanhSachSach {
 
     public String xuatLinhVuc(Map<String, Integer> stringMap) {
         String linhVuc = "";
-        System.out.println("Lua chon linhVuc: ");
+        System.out.println("Lua chon linh vuc: ");
         for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
             System.out.println(mapElement.getValue() + ". " + mapElement.getKey());
         }
@@ -211,6 +211,99 @@ public class DanhSachSach {
             }
         }
         return sachGiaoKhoa;
+    }
+
+    public Map<String, Integer> kiemTraChuyenNganh() {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                if (!stringMap.containsKey(((SachThamKhao) sach).getChuyenNganh())) {
+                    stringMap.put(((SachThamKhao) sach).getChuyenNganh(), 0);
+                }
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(++count);
+        }
+        return stringMap;
+    }
+
+    public String xuatChuyenNganh(Map<String, Integer> stringMap) {
+        String chuyenNganh = "";
+        System.out.println("Lua chon chuyen nganh: ");
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            System.out.println(mapElement.getValue() + ". " + mapElement.getKey());
+        }
+        int luaChon = Menu.input.nextInt();
+        Menu.input.nextLine();
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            if (mapElement.getValue() == luaChon) {
+                chuyenNganh = mapElement.getKey();
+                break;
+            }
+        }
+        return chuyenNganh;
+    }
+
+    public Map<String, Integer> timDeTaiTheoChuyenNganh(String chuyenNganh) {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                if (((SachThamKhao) sach).getChuyenNganh().equals(chuyenNganh)) {
+                    stringMap.put(((SachThamKhao) sach).getDeTai(), 0);
+                }
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(++count);
+        }
+        return stringMap;
+    }
+
+    public String xuatDeTai(Map<String, Integer> stringMap) {
+        String deTai = "";
+        System.out.println("Lua chon de tai: ");
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            System.out.println(mapElement.getValue() + ". " + mapElement.getKey());
+        }
+        int luaChon = Menu.input.nextInt();
+        Menu.input.nextLine();
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            if (mapElement.getValue() == luaChon) {
+                deTai = mapElement.getKey();
+                break;
+            }
+        }
+        return deTai;
+    }
+
+    public SachThamKhao timSachTheoChuyenNganhVaDeTai() {
+        System.out.println("Chay");
+        String chuyenNganh = xuatChuyenNganh(kiemTraChuyenNganh());
+        String deTai = xuatDeTai(timDeTaiTheoChuyenNganh(chuyenNganh));
+        SachThamKhao sachThamKhao = new SachThamKhao();
+        Map<SachThamKhao, String> sachMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                if (((SachThamKhao) sach).getChuyenNganh().equals(chuyenNganh) && ((SachThamKhao) sach).getDeTai().equals(deTai)) {
+                    sachMap.put((SachThamKhao) sach, ((SachThamKhao) sach).getIDSach());
+                }
+            }
+        }
+        for (Map.Entry<SachThamKhao, String> mapElement : sachMap.entrySet()) {
+            System.out.println(String.format("%-10s%-30s", mapElement.getValue(), mapElement.getKey().getTen()));
+        }
+        System.out.println("Nhap ID sach:");
+        String idSach = Menu.input.nextLine();
+        for (Map.Entry<SachThamKhao, String> mapElement : sachMap.entrySet()) {
+            if (mapElement.getValue().equals(idSach)) {
+                sachThamKhao = mapElement.getKey();
+                break;
+            }
+        }
+        return sachThamKhao;
     }
 
     @Override
