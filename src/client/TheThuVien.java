@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 
 public class TheThuVien {
-    final String idTheThuVien = "NV" + String.format("%03d", DanhSachTheThuVien.soLuong + 1);
+    final String idTheThuVien = "TTV" + String.format("%03d", DanhSachTheThuVien.soLuong + 1);
     private String ho;
     private String ten;
     private Boolean gioiTinh;

@@ -1,7 +1,9 @@
 package data;
 import book.*;
+import borrow_ticket.*;
 import client.*;
 import employee.*;
+import entry_form.*;
 import fine_ticket.*;
 
 public class SharedData {
@@ -19,25 +21,42 @@ public class SharedData {
     public static DanhSachChiTietPhieuPhat dSCTPP = new DanhSachChiTietPhieuPhat();
     public static DanhSachDieuKhoanViPham dSDK = new DanhSachDieuKhoanViPham();
 
+    public static DanhSachPhieuNhap dSPN = new DanhSachPhieuNhap();
+
+    public static DanhSachPhieuMuon dSPM = new DanhSachPhieuMuon();
+    public static DanhSachChiTietPhieuMuon dSCTM = new DanhSachChiTietPhieuMuon();
+
     public static void importData() {
+        // nhân viên khách hàng sách
         dSNV.readFile();
         dSTTV.readFile();
         dSNXB.readFile();
         dSTG.readFile();
         dSS.readFile();
+        // phiéu mượn 
+
+        // phiếu phạt 
         dSPP.readFile();
         dSCTPP.readFile();
         dSDK.readFile();
+        // phiếu nhập
+
+
     }
 
     public static void capNhatDuLieu() {
+        // nhân viên khách hàng sách
         dSNV.writeFile();
         dSTTV.writeFile();
         dSNXB.writeFile();
         dSTG.writeFile();
         dSS.writeFile();
+        // phiếu mượn 
+
+        // phiếu phạt
         dSPP.writeFile();
         dSCTPP.writeFile();
+        // phiếu nhập
     }
 }
 

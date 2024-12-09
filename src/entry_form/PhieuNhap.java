@@ -1,6 +1,6 @@
 package entry_form;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class PhieuNhap {
@@ -8,19 +8,18 @@ public class PhieuNhap {
     private String idPhieuNhap;
     private String idNhaCungCap;
     private int tongTien;
-    private Date ngayNhap;
+    private LocalDate ngayNhap;
     private int soLuongSach;
     private String idSach;
     
-  public PhieuNhap() {
+    public PhieuNhap() {
         idPhieuNhap = "PN" + String.format("%03d", 1);
-        idNhaCungCap = "NCC" + String.format("%03d", 1);
+        idNhaCungCap =  String.format("%03d", 1);
         tongTien = 0;
-        ngayNhap = new Date();
+        ngayNhap = LocalDate.now();
         soLuongSach = 0;
-        idSach = "S" + String.format("%03d", 1);
+        idSach = String.format("%03d", 1);
     }
-
 
     public String getIdPhieuNhap() {
         return idPhieuNhap;
@@ -46,11 +45,11 @@ public class PhieuNhap {
         this.tongTien = tongTien;
     }
 
-    public Date getNgayNhap() {
+    public LocalDate getNgayNhap() {
         return ngayNhap;
     }
 
-    public void setNgayNhap(Date ngayNhap) {
+    public void setNgayNhap(LocalDate ngayNhap) {
         this.ngayNhap = ngayNhap;
     }
 
@@ -70,22 +69,6 @@ public class PhieuNhap {
         this.idSach = idSach;
     }
 
-    // public void themPhieuNhap() {
-    //     Scanner sc = new Scanner(System.in);
-    //     System.out.println("Nhap ID Phieu Nhap: ");
-    //     idPhieuNhap = sc.nextLine();
-    //     System.out.println("Nhap ID Nha Cung Cap: ");
-    //     idNhaCungCap = sc.nextLine();
-    //     System.out.println("Nhap Tong Tien: ");
-    //     tongTien = sc.nextInt();
-    //     System.out.println("Nhap Ngay Nhap: ");
-    //     ngayNhap = new Date();
-    //     System.out.println("Nhap ID Sach: ");
-    //     idSach = sc.nextLine();
-    //     System.out.println("Nhap So Luong Sach: ");
-    //     soLuongSach = sc.nextInt();
-    // }
-
     public void suaPhieuNhap() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ID Phieu Nhap: ");
@@ -94,16 +77,17 @@ public class PhieuNhap {
         idNhaCungCap = sc.nextLine();
         System.out.println("Nhap Tong Tien: ");
         tongTien = sc.nextInt();
-        System.out.println("Nhap Ngay Nhap: ");
-        ngayNhap = new Date();
+        System.out.println("Nhap Ngay Nhap (yyyy-MM-dd): ");
+        ngayNhap = LocalDate.parse(sc.nextLine());
         System.out.println("Nhap So Luong Sach: ");
         soLuongSach = sc.nextInt();
         System.out.println("Nhap ID Sach: ");
         idSach = sc.nextLine();
     }
+
     @Override
     public String toString() {
-        return "PhieuNhap{" + "idPhieuNhap=" + idPhieuNhap + ", idNhaCungCap=" + idNhaCungCap + ", tongTien=" + tongTien + ", ngayNhap=" + ngayNhap + ", soLuongSach=" + soLuongSach + ", idSach=" + idSach + '}';
+        return  idPhieuNhap  +"|"+ idNhaCungCap + "|" + tongTien + "|" + ngayNhap + " |" + soLuongSach + "|" + idSach + '|';
     }
 }
 

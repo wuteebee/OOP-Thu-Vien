@@ -3,25 +3,25 @@ package entry_form;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
 public class DanhSachPhieuNhap {
-    private  PhieuNhap[] dsPN;
-    private int soLuong=0;
 
+    private PhieuNhap[] dsPN;
+    private int soLuong = 0;
 
     public DanhSachPhieuNhap() {
-        dsPN= new PhieuNhap[0];
+        dsPN = new PhieuNhap[0];
     }
-
 
     public void moRongDanhSach(int soLuongPhieuNhap) {
         PhieuNhap[] newdsPN = new PhieuNhap[soLuong + soLuongPhieuNhap];
-        if (soLuongPhieuNhap > 0) System.arraycopy(this.dsPN, 0, newdsPN, 0, soLuong);
+        if (soLuongPhieuNhap > 0) {
+            System.arraycopy(this.dsPN, 0, newdsPN, 0, soLuong);
+        }
         this.dsPN = newdsPN;
     }
 
@@ -56,7 +56,7 @@ public class DanhSachPhieuNhap {
         return null;
     }
 
-    public PhieuNhap suaPhieuNhap(PhieuNhap phieuNhap){
+    public PhieuNhap suaPhieuNhap(PhieuNhap phieuNhap) {
         System.out.println(phieuNhap);
         System.out.println("Chinh sua thong tin phieu nhap");
         phieuNhap.suaPhieuNhap();
@@ -68,45 +68,34 @@ public class DanhSachPhieuNhap {
             System.out.println(dsPN[i]);
         }
     }
-
-    public String convertDateToString(Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        return formatter.format(date);
+    public LocalDate convertStringToDate(String date) {
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public Date convertStringToDate(String dateStr) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    public void readFile() {
+        boolean hasData = false;
         try {
-            return formatter.parse(dateStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public void readFile()
-    {
-        try
-        {
             Scanner fin = new Scanner(new File("src/data/DanhSachPhieuNhap.txt"));
-            while (fin.hasNextLine() && fin.hasNext())
-            {
+            while (fin.hasNextLine() && fin.hasNext()) {
+                hasData = true;
                 dsPN = Arrays.copyOf(dsPN, soLuong + 1);
                 dsPN[soLuong] = new PhieuNhap();
                 dsPN[soLuong].setIdPhieuNhap(fin.next());
                 dsPN[soLuong].setIdNhaCungCap(fin.next());
                 dsPN[soLuong].setTongTien(fin.nextInt());
                 dsPN[soLuong].setNgayNhap(convertStringToDate(fin.next()));
+
                 dsPN[soLuong].setSoLuongSach(fin.nextInt());
                 dsPN[soLuong].setIdSach(fin.next());
-                fin.next();
                 ++soLuong;
             }
             fin.close();
-            System.out.println("LAY DU LIEU THANH CONG");
-        }
-        catch (Exception e)
-        {
+            if (hasData) {
+                System.out.println("LAY DU LIEU THANH CONG");
+            } else {
+                System.out.println("KHONG CO DU LIEU");
+            }
+        } catch (Exception e) {
             System.out.println("File reading unsuccessful/incomplete due to " + e.toString());
         }
     }
@@ -128,7 +117,7 @@ public class DanhSachPhieuNhap {
                 System.out.print("Tong Tien: ");
                 phieuNhap.setTongTien(scanner.nextInt());
                 scanner.nextLine(); // Consume newline
-                System.out.print("Ngay Nhap (dd/MM/yyyy): ");
+                System.out.print("Ngay Nhap (dd/mm/yyyy): ");
                 phieuNhap.setNgayNhap(convertStringToDate(scanner.nextLine()));
                 System.out.print("So Luong Sach: ");
                 phieuNhap.setSoLuongSach(scanner.nextInt());
@@ -141,7 +130,7 @@ public class DanhSachPhieuNhap {
                 writer.write(phieuNhap.getIdPhieuNhap() + " ");
                 writer.write(phieuNhap.getIdNhaCungCap() + " ");
                 writer.write(phieuNhap.getTongTien() + " ");
-                writer.write(convertDateToString(phieuNhap.getNgayNhap()) + " ");
+                writer.write(phieuNhap.getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " "); // Changed to String
                 writer.write(phieuNhap.getSoLuongSach() + " ");
                 writer.write(phieuNhap.getIdSach() + "\n");
             }
@@ -151,11 +140,10 @@ public class DanhSachPhieuNhap {
         }
     }
 
-    public void print(){
+    public void print() {
         for (int i = 0; i < soLuong; i++) {
             System.out.println(dsPN[i]);
         }
     }
-
 
 }
