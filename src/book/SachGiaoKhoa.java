@@ -35,6 +35,19 @@ public class SachGiaoKhoa extends Sach {
         return idSach;
     }
 
+    @Override 
+    public String getTen() {
+        return super.getTen();
+    }
+
+    public String getTrinhDo() {
+        return trinhDo;
+    }
+
+    public String getLinhVuc() {
+        return linhVuc;
+    }
+
     public void setTrinhDo(String trinhDo) {
         this.trinhDo = trinhDo;
     }

@@ -14,10 +14,11 @@ public class MenuQuanLySach {
             System.out.println("3. Khoa sach.");
             System.out.println("4. Mo khoa sach");
             System.out.println("5. Danh sach sach.");
+            System.out.println("6. Tim sach theo trinh do va linh vuc.");
             luaChon = Menu.input.nextInt();
             Menu.input.nextLine();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 5;
+            dieuKien = luaChon >= 0 && luaChon <= 6;
         } while (!dieuKien);
         return luaChon;
     }
@@ -44,6 +45,8 @@ public class MenuQuanLySach {
             case 5:
                 System.out.println(SharedData.dSS);
                 break;
+            case 6:
+                System.out.println(SharedData.dSS.timSachTheoTrinhDoVaLinhVuc());
             default:
                 break;
         }

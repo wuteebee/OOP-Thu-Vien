@@ -37,6 +37,10 @@ public class Sach {
         this.nhaXuatBan = sach.nhaXuatBan;
     }
 
+    public String getTen() {
+        return ten;
+    }
+
     public int getGia()
     {
     	return gia;

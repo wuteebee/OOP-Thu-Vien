@@ -27,6 +27,8 @@ import execute.Menu;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class DanhSachSach {
@@ -84,7 +86,7 @@ public class DanhSachSach {
 
     public Sach chinhSuaSach(Sach sach) {
         System.out.println(sach);
-        System.out.println("Chỉnh sửa thông tin sách");
+        System.out.println("Chinh sua thong tin sach");
 
         sach.suaThongTin();
 
@@ -117,6 +119,98 @@ public class DanhSachSach {
             sach.setTrangThai(true);
             System.out.println("Da mo khoa sach!");
         }
+    }
+
+    public Map<String, Integer> kiemTraTrinhDo() {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                if (!stringMap.containsKey(((SachGiaoKhoa) sach).getTrinhDo())) {
+                    stringMap.put(((SachGiaoKhoa) sach).getTrinhDo(), 0);
+                }
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(++count);
+        }
+        return stringMap;
+    }
+
+    public String xuatTrinhDo(Map<String, Integer> stringMap) {
+        String trinhDo = "";
+        System.out.println("Lua chon trinh do: ");
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            System.out.println(mapElement.getValue() + ". " + mapElement.getKey());
+        }
+        int luaChon = Menu.input.nextInt();
+        Menu.input.nextLine();
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            if (mapElement.getValue() == luaChon) {
+                trinhDo = mapElement.getKey();
+                break;
+            }
+        }
+        return trinhDo;
+    }
+
+    public Map<String, Integer> timLinhVucTheoTrinhDo(String trinhDo) {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                if (((SachGiaoKhoa) sach).getTrinhDo().equals(trinhDo)) {
+                    stringMap.put(((SachGiaoKhoa) sach).getLinhVuc(), 0);
+                }
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(++count);
+        }
+        return stringMap;
+    }
+
+    public String xuatLinhVuc(Map<String, Integer> stringMap) {
+        String linhVuc = "";
+        System.out.println("Lua chon linhVuc: ");
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            System.out.println(mapElement.getValue() + ". " + mapElement.getKey());
+        }
+        int luaChon = Menu.input.nextInt();
+        Menu.input.nextLine();
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            if (mapElement.getValue() == luaChon) {
+                linhVuc = mapElement.getKey();
+                break;
+            }
+        }
+        return linhVuc;
+    }
+
+    public SachGiaoKhoa timSachTheoTrinhDoVaLinhVuc() {
+        String trinhDo = xuatTrinhDo(kiemTraTrinhDo());
+        String linhVuc = xuatLinhVuc(timLinhVucTheoTrinhDo(trinhDo));
+        SachGiaoKhoa sachGiaoKhoa = new SachGiaoKhoa();
+        Map<SachGiaoKhoa, String> sachMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                if (((SachGiaoKhoa) sach).getTrinhDo().equals(trinhDo) && ((SachGiaoKhoa) sach).getLinhVuc().equals(linhVuc)) {
+                    sachMap.put((SachGiaoKhoa) sach, ((SachGiaoKhoa) sach).getIDSach());
+                }
+            }
+        }
+        for (Map.Entry<SachGiaoKhoa, String> mapElement : sachMap.entrySet()) {
+            System.out.println(String.format("%-10s%-30s", mapElement.getValue(), mapElement.getKey().getTen()));
+        }
+        System.out.println("Nhap ID sach:");
+        String idSach = Menu.input.nextLine();
+        for (Map.Entry<SachGiaoKhoa, String> mapElement : sachMap.entrySet()) {
+            if (mapElement.getValue().equals(idSach)) {
+                sachGiaoKhoa = mapElement.getKey();
+                break;
+            }
+        }
+        return sachGiaoKhoa;
     }
 
     @Override
@@ -193,7 +287,6 @@ public class DanhSachSach {
                     sachThamKhao.setTrangThai(Integer.parseInt(thuocTinh[6]) == 1);
                     SharedData.dSS.themSach(sachThamKhao);
                 }
-
             }
             inputDSS.close();
         } catch (Exception e) {
