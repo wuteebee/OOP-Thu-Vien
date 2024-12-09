@@ -1,4 +1,4 @@
-package client;
+package users;
 
 import data.SharedData;
 import execute.Menu;
@@ -31,7 +31,8 @@ public class DanhSachTheThuVien {
     public void themTheThuVien(int soLuongTheThuVien) {
         moRongDanhSach(soLuongTheThuVien);
         for(int n = soLuong + soLuongTheThuVien; soLuong < n; ++soLuong) {
-            this.dSTTV[soLuong] = new TheThuVien().taoTheThuVien();
+            this.dSTTV[soLuong] = new TheThuVien();
+            this.dSTTV[soLuong].tao();
         }
     }
 

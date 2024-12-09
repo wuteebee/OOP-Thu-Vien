@@ -1,4 +1,4 @@
-package client;
+package users;
 
 import execute.Menu;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 
-public class TheThuVien {
+public class TheThuVien extends NguoiDung {
     final String idTheThuVien = "TTV" + String.format("%03d", DanhSachTheThuVien.soLuong + 1);
     private String ho;
     private String ten;
@@ -70,7 +70,8 @@ public class TheThuVien {
         this.trangThai = trangThai;
     }
 
-    public TheThuVien taoTheThuVien() {
+    @Override
+    public void tao() {
         TheThuVien TheThuVien = new TheThuVien();
         LocalDate ngaySinh = null;
 
@@ -102,9 +103,9 @@ public class TheThuVien {
         System.out.println("Nhap vao so dien thoai cua TheThuVien:");
         TheThuVien.setSoDienThoai(Menu.input.nextLine());
         TheThuVien.setNgaySinh(ngaySinh);
-        return TheThuVien;
     }
 
+    @Override
     public void suaThongTin() {
         boolean validInput = false;
 

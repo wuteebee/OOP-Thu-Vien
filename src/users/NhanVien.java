@@ -1,4 +1,4 @@
-package employee;
+package users;
 
 import execute.Menu;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 
-public class NhanVien {
+public class NhanVien extends NguoiDung {
 
     private String idNhanVien = "NV" + String.format("%03d", DanhSachNhanVien.soLuong + 1);
     private String ho;
@@ -128,7 +128,8 @@ public class NhanVien {
     //     }
     //     return NhanVien;
     // }
-    public NhanVien taoNhanVien() {
+    @Override
+    public void tao() {
         boolean validInput = false;
         NhanVien nhanVien = new NhanVien();
         while (!validInput) {
@@ -160,9 +161,9 @@ public class NhanVien {
                 System.out.println("Nhap sai dinh dang ngay sinh! Vui long nhap lai.");
             }
         }
-        return nhanVien;
     }
 
+    @Override
     public void suaThongTin() {
         boolean validInput = false;
 

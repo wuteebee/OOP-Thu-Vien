@@ -1,4 +1,4 @@
-package employee;
+package users;
 
 import data.*;
 import execute.Menu;
@@ -33,7 +33,8 @@ public class DanhSachNhanVien {
     public void themNhanVien(int soLuongNhanVien) {
         moRongDanhSach(soLuongNhanVien);
         for (int n = soLuong + soLuongNhanVien; soLuong < n; ++soLuong) {
-            this.dSNV[soLuong] = new NhanVien().taoNhanVien();
+            this.dSNV[soLuong] = new NhanVien();
+            this.dSNV[soLuong].tao();
         }
     }
 
