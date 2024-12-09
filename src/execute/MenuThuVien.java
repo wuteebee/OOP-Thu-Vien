@@ -62,7 +62,11 @@ public class MenuThuVien {
                 } while (chon != 0);
                 break;
             case 6:
-                // gọi menu nhập sách ở đây
+            MenuNhap menuNhap = new MenuNhap();
+            do {
+                chon = menuNhap.xuatMenuNhap();
+                menuNhap.xuLyMenuNhap(chon);
+            } while (chon != 0);
                 break;
             default:
                 break;

@@ -2,7 +2,7 @@ package execute;
 import data.*;
 
 public class MenuNhap {
-    public int xuly(String[] args) {
+    public int xuatMenuNhap() {
         int choice;
         Boolean dieuKien;
         do
@@ -13,7 +13,6 @@ public class MenuNhap {
             System.out.println("3. In danh sach phieu nhap");
             System.out.println("4. Xoa phieu nhap");
             System.out.println("5. Sua phieu nhap");
-            System.out.print("Nhap lua chon cua ban: ");
             choice = Menu.input.nextInt();
             Menu.input.nextLine(); 
             Menu.clearScreen();
@@ -26,7 +25,7 @@ public class MenuNhap {
         return choice;
     }
 
-      public void xuLyMenuQuanLyKhachHang(int choice) {
+      public void xuLyMenuNhap(int choice) {
             switch (choice) {
                 case 1:
                     SharedData.dSPN.timPhieuNhap();

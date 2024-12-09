@@ -33,8 +33,8 @@ public class SharedData {
         dSTG.readFile();
         dSS.readFile();
         // phiéu mượn 
-        dSPM.readFile("DanhSachPhieuMuon.txt");
-        dSCTPM.readFile("DanhSachCTPM.txt");
+        dSPM.readFile("src\\data\\DanhSachPhieuMuon.txt");
+        dSCTPM.readFile("src\\data\\DanhSachCTPM.txt");
         // phiếu phạt 
         dSDK.readFile();
         dSPP.readFile();

@@ -122,14 +122,14 @@ public class DanhSachPhieuMuon {
                 soluong++;
                 maID++;
             }
-            System.out.println("Đọc thành công file: "+ filename);
+            System.out.println("Doc thanh cong file: "+ filename);
             //xuatds();
         } catch (FileNotFoundException e) {
-            System.out.println("Lỗi đọc file: " + e.getMessage());
+            System.out.println("Loi doc file: " + e.getMessage());
         } catch (DateTimeParseException e) {
-        System.out.println("Lỗi định dạng ngày tháng: " + e.getMessage());
+        System.out.println("Loi dinh dang ngay thang: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Lỗi định dạng số: " + e.getMessage());
+            System.out.println("Loi dinh dang so: " + e.getMessage());
         }
     }
     public void writeFile(String filename) {
@@ -142,9 +142,9 @@ public class DanhSachPhieuMuon {
                 writer.write(pm.toString());
                 writer.newLine();
             }
-            System.out.println("Ghi danh sách phiếu mượn thành công vào file: " + filename);
+            System.out.println("Ghi danh sach thanh cong vao file: " + filename);
         } catch (Exception e) {
-            System.out.println("Lỗi ghi file: " + e.toString());
+            System.out.println("Loi ghi file: " + e.toString());
         }
     }
     

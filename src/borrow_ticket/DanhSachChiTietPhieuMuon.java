@@ -163,15 +163,15 @@ public class DanhSachChiTietPhieuMuon {
                 dSCTPM[soluong].setNgayThucTra(LocalDate.parse(ngay, formatter));
                 soluong++;
             }
-            System.out.println("Đọc thành công file: " + filename);
+            System.out.println("Doc thanh cong file: " + filename);
             //xuatdsCTPM();
 
         } catch (FileNotFoundException e) {
-            System.out.println("Lỗi đọc file !!! " + e.getMessage());
+            System.out.println("Loi doc file!!! " + e.getMessage());
         } catch (DateTimeParseException e) {
-        System.out.println("Lỗi định dạng ngày tháng !!! " + e.getMessage());
+        System.out.println("Loi dinh dang ngay thang!!! " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Lỗi định dạng số !!! " + e.getMessage());
+            System.out.println("Loi dinh dang so!!! " + e.getMessage());
         }
     }
     
@@ -185,9 +185,9 @@ public class DanhSachChiTietPhieuMuon {
                 writer.write(dSCTPM[i].toString());
                 writer.newLine();
             }
-            System.out.println("Ghi danh sách chi tiết phiếu mượn thành công vào file: " + filename);
+            System.out.println("Ghi danh sach chi tiet phieu muon thanh cong vao file: " + filename);
         } catch (IOException e) {
-            System.out.println("Lỗi ghi file !!! " + e.toString());
+            System.out.println("Loi ghi file!!! " + e.toString());
         }
     }
 }
