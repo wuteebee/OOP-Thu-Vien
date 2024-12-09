@@ -78,3 +78,25 @@ public class SharedData {
 // TK,c,400,1200000,TG001,NXB001,1,cc,cc
 // TK,e,250,900000,TG001,NXB001,1,ee,ee
 // GK,f,350,1100000,TG001,NXB001,1,ff,ff
+
+// GK,Sach Giao Khoa Toan 1,100,50000,TG001,NXB001,1,Cao Dang,Toan
+// GK,Sach Giao Khoa Van 1,150,60000,TG002,NXB004,1,Cao Dang,Văn
+// TK,Sach Tham Khao Toan Cao Cap,50,150000,TG001,NXB002,1,Khoa Hoc,Xac Suat
+// TK,Sach Tham Khao Van Hoc Nang Cao,30,200000,TG002,NXB004,1,Khoa Hoc,Viet Van
+// GK,Sach Giao Khoa Ly 1,200,55000,TG003,NXB003,1,Cao Dang,Lý
+// TK,Sach Tham Khao Ly Thuyet,25,250000,TG003,NXB001,1,Khoa Hoc,Ly Thuyet
+// GK,Sach Giao Khoa Hoa 1,120,58000,TG004,NXB001,1,Cao Dang,Hoa
+// TK,Sach Tham Khao Hoa Hoc Nang Cao,60,180000,TG004,NXB004,1,Khoa Hoc,Hoa Hoc
+// GK,Sach Giao Khoa Su 1,80,62000,TG005,NXB001,1,Cao Dang,Su
+// TK,Sach Tham Khao Su Hoc Nang Cao,40,220000,TG005,NXB002,1,Khoa Hoc,Lich Su
+// GK,Sach Giao Khoa Toan 2,120,55000,TG001,NXB003,1,Cao Dang,Toan
+
+// GK,Sach Giao Khoa Van 2,130,58000,TG002,NXB005,1,Cao Dang,Văn
+// TK,Sach Tham Khao Toan Nang Cao,70,200000,TG001,NXB003,1,Khoa Hoc,Xac Suat
+// TK,Sach Tham Khao Van Hoc Nang Cao 2,40,250000,TG002,NXB004,1,Khoa Hoc,Viet Van
+// GK,Sach Giao Khoa Ly 2,90,60000,TG003,NXB002,1,Cao Dang,Ly
+// TK,Sach Tham Khao Ly Nang Cao,60,220000,TG003,NXB005,1,Khoa Hoc,Ly Thuyet
+// GK,Sach Giao Khoa Hoa 2,110,62000,TG004,NXB005,1,Cao Dang,Hoa
+// TK,Sach Tham Khao Hoa Hoc Nang Cao 2,80,210000,TG004,NXB002 Hoi Nha Van ,1,Khoa Hoc,Hoa Hoc
+// GK,Sach Giao Khoa Su 2,75,64000,TG005,NXB003,Cao Dang,Sử
+// TK,Sach Tham Khao Su Hoc Nang Cao 2,50,230000,TG005,NXB001,1,Khoa Hoc,Lich Su
