@@ -34,12 +34,13 @@ public class SharedData {
         dSTG.readFile();
         dSS.readFile();
         // phiéu mượn 
-
+        dSPM.readFile();
         // phiếu phạt 
         dSPP.readFile();
         dSCTPP.readFile();
         dSDK.readFile();
         // phiếu nhập
+        dSPN.readFile();
 
 
     }
@@ -52,11 +53,12 @@ public class SharedData {
         dSTG.writeFile();
         dSS.writeFile();
         // phiếu mượn 
-
+        // dSPM.writeFile();
         // phiếu phạt
         dSPP.writeFile();
         dSCTPP.writeFile();
         // phiếu nhập
+        dSPN.writeFile();
     }
 }
 
