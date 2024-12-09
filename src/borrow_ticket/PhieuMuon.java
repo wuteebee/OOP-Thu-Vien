@@ -12,10 +12,10 @@ public class PhieuMuon {
     private LocalDate ngayMuon, ngayTra;
 
     public PhieuMuon() {
-        IDNhanVien = "none";
         IDTheThuVien = "none";
+        IDNhanVien = "none";
         ngayMuon = LocalDate.now();
-        ngayTra = ngayMuon.plusDays(7);
+        ngayTra = LocalDate.now();
     }
 
     public PhieuMuon(String IDTheThuVien, String IDNhanVien, LocalDate ngayMuon, LocalDate ngayTra) {
@@ -68,14 +68,14 @@ public class PhieuMuon {
 
     public void nhapPM() {
         System.out.print("ID The Thu Vien: ");
-        this.IDTheThuVien = sc.nextLine();
+        IDTheThuVien = sc.nextLine();
         System.out.print("ID Nhan Vien: ");
-        this.IDNhanVien = sc.nextLine();
+        IDNhanVien = sc.nextLine();
         System.out.print("Ngay Muon (dd-mm-yyyy): ");
         String ngay = sc.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        this.ngayMuon = LocalDate.parse(ngay, formatter);
-        this.ngayTra = ngayMuon.plusDays(7);
+        ngayMuon = LocalDate.parse(ngay, formatter);
+        ngayTra = ngayMuon.plusDays(7);
     }
 
     @Override

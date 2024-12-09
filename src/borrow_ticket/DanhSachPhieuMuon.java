@@ -1,17 +1,21 @@
 package borrow_ticket;
 
+import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class DanhSachPhieuMuon {
-    public static PhieuMuon []dsPM;
+    private PhieuMuon []dsPM;
     public static int maID = 1;
-    public int soluong = 0;
-    
+    public static int soluong = 0;
+
+    public PhieuMuon[] getDsPM() {
+        return dsPM;
+    }
+
     Scanner sc = new Scanner(System.in);
 
     public DanhSachPhieuMuon() {
@@ -36,22 +40,13 @@ public class DanhSachPhieuMuon {
         maID++;
     }
 
-
     public PhieuMuon timKiemPhieuMuon(String id) {
-        for (int i = 0; i < soluong; i++) {
-            if (dsPM[i].getidPhieuMuon().equals(id)) 
-                return dsPM[i];  
+        for (PhieuMuon phieuMuon : dsPM) {
+            if (phieuMuon.getidPhieuMuon().equals(id)) 
+                return phieuMuon;  
         }
         return null;
     }
-
-    // public PhieuMuon timKiemPhieuMuon(String id) {
-    //     for (PhieuMuon phieuMuon : dsPM) {
-    //         if (phieuMuon.getidPhieuMuon().equals(id)) 
-    //             return phieuMuon;  
-    //     }
-    //     return null;
-    // }
 
     public int timkiemViTriPM(String id) {
         for (int i = 0; i < soluong; i++) {
@@ -74,7 +69,6 @@ public class DanhSachPhieuMuon {
         soluong--;
         return true;
     }
-    
 
     public void suaPhieuMuon() {
         System.out.print("Nhap ID phieu muon ban muon chinh sua: ");
@@ -91,13 +85,11 @@ public class DanhSachPhieuMuon {
 
         System.out.println("Phieu muon da duoc cap nhap: ");
         System.out.println(pm.toString());
-}
-
-
+    }
 
     public void readFile() {
         try (Scanner sc = new Scanner(new File(
-            "E:\\DoAnOOP\\Library\\src\\borrow_ticket\\DanhSachPhieuMuon.txt"))) {
+            "/Users/daosongloc/Documents/OOP-Thu-Vien/src/borrow_ticket/DanhSachPhieuMuon.txt"))) {
             while (sc.hasNextLine()) {
                 dsPM = Arrays.copyOf(dsPM, soluong + 1);
                 dsPM[soluong] = new PhieuMuon();
