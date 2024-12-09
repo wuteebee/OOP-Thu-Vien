@@ -75,7 +75,13 @@ public class DanhSachPhieuPhat {
     	System.out.print("ID Phieu Muon moi: ");
     	int pm = scan.nextInt();
     	String ID = String.format("PM%03d", pm);
+    	if (search.tonTaiPM(ID) && search.laPMDuyNhat(ID))
     	search.setIDPhieuMuon(ID);
+    	else
+    	{
+    		System.out.println("Ma Phieu Muon khong hop le, ket thuc chuong trinh");
+    		return;
+    	}
     	xuat();
     }
 
