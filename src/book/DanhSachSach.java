@@ -417,33 +417,53 @@ public class DanhSachSach {
             }
         }
 
-        System.out.print(String.format("%-20s", ""));
+        System.out.print(String.format("|%-20s", ""));
         for (Map.Entry<String, Integer> mapElement : chuyenNganhMap.entrySet()) {
-            System.out.print(String.format("%-20s", mapElement.getKey()));
+            System.out.print(String.format("|%-20s", mapElement.getKey()));
         }
-        System.out.println();
+        System.out.print("|\n");
         // System.out.println(soChuyenNganh + " " + soDeTai);
         viTriChuyenNganh = 0;
         viTriDeTai = 0;
         for (Map.Entry<String, Integer> mapElement : deTaiMap.entrySet()) {
-            System.out.print(String.format("%-20s", mapElement.getKey()));
+            System.out.print(String.format("|%-20s", mapElement.getKey()));
             for(viTriChuyenNganh = 0; viTriChuyenNganh < soChuyenNganh; ++viTriChuyenNganh) {
-                System.out.print(String.format("%-20d", thongKe[viTriChuyenNganh][viTriDeTai]));
+                System.out.print(String.format("|%-20d", thongKe[viTriChuyenNganh][viTriDeTai]));
             }
             ++viTriDeTai;
-            System.out.println();
+            System.out.print("|\n");
         }
 
     }
 
     @Override
     public String toString() {
+
+
         StringBuilder giaoKhoa = new StringBuilder();
         StringBuilder thamKhao = new StringBuilder();
+
+        giaoKhoa.append(String.format("%-139s\n", "").replace(' ', '-'))
+                .append(String.format("|%-57s", ""))
+                .append("Danh Sach Sach Giao Khoa")
+                .append(String.format("%-56s|\n", ""))
+                .append(String.format("%-139s\n", "").replace(' ', '-'))
+                .append(String.format("|%-10s|%-30s|%-10s|%-10s|%-20s|%-20s|%-15s|%-15s|", "id", "ten", "tonKho", "gia", "tacGia", "nhaXuatBan" , "trinhDo", "linhVuc"))
+                .append("\n");
+        thamKhao.append(String.format("%-139s\n", "").replace(' ', '-'))
+                .append(String.format("|%-57s", ""))
+                .append("Danh Sach Sach Tham Khao")
+                .append(String.format("%-56s|\n", ""))
+                .append(String.format("%-139s\n", "").replace(' ', '-'))
+                .append(String.format("|%-10s|%-30s|%-10s|%-10s|%-20s|%-20s|%-15s|%-15s|", "id", "ten", "tonKho", "gia", "tacGia", "nhaXuatBan" , "trinhDo", "linhVuc"))
+                .append("\n");
+
         for (Sach sach : this.dSSach) {
             if(sach instanceof SachGiaoKhoa) giaoKhoa.append(((SachGiaoKhoa) sach)).append("\n");
             else if(sach instanceof SachThamKhao) thamKhao.append(((SachThamKhao) sach)).append("\n");
         }
+        giaoKhoa.append(String.format("%-139s\n", "").replace(' ', '-'));
+        thamKhao.append(String.format("%-139s\n", "").replace(' ', '-'));
         return giaoKhoa.toString() + thamKhao.toString();
     }
 

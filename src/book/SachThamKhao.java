@@ -89,8 +89,7 @@ public class SachThamKhao extends Sach {
 
     @Override
     public String toString() {
-        return String.format("%-10s", getIDSach()) + String.format("%-30s%-10s%-10d%-20s%-20s", ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen()) + String.format("%-15s%-15s", this.chuyenNganh, this.deTai);
-    
+        return String.format("|%-10s|", getIDSach()) + String.format("%-30s|%-10s|%-10d|%-20s|%-20s|", ten, tonKho, gia, tacGia.getTen(), nhaXuatBan.getTen()) + String.format("%-15s|%-15s|", this.chuyenNganh, this.deTai);
     }
 
     public String toStringToFile() {

@@ -93,12 +93,11 @@ public class DanhSachTheThuVien {
         System.out.println(String.format("%-39s|",""));
         System.out.println(String.format("%-103s","").replace(' ', '-'));
         System.out.println(String.format("|%-10s|%-15s|%-15s|%-10s|%-15s|%-15s|%-15s|", "id", "ho", "ten", "gioiTinh", "ngaySinh", "soDienThoai", "trangThai"));
-        System.out.println(String.format("%-103s","").replace(' ', '-'));
         StringBuilder sb = new StringBuilder();
         for (TheThuVien the : this.dSTTV) {
             if (the != null) sb.append(the).append("\n");
         }
-        return sb.toString();
+        return sb.append(String.format("%-103s","").replace(' ', '-')).toString();
     }
 
     public String toStringFormatted(Boolean trangThai) {
