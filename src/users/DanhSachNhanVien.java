@@ -1,7 +1,7 @@
 package users;
 
 import data.*;
-import execute.Menu;
+import execute.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,9 +32,13 @@ public class DanhSachNhanVien {
 
     public void themNhanVien(int soLuongNhanVien) {
         moRongDanhSach(soLuongNhanVien);
-        for (int n = soLuong + soLuongNhanVien; soLuong < n; ++soLuong) {
+        Menu.clearScreen();
+        
+        for (int n = soLuong + soLuongNhanVien, count = 0; soLuong < n; ++soLuong) {
+            System.out.println("Them nhan vien thu " + (++count));
             this.dSNV[soLuong] = new NhanVien();
             this.dSNV[soLuong].tao();
+            Menu.clearScreen();
         }
     }
 
@@ -98,6 +102,8 @@ public class DanhSachNhanVien {
         StringBuilder sb = new StringBuilder();
 //                sb.append(DanhSachNhanVien.soLuong).append("\n");
 //                sb.append(this.dSNV.length).append("\n");
+        System.out.println(String.format("%-20s","").replace(' ', '-'));
+
         for (NhanVien nhanVien : this.dSNV) {
             if (nhanVien != null) {
                 sb.append(nhanVien).append("\n");

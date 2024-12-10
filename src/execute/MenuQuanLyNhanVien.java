@@ -30,10 +30,8 @@ import data.*;
 //             dieuKien = luaChon >= 0 && luaChon <= 12;
 //             if (!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
 //         } while (!dieuKien);
-
 //         return luaChon;
 //     }
-
 //     public void xuLyMenuNhanVien(int luaChon) {
 //         int chon;
 //         switch (luaChon) {
@@ -133,7 +131,6 @@ import data.*;
 //                 break;
 //         }
 //     }
-
 //     public int xuatMenuThemNhanVien() {
 //         int luaChon;
 //         boolean dieuKien;
@@ -148,7 +145,6 @@ import data.*;
 //         } while (!dieuKien);
 //         return luaChon;
 //     }
-
 //     public void xuLyMenuThemNhanVien(int luaChon) {
 //         switch (luaChon) {
 //             case 1:
@@ -158,7 +154,6 @@ import data.*;
 //                 break;
 //         }
 //     }
-
 //     public int xuatMenuThemSach() {
 //         int luaChon;
 //         boolean dieuKien;
@@ -175,7 +170,6 @@ import data.*;
 //         } while (!dieuKien);
 //         return luaChon;
 //     }
-
 //     public void xuLyMenuThemSach(int luaChon) {
 //         switch (luaChon) {
 //             case 1:
@@ -191,7 +185,6 @@ import data.*;
 //                 break;
 //         }
 //     }
-
 //     public int xuatMenuThemTacGia() {
 //         int luaChon;
 //         boolean dieuKien;
@@ -206,7 +199,6 @@ import data.*;
 //         } while (!dieuKien);
 //         return luaChon;
 //     }
-
 //     public void xuLyMenuThemTacGia(int luaChon) {
 //         switch (luaChon) {
 //             case 1:
@@ -216,7 +208,6 @@ import data.*;
 //                 break;
 //         }
 //     }
-
 //     public int xuatMenuThemNhaXuatBan() {
 //         int luaChon;
 //         boolean dieuKien;
@@ -231,7 +222,6 @@ import data.*;
 //         } while (!dieuKien);
 //         return luaChon;
 //     }
-
 //     public void xuLyMenuThemNhaXuatBan(int luaChon) {
 //         switch (luaChon) {
 //             case 1:
@@ -242,8 +232,8 @@ import data.*;
 //         }
 //     }
 // }
-
 public class MenuQuanLyNhanVien {
+
     public int xuatMenuQuanLyNhanVien() {
         int luaChon;
         boolean dieuKien;
@@ -258,7 +248,9 @@ public class MenuQuanLyNhanVien {
             Menu.input.nextLine();
             Menu.clearScreen();
             dieuKien = luaChon >= 0 && luaChon <= 5;
-            if (!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
+            if (!dieuKien) {
+                System.out.println("Lua chon khong hop le, vui long nhap lai!");
+            }
         } while (!dieuKien);
 
         return luaChon;
@@ -270,11 +262,12 @@ public class MenuQuanLyNhanVien {
                 System.out.println("Ban muon them bao nhieu nhan vien:");
                 int soLuongNhanVien = Menu.input.nextInt();
                 Menu.input.nextLine();
-                while(soLuongNhanVien-- > 0) {
+                while (soLuongNhanVien-- > 0) {
                     SharedData.dSNV.themNhanVien(1);
                 }
                 break;
             case 2:
+                System.out.println(SharedData.dSNV);
                 System.out.println(SharedData.dSNV.chinhSuaNhanVien(SharedData.dSNV.timIDNhanVien()));
                 break;
             case 3:

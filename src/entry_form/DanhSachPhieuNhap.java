@@ -117,7 +117,7 @@ public class DanhSachPhieuNhap {
     }
 
     public void timPhieuNhap() {
-        System.out.println(" \t\t TIM KIEM PHIEU NHAP"); 
+        System.out.println(" \t\t TIM KIEM PHIEU NHAP");
         boolean found = false;
         System.out.print("Nhap ID Phieu Nhap can tim: ");
         String idPhieuNhap = new Scanner(System.in).nextLine();

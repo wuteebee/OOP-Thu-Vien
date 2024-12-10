@@ -48,6 +48,10 @@ public class DanhSachSach {
         return this.dSSach = newDSSach;
     }
 
+    public Sach[] getDSSach() {
+        return this.dSSach;
+    }
+
     public void themSach(Sach sach) {
         moRongDanhSach(1);
         this.dSSach[soLuong] = sach;

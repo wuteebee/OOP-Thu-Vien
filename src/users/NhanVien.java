@@ -140,10 +140,11 @@ public class NhanVien extends NguoiDung {
                 System.out.println("Nhap ten cua NhanVien:");
                 nhanVien.setTen(Menu.input.nextLine());
 
+                
                 System.out.println("Nhap gioiTinh cua NhanVien (1: nam/0: nu):");
                 nhanVien.setGioiTinh(Menu.input.nextInt() == 1);
                 Menu.input.nextLine();
-
+                
                 System.out.println("Nhap vao ngay thang nam sinh (ddMMyyyy) cua NhanVien:");
                 String chuoiNgaySinh = Menu.input.nextLine();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
