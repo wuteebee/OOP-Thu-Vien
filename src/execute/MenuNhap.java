@@ -1,8 +1,9 @@
 package execute;
 import data.*;
 
-public class MenuNhap {
-    public int xuatMenuNhap() {
+public class MenuNhap implements ThucHienMenu {
+	@Override
+    public int xuatMenu() {
         int choice;
         Boolean dieuKien;
         do
@@ -25,7 +26,8 @@ public class MenuNhap {
         return choice;
     }
 
-      public void xuLyMenuNhap(int choice) {
+	@Override
+      public void xuLyMenu(int choice) {
             switch (choice) {
                 case 1:
                     SharedData.dSPN.timPhieuNhap();

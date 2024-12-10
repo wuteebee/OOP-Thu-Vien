@@ -1,8 +1,9 @@
 package execute;
 
-public class MenuThuVien {
+public class MenuThuVien implements ThucHienMenu {
 
-    public int xuatMenuThuVien() {
+	@Override
+    public int xuatMenu() {
         int luaChon;
         Boolean dieuKien;
         do {
@@ -24,48 +25,49 @@ public class MenuThuVien {
         return luaChon;
     }
 
-    public void xuLyMenuThuVien(int luaChon) {
+	@Override
+    public void xuLyMenu(int luaChon) {
         int chon = 0;
         switch (luaChon) {
             case 1:
                 MenuQuanLyNhanVien menuQuanLyNhanVien = new MenuQuanLyNhanVien();
                 do {
-                    chon = menuQuanLyNhanVien.xuatMenuQuanLyNhanVien();
-                    menuQuanLyNhanVien.xuLyMenuQuanLyNhanVien(chon);
+                    chon = menuQuanLyNhanVien.xuatMenu();
+                    menuQuanLyNhanVien.xuLyMenu(chon);
                 } while (chon != 0);
                 break;
             case 2:
                 MenuQuanLyKhachHang menuQuanLyKhachHang = new MenuQuanLyKhachHang();
                 do {
-                    chon = menuQuanLyKhachHang.xuatMenuQuanLyKhachHang();
-                    menuQuanLyKhachHang.xuLyMenuQuanLyKhachHang(chon);
+                    chon = menuQuanLyKhachHang.xuatMenu();
+                    menuQuanLyKhachHang.xuLyMenu(chon);
                 } while (chon != 0);
                 break;
             case 3:
                 MenuQuanLySach menuQuanLySach = new MenuQuanLySach();
                 do {
-                    chon = menuQuanLySach.xuatMenuQuanLySach();
-                    menuQuanLySach.xuLyMenuQuanLySach(chon);
+                    chon = menuQuanLySach.xuatMenu();
+                    menuQuanLySach.xuLyMenu(chon);
                 } while (chon != 0);
                 break;
             case 4:
                 MenuQuanLyNhaCungCap menuQuanLyNhaCungCap = new MenuQuanLyNhaCungCap();
                 do {
-                    chon = menuQuanLyNhaCungCap.xuatMenuQuanLyNhaCungCap();
-                    menuQuanLyNhaCungCap.xuLyMenuQuanLyNhaCungCap(chon);
+                    chon = menuQuanLyNhaCungCap.xuatMenu();
+                    menuQuanLyNhaCungCap.xuLyMenu(chon);
                 } while (chon != 0);
             case 5:
                 MenuQuanLyTacGia menuQuanLyTacGia = new MenuQuanLyTacGia();
                 do {
-                    chon = menuQuanLyTacGia.xuatMenuQuanLyTacGia();
-                    menuQuanLyTacGia.xuLyMenuQuanLyTacGia(chon);
+                    chon = menuQuanLyTacGia.xuatMenu();
+                    menuQuanLyTacGia.xuLyMenu(chon);
                 } while (chon != 0);
                 break;
             case 6:
             MenuNhap menuNhap = new MenuNhap();
             do {
-                chon = menuNhap.xuatMenuNhap();
-                menuNhap.xuLyMenuNhap(chon);
+                chon = menuNhap.xuatMenu();
+                menuNhap.xuLyMenu(chon);
             } while (chon != 0);
                 break;
             default:
