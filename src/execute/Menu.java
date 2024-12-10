@@ -11,8 +11,8 @@ public class Menu {
         SharedData.importData();
         int vongLap;
         do {
-            vongLap = menuChinh.xuatMenuChinh();
-            menuChinh.xuLyMenuChinh(vongLap);
+            vongLap = menuChinh.xuatMenu();
+            menuChinh.xuLyMenu(vongLap);
         } while (vongLap != 0);
 
         // thực thi hàm ghi ở đây

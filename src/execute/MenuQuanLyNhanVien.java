@@ -243,8 +243,9 @@ import data.*;
 //     }
 // }
 
-public class MenuQuanLyNhanVien {
-    public int xuatMenuQuanLyNhanVien() {
+public class MenuQuanLyNhanVien implements ThucHienMenu {
+	@Override
+    public int xuatMenu() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -264,7 +265,8 @@ public class MenuQuanLyNhanVien {
         return luaChon;
     }
 
-    public void xuLyMenuQuanLyNhanVien(int luaChon) {
+	@Override
+    public void xuLyMenu(int luaChon) {
         switch (luaChon) {
             case 1:
                 System.out.println("Ban muon them bao nhieu nhan vien:");
