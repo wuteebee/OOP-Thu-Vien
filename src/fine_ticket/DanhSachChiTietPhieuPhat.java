@@ -321,11 +321,11 @@ public class DanhSachChiTietPhieuPhat {
 	
 	public void thongKe() // Thong ke tong tien phat them ma sach
 	{ 
-		System.out.println("Thong ke tong tien phat theo ma sach");
 		String[] maSach = new String[0];
 		int n = 0;
 		if (soLuong == 0) 
 			return;
+		System.out.println("Thong ke tong tien phat theo ma sach");
 		System.out.format("%-10s|%s\n", "ID Sach", "Tong tien");
 		for (ChiTietPhieuPhat i : dSCTPP)
 		{
@@ -362,6 +362,8 @@ public class DanhSachChiTietPhieuPhat {
 	
 	public void timKiemNangCao()
 	{ 
+		if (soLuong == 0)
+			return;
 		System.out.print("In chi tiet phieu phat vi pham dieu khoan 1 va co loai sach la sach giao khoa");
 		for (ChiTietPhieuPhat i : dSCTPP)
 		{ 

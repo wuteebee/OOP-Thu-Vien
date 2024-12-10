@@ -21,9 +21,11 @@ public class MenuPhat implements ThucHienMenu {
             System.out.println("9. Xoa Chi Tiet Phieu Phat.");
             System.out.println("10. Tim Chi Tiet Phieu Phat.");
             System.out.println("11. Quy dinh dieu khoan vi pham.");
+            System.out.println("12. Thong ke Chi Tiet Phieu Phat.");
+            System.out.println("13. Tim kiem nang cao.");
             luaChon = Menu.input.nextInt();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 11;
+            dieuKien = luaChon >= 0 && luaChon <= 13;
             if(!dieuKien) System.out.println("Lua chon khong hop le, vui long nhap lai!");
         } while(!dieuKien);
         return luaChon;
@@ -66,6 +68,12 @@ public class MenuPhat implements ThucHienMenu {
 			break;	
 		case 11:
 			SharedData.dSDK.xuat();
+			break;
+		case 12:
+			SharedData.dSCTPP.thongKe();
+			break;
+		case 13:
+			SharedData.dSCTPP.timKiemNangCao();
 		default:
 			break;
 		}
