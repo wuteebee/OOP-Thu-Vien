@@ -65,6 +65,20 @@ public class ChiTietPhieuPhat {
     public void setidDieuKhoan(int x) {
         idDieuKhoan = x;
         tienPhat = SharedData.dSDK.dSDK[x].getTienPhat();
+        if (tienPhat == 0)
+        { 
+        	for (Sach i : SharedData.dSS.dSSach)
+    		{
+    			if (i instanceof SachGiaoKhoa && ((SachGiaoKhoa)i).getIDSach().equals(idSach)) 
+    			{ 
+    				tienPhat = i.getGia();
+    			}
+    			else if (i instanceof SachThamKhao && ((SachThamKhao)i).getIDSach().equals(idSach)) 
+    			{ 
+    				tienPhat = i.getGia();
+    			}
+    		}
+        }
     }
 
 	@Override 
