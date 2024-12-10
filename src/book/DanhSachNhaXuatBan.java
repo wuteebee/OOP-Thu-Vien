@@ -120,11 +120,17 @@ public class DanhSachNhaXuatBan {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        System.out.println(String.format("%-110s","").replace(' ', '-'));
+        System.out.print(String.format("|%-43s",""));
+        System.out.print("Danh Sach Nha Xuat Ban");
+        System.out.println(String.format("%-43s|",""));
+        System.out.println(String.format("%-110s","").replace(' ', '-'));
+        System.out.print(String.format("|%-10s|%-30s|%-15s|%-50s|  ", "id", "ten", "soDienThoai", "diaChi"));
         for (NhaXuatBan nhaXuatBan : this.dSNXB) {
-            output.append("\n").append(nhaXuatBan);
+            sb.append("\n").append(nhaXuatBan);
         }
-        return output.toString();
+        return sb.append("\n").append(String.format("%-110s","").replace(' ', '-')).toString();
     }
 
     public String toStringFormatted(Boolean trangThai) {

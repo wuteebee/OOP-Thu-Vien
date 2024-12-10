@@ -121,11 +121,18 @@ public class DanhSachTacGia {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        System.out.println(String.format("%-96s","").replace(' ', '-'));
+        System.out.print(String.format("|%-39s",""));
+        System.out.print("Danh Sach Tac Gia");
+        System.out.println(String.format("%-38s|",""));
+        System.out.println(String.format("%-96s","").replace(' ', '-'));
+        System.out.print(String.format("|%-10s|%-30s|%-15s|%-20s|%-15s|", "id", "ten", "ngaySinh", "queQuan", "trangThai"));
         for (TacGia tacGia : this.dSTG) {
-            output.append("\n").append(tacGia);
+            sb.append("\n").append(tacGia);
         }
-        return output.toString();
+        sb.append(String.format("\n%-96s","").replace(' ', '-'));
+        return sb.toString();
     }
 
     public String toStringFormatted(Boolean trangThai) {

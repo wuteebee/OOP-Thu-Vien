@@ -90,7 +90,7 @@ public class NhaXuatBan {
 
     @Override
     public String toString() {
-        return String.format("%-10s%-30s%-15s%-50s", idNhaXuatBan, ten, soDienThoai, diaChi);
+        return String.format("|%-10s|%-30s|%-15s|%-50s|  ", idNhaXuatBan, ten, soDienThoai, diaChi);
     }
 
     public String toStringToFile() {

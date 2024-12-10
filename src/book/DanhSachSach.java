@@ -203,8 +203,9 @@ public class DanhSachSach {
                 }
             }
         }
+        System.out.println(String.format("|%-10s|%-30s|", "id", "tenSach"));
         for (Map.Entry<SachGiaoKhoa, String> mapElement : sachMap.entrySet()) {
-            System.out.println(String.format("%-10s%-30s", mapElement.getValue(), mapElement.getKey().getTen()));
+            System.out.println(String.format("|%-10s|%-30s|", mapElement.getValue(), mapElement.getKey().getTen()));
         }
         System.out.println("Nhap ID sach:");
         String idSach = Menu.input.nextLine();
@@ -296,8 +297,9 @@ public class DanhSachSach {
                 }
             }
         }
+        System.out.println(String.format("|%-10s|%-30s|", "id", "tenSach"));
         for (Map.Entry<SachThamKhao, String> mapElement : sachMap.entrySet()) {
-            System.out.println(String.format("%-10s%-30s", mapElement.getValue(), mapElement.getKey().getTen()));
+            System.out.println(String.format("|%-10s|%-30s|", mapElement.getValue(), mapElement.getKey().getTen()));
         }
         System.out.println("Nhap ID sach:");
         String idSach = Menu.input.nextLine();
@@ -360,7 +362,6 @@ public class DanhSachSach {
         int[][] thongKe = new int[soTrinhDo][soLinhVuc];
         for (Sach sach : dSSach) {
             if (sach instanceof SachGiaoKhoa) {
-                System.out.println("CHAY");
                 viTriTrinhDo = trinhDoMap.get(((SachGiaoKhoa) sach).getTrinhDo());
                 viTriLinhVuc = linhVucMap.get(((SachGiaoKhoa) sach).getLinhVuc());
                 thongKe[viTriTrinhDo][viTriLinhVuc]++;
@@ -368,20 +369,20 @@ public class DanhSachSach {
         }
         // System.out.println(trinhDoMap);
         // System.out.println(linhVucMap);
-        System.out.print(String.format("%-20s", ""));
+        System.out.print(String.format("|%-20s", ""));
         for (Map.Entry<String, Integer> mapElement : trinhDoMap.entrySet()) {
-            System.out.print(String.format("%-20s", mapElement.getKey()));
+            System.out.print(String.format("|%-20s", mapElement.getKey()));
         }
         viTriTrinhDo = 0; // tang 
         viTriLinhVuc = 0;
-        System.out.println();
+        System.out.print("|\n");
         for (Map.Entry<String, Integer> mapElement : linhVucMap.entrySet()) {
-            System.out.print(String.format("%-20s", mapElement.getKey()));
+            System.out.print(String.format("|%-20s", mapElement.getKey()));
             for (viTriTrinhDo = 0; viTriTrinhDo < soTrinhDo; ++viTriTrinhDo) {
-                System.out.print(String.format("%-20d", thongKe[viTriTrinhDo][viTriLinhVuc]));
+                System.out.print(String.format("|%-20d", thongKe[viTriTrinhDo][viTriLinhVuc]));
             }
             viTriLinhVuc++;
-            System.out.println();
+            System.out.print("|\n");
         }
     }
 

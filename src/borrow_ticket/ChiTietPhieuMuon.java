@@ -4,18 +4,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import book.Sach;
+import data.SharedData;
+
 public class ChiTietPhieuMuon {
     private String idPhieuMuon = "PM" + String.format("%03d", DanhSachPhieuMuon.maID);
-    private int soSach = 0; 
+    private int soSach = 0;
     private String[] idSach;
     private LocalDate ngayThucTra;
 
-    
+
 
     public ChiTietPhieuMuon() {
-        this.soSach = 0;            
-        this.idSach = new String[soSach]; 
-        this.ngayThucTra = LocalDate.now(); 
+        this.soSach = 0;
+        this.idSach = new String[soSach];
+        this.ngayThucTra = LocalDate.now();
     }
 
     public ChiTietPhieuMuon(int soSach, String[] idSach, LocalDate ngayThucTra) {
@@ -53,14 +56,14 @@ public class ChiTietPhieuMuon {
         }
         return sb.toString();
     }
-    
+
 
     public void setIdSach(String[] idSach) {
         this.idSach = new String[soSach];
         int count = 0;
-    
+
         for (int i = 0; i < idSach.length && count < soSach; i++) {
-                this.idSach[count++] = idSach[i];
+            this.idSach[count++] = idSach[i];
         }
         this.soSach = count;
     }
@@ -82,20 +85,32 @@ public class ChiTietPhieuMuon {
 
         String[] ids = new String[soSach];
         for (int i = 0; i < soSach; i++) {
-            System.out.print("Nhập ID sách thứ " + (i + 1) + ": ");
-            ids[i] = sc.nextLine();
+            while (true) {
+                System.out.print("Nhap ID sach thu " + (i + 1) + ": ");
+                ids[i] = sc.nextLine();
+                if (timIDSach(ids[i])) {
+                    break;
+                } else {
+                    System.out.println("Sach khong ton tai! Vui long nhap lai.");
+                }
+            }
+            setIdSach(ids);
         }
-        setIdSach(ids);
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         System.out.print("Ngay thuc tra(dd-mm-yyyy): ");
         String ngay = sc.nextLine();
         ngayThucTra = LocalDate.parse(ngay, formatter);
     }
+    public boolean timIDSach(String idSach) {
+        for (Sach sach : SharedData.dSS.dSSach)
+            if (sach.getIDSach().equals(idSach))
+                return true;
+        return false;
+    }
 
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return String.format("| %-20s| %-20s| %-20s|", idPhieuMuon, getIdSach(), ngayThucTra.format(formatter));
+        return String.format("| %-20s| %-10d| %-50s| %-20s|", idPhieuMuon, getSoSach(), getIdSach(), ngayThucTra.format(formatter));
     }
 }

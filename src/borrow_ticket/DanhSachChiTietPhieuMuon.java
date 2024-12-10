@@ -17,10 +17,10 @@ import java.util.Scanner;
 
 
 public class DanhSachChiTietPhieuMuon {
-    public static ChiTietPhieuMuon []dSCTPM;
+    public ChiTietPhieuMuon []dSCTPM;
     public static int soluong=0;
 
-    public static ChiTietPhieuMuon[] getdSCTPM() {
+    public ChiTietPhieuMuon[] getdSCTPM() {
         return dSCTPM;
     }
 
@@ -31,15 +31,15 @@ public class DanhSachChiTietPhieuMuon {
     }
 
     public void xuatdsCTPM() {
-        System.out.println("      ----------   DANH SACH CHI TIET PHIEU MUON   ----------");
-        System.out.println(String.format("| %-20s| %-20s| %-20s|",
-                            "ID Phieu muon", "ID sach", "ID ngay thuc tra"));
+        System.out.println("  ------------------------------------ DANH SACH CHI TIET PHIEU MUON ------------------------------------- ");
+        System.out.println(String.format("| %-20s| %-10s| %-50s| %-20s|",
+                "ID Phieu muon", "So sach", "ID sach", "ID ngay thuc tra"));
         for (int i=0; i<soluong; i++)
             System.out.println(dSCTPM[i].toString());
-        System.out.println("      ----------   DANH SACH CHI TIET PHIEU MUON   ----------");
+        System.out.println("  -------------------------------------------------------------------------------------------------------- ");
     }
     public boolean kiemTraIDPhieuMuon(String id) {
-        for (PhieuMuon pm : DanhSachPhieuMuon.getDsPM()) {
+        for (PhieuMuon pm : SharedData.dSPM.getDsPM()) {
             if (pm.getidPhieuMuon().equals(id)) {
                 return true;
             }
@@ -49,16 +49,16 @@ public class DanhSachChiTietPhieuMuon {
     public ChiTietPhieuMuon timKiemCTPMTheoID(String id) {
         for (int i = 0; i < soluong; i++) {
             if (dSCTPM[i].getIdPhieuMuon().equals(id)) {
-                return dSCTPM[i]; 
+                return dSCTPM[i];
             }
         }
-        return null; 
+        return null;
     }
     public void timCTPM() {
         System.out.print("Nhap ID chi tiet phieu muon can tim: ");
         String idctpm = sc.nextLine();
         ChiTietPhieuMuon search = timKiemCTPMTheoID(idctpm);
-        if (search != null) 
+        if (search != null)
             System.out.println(search);
         else System.out.println("Khong tim thay chi tiet phieu muon vua nhap !");
     }
@@ -66,8 +66,13 @@ public class DanhSachChiTietPhieuMuon {
     public void themCTPM() {
         System.out.print("Nhap ID phieu muon can them: ");
         PhieuMuon index1 = SharedData.dSPM.timPM();
+        if (index1 == null) {
+            System.out.println("Khong ton tai phieu muon vua nhap !");
+            return;
+        }
+
         ChiTietPhieuMuon index2 = timKiemCTPMTheoID(index1.getidPhieuMuon());
-        if(index1 != null && index2 != null ) {
+        if(index2 != null ) {
             System.out.println("CTPM voi ID nay da ton tai !");
             System.out.println("Ban muon nhap lai ID phieu muon hay chinh sua CTPM voi ID: " + index1.getidPhieuMuon() +" ?");
             System.out.println("Chon 'y' den chinh / chon 'n' de nhap lai.");
@@ -81,18 +86,15 @@ public class DanhSachChiTietPhieuMuon {
             } else {
                 System.out.println("Lua chon khong hop le.");
             }
-        } else  if (index1 != null && index2 == null) { 
-                ChiTietPhieuMuon ctpm = new ChiTietPhieuMuon();
-                ctpm.setIdPhieuMuon(index1.getidPhieuMuon());
-                ctpm.nhapCTPM();
-                dSCTPM = Arrays.copyOf(dSCTPM, soluong + 1);
-                dSCTPM[soluong] = ctpm;
-                soluong++;
-                System.out.println("Da them chi tiet phieu muon cua phieu muon: " + index1.getidPhieuMuon());
-            } 
-        else{
-                System.out.println("Khong ton tai phieu muon vua nhap !");
-            }
+        } else  {
+            ChiTietPhieuMuon ctpm = new ChiTietPhieuMuon();
+            ctpm.setIdPhieuMuon(index1.getidPhieuMuon());
+            ctpm.nhapCTPM();
+            dSCTPM = Arrays.copyOf(dSCTPM, soluong + 1);
+            dSCTPM[soluong] = ctpm;
+            soluong++;
+            System.out.println("Da them chi tiet phieu muon cua phieu muon: " + index1.getidPhieuMuon());
+        }
         return;
     }
 
@@ -104,7 +106,7 @@ public class DanhSachChiTietPhieuMuon {
         }
         System.out.println("Phieu muon voi ID = " + idcansua);
         System.out.println(ctpm.toString());
-        ctpm.nhapCTPM(); 
+        ctpm.nhapCTPM();
 
         System.out.println("Chi tiet phieu muon da duoc cap nhap. ");
         System.out.println(ctpm.toString());
@@ -140,7 +142,7 @@ public class DanhSachChiTietPhieuMuon {
             while (filesc.hasNext()) {
                 String idPhieuMuon = filesc.next();
                 if ( !kiemTraIDPhieuMuon(idPhieuMuon) ) {
-                    System.out.println("Khong ton tai ID PhieuMuon: " + idPhieuMuon);
+                    System.out.println("Phieu Muon " + idPhieuMuon +" khong ton tai => khong co Chi Tiet Phieu Muon " + idPhieuMuon);
                     filesc.skip(".*"); // tương tự filesc.nextLine(); bo qua phan còn lai cua dònng
                     continue;
                 }
@@ -150,7 +152,7 @@ public class DanhSachChiTietPhieuMuon {
 
                 int soSach = filesc.nextInt();
                 dSCTPM[soluong].setSoSach(soSach);
-            
+
                 // doc id sach vào mảng
                 String[] ids = new String[soSach];
                 for (int i = 0; i < soSach; i++) {
@@ -169,12 +171,12 @@ public class DanhSachChiTietPhieuMuon {
         } catch (FileNotFoundException e) {
             System.out.println("Loi doc file!!! " + e.getMessage());
         } catch (DateTimeParseException e) {
-        System.out.println("Loi dinh dang ngay thang!!! " + e.getMessage());
+            System.out.println("Loi dinh dang ngay thang!!! " + e.getMessage());
         } catch (NumberFormatException e) {
             System.out.println("Loi dinh dang so!!! " + e.getMessage());
         }
     }
-    
+
     public void writeFile(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             writer.write(String.format("%-20s| %-20s| %-20s|",

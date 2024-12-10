@@ -40,9 +40,7 @@ public class SharedData {
         dSPP.readFile();
         dSCTPP.readFile();
         // phiếu nhập
-        dSPN.readFile();
-
-
+//        dSPN.readFile();
     }
 
     public static void capNhatDuLieu() {
@@ -59,7 +57,7 @@ public class SharedData {
         dSPP.writeFile();
         dSCTPP.writeFile();
         // phiếu nhập
-        dSPN.writeFile();
+//        dSPN.writeFile();
     }
 }
 
