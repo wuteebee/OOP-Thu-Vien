@@ -1,8 +1,9 @@
 package execute;
 
-public class MenuKhachHang {
+public class MenuKhachHang implements ThucHienMenu {
 
-    int xuatMenuKhachHang() {
+	@Override
+    public int xuatMenu() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -22,7 +23,8 @@ public class MenuKhachHang {
         return luaChon;
     }
 
-    void xuLyMenuKhachHang(int luaChon) {
+    @Override
+    public void xuLyMenu(int luaChon) {
         int chon;
         switch (luaChon) {
             case 1:
@@ -38,16 +40,16 @@ public class MenuKhachHang {
                 System.out.println("Xu ly vi pham.");
                 MenuPhat menuPhat = new MenuPhat();
                 do {
-                    chon = menuPhat.xuatMenuPhat();
-                    menuPhat.xuLyMenuPhat(chon);
+                    chon = menuPhat.xuatMenu();
+                    menuPhat.xuLyMenu(chon);
                 } while (chon != 0);
                 break;
             case 5:
                 System.out.println("Xu ly phieu muon.");
                 MenuMuon menuMuon = new MenuMuon();
                 do {
-                    chon = menuMuon.xuatMenuMuon();
-                    menuMuon.xuLyMenuMuon(chon);
+                    chon = menuMuon.xuatMenu();
+                    menuMuon.xuLyMenu(chon);
                 } while (chon != 0);
                 break;
             default:

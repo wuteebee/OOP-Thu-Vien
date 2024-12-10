@@ -2,9 +2,10 @@ package execute;
 
 import data.SharedData;
 
-public class MenuQuanLySach {
-
-    public int xuatMenuQuanLySach() {
+public class MenuQuanLySach implements ThucHienMenu {
+	
+	@Override
+    public int xuatMenu() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -26,7 +27,8 @@ public class MenuQuanLySach {
         return luaChon;
     }
 
-    public void xuLyMenuQuanLySach(int luaChon) {
+	@Override
+    public void xuLyMenu(int luaChon) {
         switch (luaChon) {
             case 1:
                 System.out.println("Ban muon them bao nhieu sach:");

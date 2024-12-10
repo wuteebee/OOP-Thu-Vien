@@ -1,7 +1,8 @@
 package execute;
 
-public class MenuChinh {
-    int xuatMenuChinh() {
+public class MenuChinh implements ThucHienMenu{
+	@Override
+    public int xuatMenu() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -47,21 +48,23 @@ public class MenuChinh {
     //             break;
     //     }
     // }
-    void xuLyMenuChinh(int luaChon) {
+	
+	@Override
+    public void xuLyMenu(int luaChon) {
         int chon;
         switch(luaChon) {
             case 1:
                 MenuThuVien menuThuVien = new MenuThuVien();
                 do {
-                    chon = menuThuVien.xuatMenuThuVien();
-                    menuThuVien.xuLyMenuThuVien(chon);
+                    chon = menuThuVien.xuatMenu();
+                    menuThuVien.xuLyMenu(chon);
                 } while(chon != 0);
                 break;
             case 2:
                 MenuKhachHang menuKhachHang = new MenuKhachHang();
                 do {
-                    chon = menuKhachHang.xuatMenuKhachHang();
-                    menuKhachHang.xuLyMenuKhachHang(chon);
+                    chon = menuKhachHang.xuatMenu();
+                    menuKhachHang.xuLyMenu(chon);
                 } while(chon!= 0);
                 break;
             default:

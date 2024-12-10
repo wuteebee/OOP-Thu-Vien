@@ -45,6 +45,7 @@ public class DanhSachPhieuPhat {
     		System.out.println("Danh sach phieu phat rong");
     		return null;
     	}
+    	xuat();
     	System.out.print("Tim ID Phieu Phat: ");
     	int ID = scan.nextInt();
     	String search = String.format("PP%03d",ID);

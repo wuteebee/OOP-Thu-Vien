@@ -22,6 +22,7 @@ public class DanhSachChiTietPhieuPhat {
 			System.out.println("Danh sach Chi Tiet Phieu Phat rong");
 			return;
 		}
+		xuat();
 		ChiTietPhieuPhat A = new ChiTietPhieuPhat();
 		if (A.boSung())
 		{
@@ -75,6 +76,7 @@ public class DanhSachChiTietPhieuPhat {
 			System.out.println("Danh sach chi tiet phieu phat rong");
 			return null;
 		}
+		xuat();
 		System.out.print("Nhap ID Phieu Phat: ");
 		int ID = scan.nextInt();
 		String search = String.format("PP%03d", ID);

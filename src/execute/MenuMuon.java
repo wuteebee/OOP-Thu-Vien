@@ -2,8 +2,9 @@ package execute;
 import borrow_ticket.PhieuMuon;
 import data.SharedData;
 
-public class MenuMuon {
-    public int xuatMenuMuon() {
+public class MenuMuon implements ThucHienMenu {
+	@Override
+    public int xuatMenu() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -31,7 +32,8 @@ public class MenuMuon {
         return luaChon;
     }
 
-    public void xuLyMenuMuon(int luaChon) {
+	@Override
+    public void xuLyMenu(int luaChon) {
         switch (luaChon) {
             case 1: 
                 SharedData.dSPM.xuatds();

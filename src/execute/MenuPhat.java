@@ -2,8 +2,9 @@ package execute;
 
 import data.SharedData;
 
-public class MenuPhat {
-	public int xuatMenuPhat()
+public class MenuPhat implements ThucHienMenu {
+	@Override
+	public int xuatMenu()
 	{
         int luaChon;
         boolean dieuKien;
@@ -28,7 +29,8 @@ public class MenuPhat {
         return luaChon;
 	}
 	
-	public void xuLyMenuPhat(int luaChon)
+	@Override
+	public void xuLyMenu(int luaChon)
 	{
 		switch (luaChon)
 		{ 

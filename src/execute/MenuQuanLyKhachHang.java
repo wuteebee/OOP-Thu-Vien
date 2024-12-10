@@ -2,9 +2,10 @@ package execute;
 
 import data.*;
 
-public class MenuQuanLyKhachHang {
-
-    public int xuatMenuQuanLyKhachHang() {
+public class MenuQuanLyKhachHang implements ThucHienMenu {
+	
+	@Override
+    public int xuatMenu() {
         int luaChon;
         boolean dieuKien;
         do {
@@ -26,7 +27,8 @@ public class MenuQuanLyKhachHang {
         return luaChon;
     }
 
-    public void xuLyMenuQuanLyKhachHang(int luaChon) {
+	@Override
+    public void xuLyMenu(int luaChon) {
         switch (luaChon) {
             case 1:
                 System.out.println("Ban muon them bao nhieu khach hang:");
