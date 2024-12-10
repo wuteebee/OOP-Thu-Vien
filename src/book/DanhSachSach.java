@@ -438,13 +438,13 @@ public class DanhSachSach {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder giaoKhoa = new StringBuilder();
+        StringBuilder thamKhao = new StringBuilder();
         for (Sach sach : this.dSSach) {
-            if (sach != null) {
-                sb.append(sach).append("\n");
-            }
+            if(sach instanceof SachGiaoKhoa) giaoKhoa.append(((SachGiaoKhoa) sach)).append("\n");
+            else if(sach instanceof SachThamKhao) thamKhao.append(((SachThamKhao) sach)).append("\n");
         }
-        return sb.toString();
+        return giaoKhoa.toString() + thamKhao.toString();
     }
 
     public String toStringFormatted(Boolean trangThai) {

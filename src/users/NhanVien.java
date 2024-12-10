@@ -14,7 +14,7 @@ public class NhanVien extends NguoiDung {
     private Boolean gioiTinh;
     private LocalDate ngaySinh;
     private String soDienThoai;
-    private Boolean trangThai = true;
+    private Boolean trangThai = false;
 
     public NhanVien() {
         ho = "none";
@@ -155,6 +155,7 @@ public class NhanVien extends NguoiDung {
                 nhanVien.setSoDienThoai(Menu.input.nextLine());
 
                 validInput = true;
+                trangThai = true;
             } catch (InputMismatchException ime) {
                 System.out.println("Nhap sai gioi tinh! Vui long nhap lai.");
                 Menu.input.nextLine();
@@ -195,7 +196,7 @@ public class NhanVien extends NguoiDung {
 
     @Override
     public String toString() {
-        return String.format("%-10s%-15s%-25s%-10s%-15s%-15s%-15s", idNhanVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai, (trangThai ? "hoat dong" : "khoa"));
+        return String.format("|%-10s|%-15s|%-25s|%-10s|%-15s|%-15s|%-15s|", idNhanVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai, (trangThai ? "hoat dong" : "khoa"));
     }
 
     public String toStringToFile() {

@@ -34,8 +34,7 @@ public class DanhSachNhanVien {
         moRongDanhSach(soLuongNhanVien);
         Menu.clearScreen();
         
-        for (int n = soLuong + soLuongNhanVien, count = 0; soLuong < n; ++soLuong) {
-            System.out.println("Them nhan vien thu " + (++count));
+        for (int n = soLuong + soLuongNhanVien; soLuong < n; ++soLuong) {
             this.dSNV[soLuong] = new NhanVien();
             this.dSNV[soLuong].tao();
             Menu.clearScreen();
@@ -102,8 +101,13 @@ public class DanhSachNhanVien {
         StringBuilder sb = new StringBuilder();
 //                sb.append(DanhSachNhanVien.soLuong).append("\n");
 //                sb.append(this.dSNV.length).append("\n");
-        System.out.println(String.format("%-20s","").replace(' ', '-'));
-
+        System.out.println(String.format("%-113s","").replace(' ', '-'));
+        System.out.print(String.format("|%-46s",""));
+        System.out.print("Danh Sach Nhan Vien");
+        System.out.println(String.format("%-46s|",""));
+        System.out.println(String.format("%-113s","").replace(' ', '-'));
+        System.out.println(String.format("|%-10s|%-15s|%-25s|%-10s|%-15s|%-15s|%-15s|", "id", "ho", "ten", "gioiTinh", "ngaySinh", "soDienThoai", "trangThai"));
+        System.out.println(String.format("%-113s","").replace(' ', '-'));
         for (NhanVien nhanVien : this.dSNV) {
             if (nhanVien != null) {
                 sb.append(nhanVien).append("\n");

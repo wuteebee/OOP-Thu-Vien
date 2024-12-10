@@ -130,6 +130,7 @@ public class TheThuVien extends NguoiDung {
                 soDienThoai = Menu.input.nextLine();
 
                 validInput = true;
+                trangThai = true;
             } catch (InputMismatchException ime) {
                 System.out.println("Nhap sai gioi tinh! Vui long nhap lai.");
                 Menu.input.nextLine();
@@ -143,7 +144,7 @@ public class TheThuVien extends NguoiDung {
 
     @Override
     public String toString() {
-        return String.format("%-10s%-15s%-15s%-10s%-15s%-15s", idTheThuVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai);
+        return String.format("|%-10s|%-15s|%-15s|%-10s|%-15s|%-15s|%-15s|", idTheThuVien, ho, ten, gioiTinh ? "nam" : "nu", ngaySinh, soDienThoai, trangThai? "hoat dong" : "khoa");
     }
 
     public String toStringToFile() {
