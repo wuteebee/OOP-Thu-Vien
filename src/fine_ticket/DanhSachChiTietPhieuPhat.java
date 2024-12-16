@@ -371,6 +371,15 @@ public class DanhSachChiTietPhieuPhat {
 				System.out.println(i);
 			}
 		}
+		
+		System.out.println("In chi tiet phieu phat cua sach giao khoa hoac sach tham khao");
+		for (ChiTietPhieuPhat i: dSCTPP)
+		{ 
+			if (i.getIDSach().substring(0,3).equals("SGK") || i.getIDSach().substring(0,3).equals("STK"))
+			{
+				System.out.println(i);
+			}
+		}
 	}
 	
 	public void writeFile()
