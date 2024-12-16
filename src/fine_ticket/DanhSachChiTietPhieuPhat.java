@@ -250,7 +250,9 @@ public class DanhSachChiTietPhieuPhat {
 			choice = 0;
 			System.out.println("CHI CO 1 CHI TIET PHIEU, TIEN HANH XOA");
 		}
-					for (int i = 0; i < soLuong; i++)
+		String ID = res[choice].getIDChiTietPhieuPhat();
+		int val = res[choice].getTienPhat();
+		for (int i = 0; i < soLuong; i++)
 		{
 			if (dSCTPP[i] == res[choice])
 			{
@@ -259,7 +261,16 @@ public class DanhSachChiTietPhieuPhat {
 					dSCTPP[j] = dSCTPP[j + 1];
 				}
 				soLuong--;
-				return;
+				break;
+			}
+		}
+		
+		//Cap nhat lai tien
+		for (PhieuPhat i : SharedData.dSPP.dSPP)
+		{
+			if (i.getIDPhieuPhat().equals(ID))
+			{
+				i.setTienPhat(i.getTongTienPhat() - val);
 			}
 		}
 		xuat();
@@ -363,7 +374,7 @@ public class DanhSachChiTietPhieuPhat {
 	{ 
 		if (soLuong == 0)
 			return;
-		System.out.print("In chi tiet phieu phat vi pham dieu khoan 1 va co loai sach la sach giao khoa");
+		System.out.println("In chi tiet phieu phat vi pham dieu khoan 1 va co loai sach la sach giao khoa");
 		for (ChiTietPhieuPhat i : dSCTPP)
 		{ 
 			if (i.getIDDieuKhoan() == (1)  && i.getIDSach().substring(0, 3).equals("SGK"))
@@ -372,10 +383,10 @@ public class DanhSachChiTietPhieuPhat {
 			}
 		}
 		
-		System.out.println("In chi tiet phieu phat cua sach giao khoa hoac sach tham khao");
+		System.out.println("In chi tiet phieu phat vi pham dieu 2 hoac 3");
 		for (ChiTietPhieuPhat i: dSCTPP)
 		{ 
-			if (i.getIDSach().substring(0,3).equals("SGK") || i.getIDSach().substring(0,3).equals("STK"))
+			if (i.getIDDieuKhoan() == (2) || i.getIDDieuKhoan() == (3))
 			{
 				System.out.println(i);
 			}
