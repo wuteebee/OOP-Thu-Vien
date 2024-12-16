@@ -1,23 +1,24 @@
 package entry_form;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class PhieuNhap {
     
     private String idPhieuNhap;
-    private String idNhaCungCap;
+    private int idNhaCungCap;
     private int tongTien;
     private LocalDate ngayNhap;
     private int soLuongSach;
-    private String idSach;
+    private int idSach;
     
     public PhieuNhap() {
         idPhieuNhap = "PN" + String.format("%03d", 1);
-        idNhaCungCap =  String.format("%03d", 1);
+        idNhaCungCap = 0;
         tongTien = 0;
         ngayNhap = LocalDate.now();
         soLuongSach = 0;
-        idSach = String.format("%03d", 1);
+        idSach = 0;
     }
 
     public String getIdPhieuNhap() {
@@ -28,11 +29,11 @@ public class PhieuNhap {
         this.idPhieuNhap = idPhieuNhap;
     }
 
-    public String getIdNhaCungCap() {
+    public int getIdNhaCungCap() {
         return idNhaCungCap;
     }
 
-    public void setIdNhaCungCap(String idNhaCungCap) {
+    public void setIdNhaCungCap(int idNhaCungCap) {
         this.idNhaCungCap = idNhaCungCap;
     }
 
@@ -60,14 +61,29 @@ public class PhieuNhap {
         this.soLuongSach = soLuongSach;
     }
 
-    public String getIdSach() {
+    public int getIdSach() {
         return idSach;
     }
 
-    public void setIdSach(String idSach) {
+    public void setIdSach(int idSach) {
         this.idSach = idSach;
     }
 
+    public void them(){
+        System.out.print("ID Phieu Nhap: ");
+        idPhieuNhap = new Scanner(System.in).nextLine();
+        System.out.print("ID Nha Cung Cap: ");
+        idNhaCungCap = new Scanner(System.in).nextInt();
+        System.out.print("Tong Tien: ");
+        tongTien = new Scanner(System.in).nextInt();
+        System.out.print("Ngay Nhap (dd/mm/yyyy): ");
+        ngayNhap = LocalDate.parse(new Scanner(System.in).nextLine());
+        System.out.print("So Luong Sach: ");
+        soLuongSach = new Scanner(System.in).nextInt();
+        System.out.print("ID Sach: ");
+        idSach = new Scanner(System.in).nextInt();
+        
+    }
     
 
     @Override

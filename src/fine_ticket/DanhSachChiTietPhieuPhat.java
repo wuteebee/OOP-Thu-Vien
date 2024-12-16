@@ -9,7 +9,6 @@ import data.SharedData;
 public class DanhSachChiTietPhieuPhat {
 	public int soLuong = 0;
 	public ChiTietPhieuPhat[] dSCTPP;
-
 	public DanhSachChiTietPhieuPhat() {
 		dSCTPP = new ChiTietPhieuPhat[0];
 	}

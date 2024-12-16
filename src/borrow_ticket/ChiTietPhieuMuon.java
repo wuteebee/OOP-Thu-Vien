@@ -9,16 +9,16 @@ import data.SharedData;
 
 public class ChiTietPhieuMuon {
     private String idPhieuMuon = "PM" + String.format("%03d", DanhSachPhieuMuon.maID);
-    private int soSach = 0;
-    private String[] idSach;
+    private int soSach = 0; 
+    protected String[] idSach;
     private LocalDate ngayThucTra;
 
-
+    
 
     public ChiTietPhieuMuon() {
-        this.soSach = 0;
-        this.idSach = new String[soSach];
-        this.ngayThucTra = LocalDate.now();
+        this.soSach = 0;            
+        this.idSach = new String[soSach]; 
+        this.ngayThucTra = LocalDate.now(); 
     }
 
     public ChiTietPhieuMuon(int soSach, String[] idSach, LocalDate ngayThucTra) {
@@ -56,14 +56,14 @@ public class ChiTietPhieuMuon {
         }
         return sb.toString();
     }
-
+    
 
     public void setIdSach(String[] idSach) {
         this.idSach = new String[soSach];
         int count = 0;
-
+    
         for (int i = 0; i < idSach.length && count < soSach; i++) {
-            this.idSach[count++] = idSach[i];
+                this.idSach[count++] = idSach[i];
         }
         this.soSach = count;
     }
@@ -83,29 +83,32 @@ public class ChiTietPhieuMuon {
         soSach = sc.nextInt();
         sc.nextLine();
 
-        String[] ids = new String[soSach];
+        idSach = new String[soSach];
         for (int i = 0; i < soSach; i++) {
-            while (true) {
+            while (true) { 
                 System.out.print("Nhap ID sach thu " + (i + 1) + ": ");
-                ids[i] = sc.nextLine();
-                if (timIDSach(ids[i])) {
-                    break;
-                } else {
+                idSach[i] = sc.nextLine();
+                Sach sach = timIDSach(idSach[i]);
+                if (sach == null) {
                     System.out.println("Sach khong ton tai! Vui long nhap lai.");
+                } else if (sach.getTonKho() == 0) {
+                    System.out.println("Sach da het ton kho! Vui long chon sach khac.");
+                } else {
+                    sach.setTonKho(sach.getTonKho() - 1);
+                    break;
                 }
             }
-            setIdSach(ids);
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         System.out.print("Ngay thuc tra(dd-mm-yyyy): ");
         String ngay = sc.nextLine();
         ngayThucTra = LocalDate.parse(ngay, formatter);
     }
-    public boolean timIDSach(String idSach) {
-        for (Sach sach : SharedData.dSS.dSSach)
+    public Sach timIDSach(String idSach) {
+        for (Sach sach : SharedData.dSS.dSSach) 
             if (sach.getIDSach().equals(idSach))
-                return true;
-        return false;
+                return sach;
+        return null;
     }
 
     @Override

@@ -1,10 +1,10 @@
 package fine_ticket;
 
-import java.util.Scanner;
+import data.SharedData;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Arrays;
-import data.SharedData;
+import java.util.Scanner;
 
 public class DanhSachPhieuPhat {
 	public static int maID = 1; 

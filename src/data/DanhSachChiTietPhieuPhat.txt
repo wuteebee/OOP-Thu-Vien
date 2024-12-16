@@ -16,8 +16,8 @@ PP006               STK028         15,000 dong    Dieu 1
 PP006               STK012         15,000 dong    Dieu 1
 PP007               STK002         15,000 dong    Dieu 1
 PP008               STK003         15,000 dong    Dieu 1
-PP009               STK003         0 dong         Dieu 3
+PP009               STK003         220,000 dong   Dieu 3
 PP009               STK038         30,000 dong    Dieu 2
 PP010               STK025         30,000 dong    Dieu 2
 PP010               STK010         30,000 dong    Dieu 2
-PP010               SGK015         0 dong         Dieu 3
+PP010               SGK015         60,000 dong    Dieu 3

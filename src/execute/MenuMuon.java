@@ -19,11 +19,12 @@ public class MenuMuon implements ThucHienMenu {
             System.out.println("8. Chinh sua chi tiet phieu muon.");
             System.out.println("9. Xoa chi tiet phieu muon");
             System.out.println("10. Tim chi tiet phieu muon.");
+            System.out.println("11. Danh sach phieu muon va Danh sach chi tiet phieu muon.");
             System.out.print("Vui lòng chọn: ");
             luaChon = Menu.input.nextInt();
             Menu.input.nextLine();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 10;
+            dieuKien = luaChon >= 0 && luaChon <= 11;
             if (!dieuKien) {
                 System.out.println("Lua chon khong hop le, vui long nhap lai!");
             }
@@ -59,7 +60,11 @@ public class MenuMuon implements ThucHienMenu {
                 SharedData.dSCTPM.xuatdsCTPM();
                 break;
             case 7:
-                SharedData.dSCTPM.themCTPM();
+                System.out.print("Nhap ID phieu muon: ");
+                String id = Menu.input.nextLine();
+                if (SharedData.dSPM.timkiemViTriPM(id) != -1) 
+                    SharedData.dSCTPM.themCTPM(id);
+                else System.out.println("Khong ton tai phieu muon: " + id);
                 break;
             case 8:
                 System.out.print("Nhap ID phieu muon can sua: ");
@@ -74,6 +79,9 @@ public class MenuMuon implements ThucHienMenu {
             case 10:
                 SharedData.dSCTPM.timCTPM();
                 break;
+            case 11:
+                SharedData.dSPM.xuatds();
+                SharedData.dSCTPM.xuatdsCTPM();
             default:
                 break;
         }

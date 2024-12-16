@@ -7,14 +7,17 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+//import javax.swing.text.DateFormatter;
+
 //import data.SharedData;
 
 public class DanhSachPhieuMuon {
-    public PhieuMuon []dsPM;
+    public static PhieuMuon []dsPM;
     public static int maID = 1;
     public static int soluong = 0;
 
@@ -37,26 +40,27 @@ public class DanhSachPhieuMuon {
             System.out.println(dsPM[i].toString());
         System.out.println("  ----------------------------------------------------------------------------------------------------------");
     }
-
+    
     public void themPM() {
-        System.out.print("So luong phieu muon can them: ");
-        int n = sc.nextInt();
-        for (int i=0; i<n; i++){
+    	System.out.print("So luong phieu muon can them: ");
+    	int n = sc.nextInt();
+    	for (int i=0; i<n; i++){
             System.out.println("Nhap phieu muon thu " + (i+1) );
-            dsPM = Arrays.copyOf(dsPM, soluong + 1);
-            dsPM[soluong] = new PhieuMuon();
-            dsPM[soluong].nhapPM();
-            System.out.println("Da them thanh cong phieu muon: " + dsPM[soluong].toString());
-            ++soluong;
-            ++maID;
-        }
+    		dsPM = Arrays.copyOf(dsPM, soluong + 1);
+    		dsPM[soluong] = new PhieuMuon();
+    		dsPM[soluong].nhapPM();
+            System.out.println("Da them thanh cong phieu muon:\n" + dsPM[soluong].toString());
+            SharedData.dSCTPM.themCTPM(dsPM[soluong].getidPhieuMuon());
+    		++soluong;
+    		++maID;
+    	}
     }
 
     public PhieuMuon timPM() {
         String id = sc.nextLine();
         for (PhieuMuon phieuMuon : SharedData.dSPM.getDsPM()) {
-            if (phieuMuon.getidPhieuMuon().equals(id))
-                return phieuMuon;
+            if (phieuMuon.getidPhieuMuon().equals(id)) 
+                return phieuMuon;  
         }
         return null;
     }
@@ -81,7 +85,7 @@ public class DanhSachPhieuMuon {
                 for (int j=0; j < soluong-1; j++) {
                     dsPM[j] = dsPM[j + 1];
                 }
-                dsPM[soluong - 1] = null;
+                dsPM[soluong - 1] = null; 
                 soluong--;
             }
         }
@@ -110,10 +114,10 @@ public class DanhSachPhieuMuon {
 
                 String id = sc.next();
                 dsPM[soluong].setidPhieuMuon(id);
-
+                
                 dsPM[soluong].setIDTheThuVien(sc.next());
                 dsPM[soluong].setIDNhanVien(sc.next());
-
+                
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 String ngay = sc.next();
                 dsPM[soluong].setngayMuon(LocalDate.parse(ngay, formatter));
@@ -122,12 +126,12 @@ public class DanhSachPhieuMuon {
                 soluong++;
                 maID++;
             }
-            System.out.println("Doc thanh cong file: "+ filename);
+            //System.out.println("Doc thanh cong file: "+ filename);
             //xuatds();
         } catch (FileNotFoundException e) {
             System.out.println("Loi doc file: " + e.getMessage());
         } catch (DateTimeParseException e) {
-            System.out.println("Loi dinh dang ngay thang: " + e.getMessage());
+        System.out.println("Loi dinh dang ngay thang: " + e.getMessage());
         } catch (NumberFormatException e) {
             System.out.println("Loi dinh dang so: " + e.getMessage());
         }
@@ -135,7 +139,7 @@ public class DanhSachPhieuMuon {
     public void writeFile(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             writer.write(String.format("%-20s| %-20s| %-20s| %-20s| %-20s|", "ID Phieu Muon", "ID The Thu Vien", "ID Nhan Vien",
-                    "Ngay muon", "Ngay tra"));
+            "Ngay muon", "Ngay tra"));
             writer.newLine();
 
             for (PhieuMuon pm : dsPM) {
@@ -147,6 +151,8 @@ public class DanhSachPhieuMuon {
             System.out.println("Loi ghi file: " + e.toString());
         }
     }
+    
+    // toString
+// 
 
-    // toString 
 }

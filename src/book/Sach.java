@@ -77,6 +77,10 @@ public class Sach {
         return trangThai;
     }
 
+    public int getTonKho() {
+        return tonKho;
+    }
+
     public Sach taoSach() {
         Sach sach = new Sach();
         System.out.println("Nhap ten cua Sach:");

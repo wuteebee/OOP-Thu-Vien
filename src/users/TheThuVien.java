@@ -7,13 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 
 public class TheThuVien extends NguoiDung {
-    final String idTheThuVien = "TTV" + String.format("%03d", DanhSachTheThuVien.soLuong + 1);
-    private String ho;
-    private String ten;
-    private Boolean gioiTinh;
-    private LocalDate ngaySinh;
-    private String soDienThoai;
-    private Boolean trangThai = true;
+    final private  String idTheThuVien = "TTV" + String.format("%03d", DanhSachTheThuVien.soLuong + 1);
 
     public TheThuVien() {
         ho = "non";
@@ -35,39 +29,11 @@ public class TheThuVien extends NguoiDung {
         return idTheThuVien;
     }
 
-    public Boolean getTrangThai() {
-        return trangThai;
-    }
-
-    public void setGioiTinh(Boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
-    public void setHo(String ho) {
-        this.ho = ho;
-    }
-
     public void setNgaySinh(String chuoiNgaySinh) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
         LocalDate NgaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
         
         this.ngaySinh = NgaySinh;
-    }
-
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
-
-    public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
-    }
-
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
-
-    public void setTrangThai(Boolean trangThai){
-        this.trangThai = trangThai;
     }
 
     @Override

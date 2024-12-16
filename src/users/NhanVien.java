@@ -7,14 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 
 public class NhanVien extends NguoiDung {
-
-    private String idNhanVien = "NV" + String.format("%03d", DanhSachNhanVien.soLuong + 1);
-    private String ho;
-    private String ten;
-    private Boolean gioiTinh;
-    private LocalDate ngaySinh;
-    private String soDienThoai;
-    private Boolean trangThai = false;
+    final private String idNhanVien = "NV" + String.format("%03d", DanhSachNhanVien.soLuong + 1);
 
     public NhanVien() {
         ho = "none";
@@ -32,44 +25,8 @@ public class NhanVien extends NguoiDung {
         this.soDienThoai = soDienThoai;
     }
 
-    public LocalDate getNgaySinh() {
-        return this.ngaySinh;
-    }
-
     public String getIDNhanVien() {
         return idNhanVien;
-    }
-
-    public Boolean getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public String getHo() {
-        return ho;
-    }
-
-    public String getSoDienThoai() {
-        return soDienThoai;
-    }
-
-    public String getTen() {
-        return ten;
-    }
-
-    public Boolean getTrangThai() {
-        return trangThai;
-    }
-
-    public void setID(int id) {
-        this.idNhanVien = "NV" + String.format("%03d", id);
-    }
-
-    public void setGioiTinh(Boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
-    public void setHo(String ho) {
-        this.ho = ho;
     }
 
     public void setNgaySinh(String chuoiNgaySinh) {
@@ -77,57 +34,7 @@ public class NhanVien extends NguoiDung {
         LocalDate NgaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
         this.ngaySinh = NgaySinh;
     }
-
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
-
-    public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
-    }
-
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
-
-    public void setTrangThai(Boolean trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    // public NhanVien taoNhanVien() {
-    //     NhanVien NhanVien = new NhanVien();
-    //     try {
-    //         LocalDate ngaySinh = null;
-    //         System.out.println("Nhap ho cua NhanVien:");
-    //         NhanVien.setHo(Menu.input.nextLine());
-    //         System.out.println("Nhap ten cua NhanVien:");
-    //         NhanVien.setTen(Menu.input.nextLine());
-    //         System.out.println("Nhap gioiTinh cua NhanVien (1: nam/0: nu):");
-    //         NhanVien.setGioiTinh(Menu.input.nextInt() == 1);
-    //         Menu.input.nextLine();
-    //         System.out.println("Nhap vao ngay thang nam sinh (ddMMyyyy) cua NhanVien:");
-    //         DateTimeFormatter formatter;
-    //         String chuoiNgaySinh;
-    //         boolean vongLap;
-    //         do {
-    //             try {
-    //                 vongLap = false;
-    //                 chuoiNgaySinh = Menu.input.nextLine();
-    //                 formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-    //                 ngaySinh = LocalDate.parse(chuoiNgaySinh, formatter);
-    //             } catch (Exception e) {
-    //                 System.out.println("Dinh dang khong hop le, vui long nhap lai!");
-    //                 vongLap = true;
-    //             }
-    //         } while (vongLap);
-    //         System.out.println("Nhap vao so dien thoai cua NhanVien:");
-    //         NhanVien.setSoDienThoai(Menu.input.nextLine());
-    //         NhanVien.setNgaySinh(ngaySinh);
-    //     } catch (InputMismatchException ime) {
-    //         return taoNhanVien();
-    //     }
-    //     return NhanVien;
-    // }
+    
     @Override
     public void tao() {
         boolean validInput = false;
