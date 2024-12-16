@@ -321,7 +321,7 @@ public class DanhSachSach {
             }
         }
         for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
-            mapElement.setValue(count++);
+            mapElement.setValue(++count);
         }
         return stringMap;
     }
@@ -335,7 +335,7 @@ public class DanhSachSach {
             }
         }
         for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
-            mapElement.setValue(count++);
+            mapElement.setValue(++count);
         }
         return stringMap;
     }
@@ -386,9 +386,37 @@ public class DanhSachSach {
         }
     }
 
+    public Map<String, Integer> tatCaChuyenNganh() {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                stringMap.put(((SachThamKhao) sach).getChuyenNganh(), 0);
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(++count);
+        }
+        return stringMap;
+    }
+
+    public Map<String, Integer> tatCaDeTai() {
+        int count = 0;
+        Map<String, Integer> stringMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                stringMap.put(((SachThamKhao) sach).getDeTai(), 0);
+            }
+        }
+        for (Map.Entry<String, Integer> mapElement : stringMap.entrySet()) {
+            mapElement.setValue(++count);
+        }
+        return stringMap;
+    }
+
     public void thongKeChuyenNganhDeTai() {
-        Map<String, Integer> chuyenNganhMap = new HashMap<>();
-        Map<String, Integer> deTaiMap = new HashMap<>();
+        Map<String, Integer> chuyenNganhMap = tatCaChuyenNganh();
+        Map<String, Integer> deTaiMap = tatCaDeTai();
         for (Sach sach : dSSach) {
             if (sach instanceof SachThamKhao) {
                 chuyenNganhMap.put(((SachThamKhao) sach).getChuyenNganh(), 0);
@@ -436,6 +464,63 @@ public class DanhSachSach {
         }
 
     }
+
+
+    public SachGiaoKhoa timSachTheoTrinhDoHoacLinhVuc() {
+        String trinhDo = xuatTrinhDo(tatCaTrinhDo());
+        String linhVuc = xuatLinhVuc(tatCaLinhVuc());
+        SachGiaoKhoa sachGiaoKhoa = new SachGiaoKhoa();
+        Map<SachGiaoKhoa, String> sachMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                if (((SachGiaoKhoa) sach).getTrinhDo().equals(trinhDo) || ((SachGiaoKhoa) sach).getLinhVuc().equals(linhVuc)) {
+                    sachMap.put((SachGiaoKhoa) sach, ((SachGiaoKhoa) sach).getIDSach());
+                }
+            }
+        }
+        System.out.println(String.format("|%-10s|%-30s|", "id", "tenSach"));
+        for (Map.Entry<SachGiaoKhoa, String> mapElement : sachMap.entrySet()) {
+            System.out.println(String.format("|%-10s|%-30s|", mapElement.getValue(), mapElement.getKey().getTen()));
+        }
+        System.out.println("Nhap ID sach:");
+        String idSach = Menu.input.nextLine();
+        for (Map.Entry<SachGiaoKhoa, String> mapElement : sachMap.entrySet()) {
+            if (mapElement.getValue().equals(idSach)) {
+                sachGiaoKhoa = mapElement.getKey();
+                break;
+            }
+        }
+        return sachGiaoKhoa;
+    }
+
+    public SachThamKhao timSachTheoChuyenNganhHoacDeTai() {
+        String chuyenNganh = xuatChuyenNganh(tatCaChuyenNganh());
+        String deTai = xuatDeTai(tatCaDeTai());
+        SachThamKhao sachThamKhao = new SachThamKhao();
+        Map<SachThamKhao, String> sachMap = new HashMap<>();
+        for (Sach sach : dSSach) {
+            if (sach instanceof SachThamKhao) {
+                if (((SachThamKhao) sach).getChuyenNganh().equals(chuyenNganh) || ((SachThamKhao) sach).getDeTai().equals(deTai)) {
+                    sachMap.put((SachThamKhao) sach, ((SachThamKhao) sach).getIDSach());
+                }
+            }
+        }
+        System.out.println(String.format("|%-10s|%-30s|", "id", "tenSach"));
+        for (Map.Entry<SachThamKhao, String> mapElement : sachMap.entrySet()) {
+            System.out.println(String.format("|%-10s|%-30s|", mapElement.getValue(), mapElement.getKey().getTen()));
+        }
+        System.out.println("Nhap ID sach:");
+        String idSach = Menu.input.nextLine();
+        for (Map.Entry<SachThamKhao, String> mapElement : sachMap.entrySet()) {
+            if (mapElement.getValue().equals(idSach)) {
+                sachThamKhao = mapElement.getKey();
+                break;
+            }
+        }
+        return sachThamKhao;
+    }
+
+    
 
     @Override
     public String toString() {

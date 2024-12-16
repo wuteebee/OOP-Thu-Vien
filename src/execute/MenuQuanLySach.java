@@ -3,8 +3,8 @@ package execute;
 import data.SharedData;
 
 public class MenuQuanLySach implements ThucHienMenu {
-	
-	@Override
+
+    @Override
     public int xuatMenu() {
         int luaChon;
         boolean dieuKien;
@@ -17,17 +17,19 @@ public class MenuQuanLySach implements ThucHienMenu {
             System.out.println("5. Danh sach sach.");
             System.out.println("6. Tim sach theo trinh do va linh vuc.");
             System.out.println("7. Tim sach theo chuyen nganh va de tai");
-            System.out.println("8. Thong ke so luong sach theo trinh do va linh vuc");
-            System.out.println("9. Thong ke so luong sach theo chuyen nganh va de tai");
+            System.out.println("8. Tim sach theo trinh do hoac linh vuc.");
+            System.out.println("9. Tim sach theo chuyen nganh hoac de tai");
+            System.out.println("10. Thong ke so luong sach theo trinh do va linh vuc");
+            System.out.println("11. Thong ke so luong sach theo chuyen nganh va de tai");
             luaChon = Menu.input.nextInt();
             Menu.input.nextLine();
             Menu.clearScreen();
-            dieuKien = luaChon >= 0 && luaChon <= 9;
+            dieuKien = luaChon >= 0 && luaChon <= 11;
         } while (!dieuKien);
         return luaChon;
     }
 
-	@Override
+    @Override
     public void xuLyMenu(int luaChon) {
         switch (luaChon) {
             case 1:
@@ -57,9 +59,15 @@ public class MenuQuanLySach implements ThucHienMenu {
                 System.out.println(SharedData.dSS.timSachTheoChuyenNganhVaDeTai());
                 break;
             case 8:
-                SharedData.dSS.thongKeTrinhDoLinhVuc();
+            System.out.println(SharedData.dSS.timSachTheoTrinhDoHoacLinhVuc());
                 break;
             case 9:
+            System.out.println(SharedData.dSS.timSachTheoChuyenNganhHoacDeTai());
+                break;
+            case 10:
+                SharedData.dSS.thongKeTrinhDoLinhVuc();
+                break;
+            case 11:
                 SharedData.dSS.thongKeChuyenNganhDeTai();
                 break;
             default:
