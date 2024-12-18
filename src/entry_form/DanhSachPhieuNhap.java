@@ -1,8 +1,9 @@
 package entry_form;
-
+import book.Sach;
 import data.SharedData;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -26,21 +27,29 @@ public class DanhSachPhieuNhap {
         this.dsPN = newdsPN;
     }
 
-  
-    public void themPhieuNhap() { //Bằng bàn phím
-    	System.out.print("So luong phieu nhap: ");
-    	int n = scan.nextInt();
-    	while (n-- > 0)
-    	{
-    		dsPN = Arrays.copyOf(dsPN, soLuong + 1);
-    		dsPN[soLuong] = new PhieuNhap();
-    		dsPN[soLuong].them();
-    		
-    		++soLuong;
+
+    public void themPhieuNhap() {
+        System.out.print("So luong phieu nhap: ");
+        int n = scan.nextInt();
+        while (n-- > 0)
+        {
+            dsPN = Arrays.copyOf(dsPN, soLuong + 1);
+            dsPN[soLuong] = new PhieuNhap();
+            dsPN[soLuong].them();
+
+            // Update tonkho of the book
+            int idSach = dsPN[soLuong].getIdSach();
+            int soLuongSach = dsPN[soLuong].getSoLuongSach();
+            Sach sach = SharedData.timSachTheoId(idSach);
+            if (sach != null) {
+                sach.setTonKho(sach.getTonKho() + soLuongSach);
+            }
+
+            ++soLuong;
             SharedData.capNhatDuLieu();
-    	
-    	}
-    	xuat();
+
+        }
+        xuat();
     }
 
     public void xoaPhieuNhap()
@@ -66,16 +75,16 @@ public class DanhSachPhieuNhap {
     public void suaPhieuNhap() {
         System.out.println("\t\t\tSUA PHIEU NHAP");
         System.out.print("Nhap ID Phieu Nhap can sua: ");
-        String idPhieuNhap = new Scanner(System.in).nextLine();
+        int idPhieuNhap = new Scanner(System.in).nextInt();
         Scanner scanner = new Scanner(System.in);
 
         boolean found = false;
         for (int i = 0; i < soLuong; i++) {
-            if (dsPN[i].getIdPhieuNhap().equals(idPhieuNhap)) {
+            if (dsPN[i].getIdPhieuNhap() == idPhieuNhap) {
                 found = true;
                 PhieuNhap phieuNhapMoi = new PhieuNhap();
                 System.out.print("ID Phieu Nhap: ");
-                phieuNhapMoi.setIdPhieuNhap(scanner.nextLine());
+                phieuNhapMoi.setIdPhieuNhap(scanner.nextInt());
                 System.out.print("ID Nha Cung Cap: ");
                 phieuNhapMoi.setIdNhaCungCap(scanner.nextInt());
                 System.out.print("Tong Tien: ");
@@ -95,7 +104,6 @@ public class DanhSachPhieuNhap {
 
         if (!found) {
             System.out.println("Khong tim thay ID Phieu Nhap.");
-            return;
         }
     }
     public PhieuNhap timPhieuNhap()
@@ -108,10 +116,9 @@ public class DanhSachPhieuNhap {
     	xuat();
     	System.out.print("Tim ID Phieu Nhap: ");
     	int ID = scan.nextInt();
-    	String search = String.format("PP%03d",ID);
     	for (int i = 0; i < soLuong; i++)
     	{
-    		if (search.equals(dsPN[i].getIdPhieuNhap()))
+            if (dsPN[i].getIdPhieuNhap() == ID)
     		{
     			System.out.println("--------------------------------------------------------");
                 System.out.printf("%-15s %-17s %-15s %-15s %-15s %-15s\n", "ID Phieu Nhap", "ID Nha Cung Cap", "Tong Tien", "Ngay Nhap", "So Luong Sach", "ID Sach");
@@ -121,21 +128,19 @@ public class DanhSachPhieuNhap {
     			return dsPN[i];
     		}
     	}
+    	
     	System.out.println("Khong tim thay ID can tim");
     	return null;
     }
 
     public void xuat() {
+        // SharedData.importData();
+     
         System.out.print(" \t\t\t\t----PHIEU NHAP----\n");
         System.out.printf("%-15s %-17s %-15s %-15s %-15s %-15s\n", "ID Phieu Nhap", "ID Nha Cung Cap", "Tong Tien", "Ngay Nhap", "So Luong Sach", "ID Sach");
         for (int i = 0; i < soLuong; i++) {
-            System.out.printf("%-15s %-17s %-15d %-15s %-15d %-15s\n",
-                    dsPN[i].getIdPhieuNhap(),
-                    dsPN[i].getIdNhaCungCap(),
-                    dsPN[i].getTongTien(),
-                    dsPN[i].getNgayNhap().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                    dsPN[i].getSoLuongSach(),
-                    dsPN[i].getIdSach());
+            System.out.printf("|  " + dsPN[i] + "  |\n");
+                 
         }
 // Dấu -: Căn lề trái.
 // Số 15: Độ rộng tối thiểu của cột là 15 ký tự. Nếu dữ liệu ngắn hơn 15 ký tự, khoảng trống sẽ được thêm vào bên phải.
@@ -145,9 +150,9 @@ public class DanhSachPhieuNhap {
 // \n: Xuống dòng sau khi in.
     }
 
-    public boolean kiemTraIdDuyNhat(String idPhieuNhap) {
+    public boolean kiemTraIdDuyNhat(int idPhieuNhap) {
         for (int i = 0; i < soLuong; i++) {
-            if (dsPN[i].getIdPhieuNhap().equals(idPhieuNhap)) {
+            if (dsPN[i].getIdPhieuNhap() == idPhieuNhap) {
                 return false;
             }
         }
@@ -159,46 +164,48 @@ public class DanhSachPhieuNhap {
     }
 
     public void readFile()
-    { 
-    	try
-    	{ 
-    		File ds = new File("src/data/DanhSachPhieuNhap.txt");
-			if (!ds.exists())
-				return;
-    		Scanner fin = new Scanner(new File("src/data/DanhSachPhieuNhap.txt"));
-    		while (fin.hasNextLine() && fin.hasNext())
-    		{ 
-    			dsPN = Arrays.copyOf(dsPN, soLuong + 1);
-    			dsPN[soLuong] = new PhieuNhap();
-    			dsPN[soLuong].setIdPhieuNhap(fin.next());
-    			dsPN[soLuong].setIdNhaCungCap(fin.nextInt());
-    			dsPN[soLuong].setTongTien(fin.nextInt());
+    {
+        try
+        {
+            File ds = new File("src\\data\\DanhSachPhieuNhap.txt");
+            if (!ds.exists())
+                return;
+            Scanner fin = new Scanner(new File("src\\data\\DanhSachPhieuNhap.txt"));
+            while (fin.hasNextLine())
+            {
+                dsPN = Arrays.copyOf(dsPN, soLuong + 1);
+                dsPN[soLuong] = new PhieuNhap();
+                dsPN[soLuong].setIdPhieuNhap(fin.nextInt());
+                dsPN[soLuong].setIdNhaCungCap(fin.nextInt());
+                dsPN[soLuong].setTongTien(fin.nextInt());
                 dsPN[soLuong].setNgayNhap(convertStringToDate(fin.next()));
                 dsPN[soLuong].setSoLuongSach(fin.nextInt());
                 dsPN[soLuong].setIdSach(fin.nextInt());
-    			fin.next();
-    			++soLuong;
-    		}
-    		fin.close();
-    	}
-    	catch (Exception e)
-    	{ 
-    		System.out.println("File reading unsuccessful/incomplete due to " + e.toString());
-    	}
+                fin.nextLine();
+                soLuong++;
+            }
+            fin.close();
+        }
+
+        catch (Exception e)
+        {
+            System.out.println("File reading unsuccessful/incomplete due to " + e.toString());
+        }
     }
 
     public void writeFile()
     { 
     	try
     	{
-    	FileWriter fout = new FileWriter("src/data/DanhSachPhieuNhap.txt");
-    	for (PhieuNhap i : dsPN)
-    	{ 
-    		fout.write(i.toString() + "\n");
+                
+                try (FileWriter fout = new FileWriter("src\\data\\DanhSachPhieuNhap.txt")) {
+                  
+                    for (int i = 0; i < soLuong; i++) {
+                        fout.write(dsPN[i].toString() + "\n");
+                    }
+                  }
     	}
-    	fout.close();
-    	}
-    	catch (Exception e)
+    	catch (IOException e)
     	{
     		System.out.println("File writing unsuccessful/incomplete due to " + e.toString());
     	}

@@ -1,11 +1,12 @@
 package entry_form;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class PhieuNhap {
     
-    private String idPhieuNhap;
+    private int idPhieuNhap;
     private int idNhaCungCap;
     private int tongTien;
     private LocalDate ngayNhap;
@@ -13,7 +14,7 @@ public class PhieuNhap {
     private int idSach;
     
     public PhieuNhap() {
-        idPhieuNhap = "PN" + String.format("%03d", 1);
+        idPhieuNhap = 0;
         idNhaCungCap = 0;
         tongTien = 0;
         ngayNhap = LocalDate.now();
@@ -21,11 +22,11 @@ public class PhieuNhap {
         idSach = 0;
     }
 
-    public String getIdPhieuNhap() {
+    public int getIdPhieuNhap() {
         return idPhieuNhap;
     }
 
-    public void setIdPhieuNhap(String idPhieuNhap) {
+    public void setIdPhieuNhap(int idPhieuNhap) {
         this.idPhieuNhap = idPhieuNhap;
     }
 
@@ -70,25 +71,29 @@ public class PhieuNhap {
     }
 
     public void them(){
+        Scanner scanner = new Scanner(System.in);
         System.out.print("ID Phieu Nhap: ");
-        idPhieuNhap = new Scanner(System.in).nextLine();
+        idPhieuNhap = scanner.nextInt();
         System.out.print("ID Nha Cung Cap: ");
-        idNhaCungCap = new Scanner(System.in).nextInt();
+        idNhaCungCap = scanner.nextInt();
         System.out.print("Tong Tien: ");
-        tongTien = new Scanner(System.in).nextInt();
-        System.out.print("Ngay Nhap (dd/mm/yyyy): ");
-        ngayNhap = LocalDate.parse(new Scanner(System.in).nextLine());
+        tongTien = scanner.nextInt();
+        System.out.print("Ngay Nhap (dd/MM/yyyy): ");
+        scanner.nextLine(); // Consume newline
+        String ngayNhapStr = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        ngayNhap = LocalDate.parse(ngayNhapStr, formatter);
         System.out.print("So Luong Sach: ");
-        soLuongSach = new Scanner(System.in).nextInt();
+        soLuongSach = scanner.nextInt();
         System.out.print("ID Sach: ");
-        idSach = new Scanner(System.in).nextInt();
-        
+        idSach = scanner.nextInt();
     }
     
-
     @Override
     public String toString() {
-        return  idPhieuNhap  +"|"+ idNhaCungCap + "|" + tongTien + "|" + ngayNhap + " |" + soLuongSach + "|" + idSach + '|';
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return String.format("%-15d %-15d %-15d %-15s %-15d %-15d", 
+                             idPhieuNhap, idNhaCungCap, tongTien, ngayNhap.format(formatter), soLuongSach, idSach);
     }
 }
 

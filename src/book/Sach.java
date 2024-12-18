@@ -5,7 +5,7 @@ import execute.*;
 import java.util.InputMismatchException;
 
 public class Sach {
-    protected String idSach; // = "S" + String.format("%03d", DanhSachSach.soLuong + 1);
+    protected String id = String.format("%03d", DanhSachSach.soLuong + 1);
     protected String ten;
     protected int tonKho;
     protected int gia;
@@ -37,6 +37,9 @@ public class Sach {
         this.nhaXuatBan = sach.nhaXuatBan;
     }
 
+    public String getID() {
+        return id;
+    }
     public String getTen() {
         return ten;
     }
@@ -66,7 +69,7 @@ public class Sach {
     }
 
     public String getIDSach() {
-        return idSach;
+        return id;
     }
 
     public void setTrangThai(Boolean trangThai) {

@@ -5,7 +5,7 @@ public class MenuNhap implements ThucHienMenu {
 	@Override
     public int xuatMenu() {
         int choice;
-        Boolean dieuKien;
+        boolean dieuKien;
         do
         {
             System.out.println("0. Thoat MenuNhap");
@@ -15,11 +15,11 @@ public class MenuNhap implements ThucHienMenu {
             System.out.println("4. Xoa phieu nhap");
             System.out.println("5. Sua phieu nhap");
             choice = Menu.input.nextInt();
-            Menu.input.nextLine(); 
+            Menu.input.nextLine();
             Menu.clearScreen();
             dieuKien = choice >= 0 && choice <= 5;
             if (!dieuKien)
-            { 
+            {
                 System.out.println("Lua chon khong hop le, vui long nhap lai!");
             }
         } while (!dieuKien);
@@ -33,7 +33,7 @@ public class MenuNhap implements ThucHienMenu {
                     SharedData.dSPN.timPhieuNhap();
                     break;
                 case 2:
-                   SharedData.dSPN.writeFile();
+                   SharedData.dSPN.themPhieuNhap();
                     break;
                 case 3:
                     SharedData.dSPN.xuat();
