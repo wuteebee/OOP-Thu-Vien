@@ -112,28 +112,28 @@ public class Sach {
 
         while (!validInput) {
             try {
-                System.out.println("Nhập tên của Sách:");
+                System.out.println("Nhap ten cua sach:");
                 setTen(Menu.input.nextLine());
 
-                System.out.println("Nhập số lượng của Sách:");
+                System.out.println("Nhap so luong cua sach:");
                 setTonKho(Menu.input.nextInt());
                 Menu.input.nextLine(); 
 
-                System.out.println("Nhập giá của Sách:");
+                System.out.println("Nhap gia cua sach:");
                 setGia(Menu.input.nextInt());
                 Menu.input.nextLine();
 
-                System.out.println("Nhập tác giả của Sách:");
-                TacGia TacGia = SharedData.dSTG.timIDTacGia();
-                setTacGia(TacGia);
+                System.out.println("Nhap tac gia cua sach:");
+                TacGia tacGia = SharedData.dSTG.timIDTacGia();
+                setTacGia(tacGia);
 
-                System.out.println("Nhập nhà xuất bản của Sách:");
-                NhaXuatBan NhaXuatBan = SharedData.dSNXB.timIDNhaXuatBan();
-                setNhaXuatBan(NhaXuatBan);
+                System.out.println("Nhap nha xuat ban cua sach:");
+                NhaXuatBan nhaXuatBan = SharedData.dSNXB.timIDNhaXuatBan();
+                setNhaXuatBan(nhaXuatBan);
 
                 validInput = true; 
             } catch (InputMismatchException ime) {
-                System.out.println("Nhập sai thông tin! Vui lòng nhập lại.");
+                System.out.println("Nhap sai thong tin vui long nhap lai!.");
                 Menu.input.nextLine(); 
             }
         }

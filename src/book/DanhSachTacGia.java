@@ -38,6 +38,7 @@ public class DanhSachTacGia {
     }
 
     public TacGia timIDTacGia() {
+        System.out.println(toString());
         System.out.println("Nhap ID TacGia:");
         String idTacGia = "none";
         int idDaNhap = 0;

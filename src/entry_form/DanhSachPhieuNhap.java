@@ -17,6 +17,7 @@ public class DanhSachPhieuNhap {
     public DanhSachPhieuNhap() {
         dsPN = new PhieuNhap[0];
     }
+
     Scanner scan = new Scanner(System.in);
 
     public void moRongDanhSach(int soLuongPhieuNhap) {
@@ -27,6 +28,8 @@ public class DanhSachPhieuNhap {
         this.dsPN = newdsPN;
     }
 
+  
+
 
     public void themPhieuNhap() {
         System.out.print("So luong phieu nhap: ");
@@ -35,17 +38,46 @@ public class DanhSachPhieuNhap {
         {
             dsPN = Arrays.copyOf(dsPN, soLuong + 1);
             dsPN[soLuong] = new PhieuNhap();
-            dsPN[soLuong].them();
 
-            // Update tonkho of the book
-            int idSach = dsPN[soLuong].getIdSach();
+
+            System.out.print("ID Phieu Nhap: ");
+            int idPhieuNhap = scan.nextInt();
+            while (!kiemTraIdDuyNhat(idPhieuNhap)) {
+                System.out.println("ID Phieu Nhap da ton tai. Vui long nhap lai.");
+                System.out.print("ID Phieu Nhap: ");
+                idPhieuNhap = scan.nextInt();
+            }
+            dsPN[soLuong].setIdPhieuNhap(idPhieuNhap);
+
+            System.out.print("Ten Sach: ");
+            dsPN[soLuong].setTenSach(scan.next());
+
+            System.out.print("ID Sach: ");
+            dsPN[soLuong].setIdSach(scan.next());
+
+            System.out.print("So Luong Sach: ");
+            dsPN[soLuong].setSoLuongSach(scan.nextInt());
+
+            System.out.print("ID Nha Cung Cap: ");
+            dsPN[soLuong].setTenNCC(scan.next());
+
+            System.out.print("Gia Ban: ");
+            dsPN[soLuong].setGiaBan(scan.nextInt());
+
+            
+            System.out.print("Ngay Nhap(dd/mm/yyyy): ");
+            dsPN[soLuong].setNgayNhap(convertStringToDate(scan.next()));
+
+
+            // cap nhat ton kho
+            String idSach = dsPN[soLuong].getIdSach();
             int soLuongSach = dsPN[soLuong].getSoLuongSach();
-            Sach sach = SharedData.timSachTheoId(idSach);
+            Sach sach = SharedData.timSachTheoId(Integer.parseInt(idSach));
             if (sach != null) {
                 sach.setTonKho(sach.getTonKho() + soLuongSach);
             }
 
-            ++soLuong;
+            soLuong++;
             SharedData.capNhatDuLieu();
 
         }
@@ -85,18 +117,18 @@ public class DanhSachPhieuNhap {
                 PhieuNhap phieuNhapMoi = new PhieuNhap();
                 System.out.print("ID Phieu Nhap: ");
                 phieuNhapMoi.setIdPhieuNhap(scanner.nextInt());
-                System.out.print("ID Nha Cung Cap: ");
-                phieuNhapMoi.setIdNhaCungCap(scanner.nextInt());
-                System.out.print("Tong Tien: ");
-                phieuNhapMoi.setTongTien(scanner.nextInt());
-                scanner.nextLine(); // Consume newline
-                System.out.print("Ngay Nhap (dd/mm/yyyy): ");
-                phieuNhapMoi.setNgayNhap(convertStringToDate(scanner.nextLine()));
+                System.out.print("Ten Sach(khong chua khoang trang): ");
+                phieuNhapMoi.setTenSach(scanner.nextLine());
+                System.out.print("ID Sach: ");
+                phieuNhapMoi.setIdSach(scanner.nextLine());
                 System.out.print("So Luong Sach: ");
                 phieuNhapMoi.setSoLuongSach(scanner.nextInt());
-                scanner.nextLine(); // Consume newline
-                System.out.print("ID Sach: ");
-                phieuNhapMoi.setIdSach(scanner.nextInt());
+                System.out.print("ID Nha Cung Cap: ");
+                phieuNhapMoi.setTenNCC(scanner.next());
+                System.out.print("Gia Ban: ");
+                phieuNhapMoi.setGiaBan(scanner.nextInt());
+                System.out.print("Ngay Nhap(dd/mm/yyyy): ");
+                phieuNhapMoi.setNgayNhap(convertStringToDate(scanner.nextLine())); 
                 dsPN[i] = phieuNhapMoi;
                 break;
             }
@@ -121,8 +153,9 @@ public class DanhSachPhieuNhap {
             if (dsPN[i].getIdPhieuNhap() == ID)
     		{
     			System.out.println("--------------------------------------------------------");
-                System.out.printf("%-15s %-17s %-15s %-15s %-15s %-15s\n", "ID Phieu Nhap", "ID Nha Cung Cap", "Tong Tien", "Ngay Nhap", "So Luong Sach", "ID Sach");
-            	System.out.println("|  " + dsPN[i] + "  |");
+                System.out.printf("%-16s %-16s %-16s %-17s %-16s %-16s\n", "ID Phieu Nhap","Ten Sach","ID Sach ","So Luong Sach", "Nha Cung Cap", "Gia Ban", "Ngay Nhap",  "Ngay Nhap");
+                System.out.printf("%-16s", "ID Sach");
+            	System.out.println("|" + dsPN[i] + "|");
     			System.out.println("--------------------------------------------------------");
 
     			return dsPN[i];
@@ -134,23 +167,22 @@ public class DanhSachPhieuNhap {
     }
 
     public void xuat() {
-        // SharedData.importData();
+        if(soLuong == 0)
+        {
+            System.out.println("Danh sach trong");
+            return;
+        }
      
         System.out.print(" \t\t\t\t----PHIEU NHAP----\n");
-        System.out.printf("%-15s %-17s %-15s %-15s %-15s %-15s\n", "ID Phieu Nhap", "ID Nha Cung Cap", "Tong Tien", "Ngay Nhap", "So Luong Sach", "ID Sach");
+        System.out.printf("%-16s %-16s %-16s %-17s %-18s %-16s %-16s\n", "ID Phieu Nhap", "Ten Sach", "ID Sach", "So Luong Sach", "Nha Cung Cap", "Gia Ban", "Ngay Nhap");
         for (int i = 0; i < soLuong; i++) {
-            System.out.printf("|  " + dsPN[i] + "  |\n");
+            System.out.printf("|" + dsPN[i] + "|\n");
                  
         }
-// Dấu -: Căn lề trái.
-// Số 15: Độ rộng tối thiểu của cột là 15 ký tự. Nếu dữ liệu ngắn hơn 15 ký tự, khoảng trống sẽ được thêm vào bên phải.
-// s: Định dạng kiểu chuỗi (String).
 
-// d: Định dạng kiểu số nguyên (Integer).
-// \n: Xuống dòng sau khi in.
     }
 
-    public boolean kiemTraIdDuyNhat(int idPhieuNhap) {
+    public  boolean kiemTraIdDuyNhat(int idPhieuNhap) {
         for (int i = 0; i < soLuong; i++) {
             if (dsPN[i].getIdPhieuNhap() == idPhieuNhap) {
                 return false;
@@ -163,52 +195,42 @@ public class DanhSachPhieuNhap {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public void readFile()
-    {
-        try
-        {
+    public void readFile() { 
+        try { 
             File ds = new File("src\\data\\DanhSachPhieuNhap.txt");
             if (!ds.exists())
                 return;
             Scanner fin = new Scanner(new File("src\\data\\DanhSachPhieuNhap.txt"));
-            while (fin.hasNextLine())
-            {
+            while (fin.hasNextLine()) { 
                 dsPN = Arrays.copyOf(dsPN, soLuong + 1);
                 dsPN[soLuong] = new PhieuNhap();
+                
                 dsPN[soLuong].setIdPhieuNhap(fin.nextInt());
-                dsPN[soLuong].setIdNhaCungCap(fin.nextInt());
-                dsPN[soLuong].setTongTien(fin.nextInt());
-                dsPN[soLuong].setNgayNhap(convertStringToDate(fin.next()));
+                dsPN[soLuong].setTenSach(fin.next());
+                dsPN[soLuong].setIdSach(fin.next());
                 dsPN[soLuong].setSoLuongSach(fin.nextInt());
-                dsPN[soLuong].setIdSach(fin.nextInt());
-                fin.nextLine();
+                dsPN[soLuong].setTenNCC(fin.next());
+                dsPN[soLuong].setGiaBan(fin.nextInt());
+                String ngayNhap = fin.next();
+                dsPN[soLuong].setNgayNhap(convertStringToDate(ngayNhap));
+                fin.nextLine(); 
                 soLuong++;
             }
             fin.close();
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) { 
             System.out.println("File reading unsuccessful/incomplete due to " + e.toString());
         }
     }
 
-    public void writeFile()
-    { 
-    	try
-    	{
-                
-                try (FileWriter fout = new FileWriter("src\\data\\DanhSachPhieuNhap.txt")) {
-                  
-                    for (int i = 0; i < soLuong; i++) {
-                        fout.write(dsPN[i].toString() + "\n");
-                    }
-                  }
-    	}
-    	catch (IOException e)
-    	{
-    		System.out.println("File writing unsuccessful/incomplete due to " + e.toString());
-    	}
+    public void writeFile() { 
+        try {
+            try (FileWriter fout = new FileWriter("src\\data\\DanhSachPhieuNhap.txt")) {
+                for (int i = 0; i < soLuong; i++) {
+                    fout.write(dsPN[i].toString() + "\n");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("File writing unsuccessful/incomplete due to " + e.toString());
+        }
     }
-
 }

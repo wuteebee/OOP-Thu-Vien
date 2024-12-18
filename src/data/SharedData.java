@@ -62,9 +62,7 @@ public class SharedData {
 
     public static Sach timSachTheoId(int id) {
         for (Sach sach : dSS.getDSSach()) {
-
             if (Integer.parseInt(sach.getID()) == id) {
-
                 return sach;
             }
         }

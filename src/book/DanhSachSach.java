@@ -92,8 +92,6 @@ public class DanhSachSach {
         System.out.println(sach);
         System.out.println("Chinh sua thong tin sach");
 
-        sach.suaThongTin();
-
         if (sach instanceof SachGiaoKhoa) {
             ((SachGiaoKhoa) sach).suaThongTin();
         }
@@ -343,6 +341,8 @@ public class DanhSachSach {
     public void thongKeTrinhDoLinhVuc() {
         Map<String, Integer> trinhDoMap = tatCaTrinhDo();
         Map<String, Integer> linhVucMap = tatCaLinhVuc();
+        System.out.println(trinhDoMap);
+        System.out.println(linhVucMap);
         int soTrinhDo = 0;
         int soLinhVuc = 0;
 
@@ -355,7 +355,7 @@ public class DanhSachSach {
             soLinhVuc = mapElement.getValue();
         }
         ++soLinhVuc;
-        // System.out.println(soTrinhDo + " " + soLinhVuc);
+         System.out.println(soTrinhDo + " " + soLinhVuc);
         int viTriTrinhDo;
         int viTriLinhVuc;
         // System.out.println(toString());
@@ -364,7 +364,7 @@ public class DanhSachSach {
             if (sach instanceof SachGiaoKhoa) {
                 viTriTrinhDo = trinhDoMap.get(((SachGiaoKhoa) sach).getTrinhDo());
                 viTriLinhVuc = linhVucMap.get(((SachGiaoKhoa) sach).getLinhVuc());
-                thongKe[viTriTrinhDo][viTriLinhVuc]++;
+                thongKe[viTriTrinhDo][viTriLinhVuc] += sach.getTonKho();
             }
         }
         // System.out.println(trinhDoMap);
@@ -373,12 +373,12 @@ public class DanhSachSach {
         for (Map.Entry<String, Integer> mapElement : trinhDoMap.entrySet()) {
             System.out.print(String.format("|%-20s", mapElement.getKey()));
         }
-        viTriTrinhDo = 0; // tang 
-        viTriLinhVuc = 0;
+        viTriTrinhDo = 0; // tang
+        viTriLinhVuc = 1;
         System.out.print("|\n");
         for (Map.Entry<String, Integer> mapElement : linhVucMap.entrySet()) {
             System.out.print(String.format("|%-20s", mapElement.getKey()));
-            for (viTriTrinhDo = 0; viTriTrinhDo < soTrinhDo; ++viTriTrinhDo) {
+            for (viTriTrinhDo = 1; viTriTrinhDo < soTrinhDo; ++viTriTrinhDo) {
                 System.out.print(String.format("|%-20d", thongKe[viTriTrinhDo][viTriLinhVuc]));
             }
             viTriLinhVuc++;
@@ -442,7 +442,7 @@ public class DanhSachSach {
             if (sach instanceof SachThamKhao) {
                 viTriChuyenNganh = chuyenNganhMap.get(((SachThamKhao) sach).getChuyenNganh());
                 viTriDeTai = deTaiMap.get(((SachThamKhao) sach).getDeTai());
-                ++thongKe[viTriChuyenNganh][viTriDeTai];
+                thongKe[viTriChuyenNganh][viTriDeTai] += sach.getTonKho();
             }
         }
 

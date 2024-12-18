@@ -38,6 +38,7 @@ public class DanhSachNhaXuatBan {
     }
 
     public NhaXuatBan timIDNhaXuatBan() {
+        System.out.println(toString());
         System.out.println("Nhap ID NhaXuatBan:");
         String idNhaXuatBan = "none";
         int idDaNhap = 0;
