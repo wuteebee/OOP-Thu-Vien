@@ -59,10 +59,23 @@ public class DanhSachChiTietPhieuMuon {
     public void timCTPM() {
         System.out.print("Nhap ID chi tiet phieu muon can tim: ");
         String idctpm = sc.nextLine();
-        ChiTietPhieuMuon search = timKiemCTPMTheoID(idctpm);
-        if (search != null) 
-            System.out.println(search);
-        else System.out.println("Khong tim thay chi tiet phieu muon vua nhap !");
+        int[] chiSoTimThay = new int[soluong];
+        int dem = 0;
+        for (int i = 0; i < soluong; i++) {
+            if (dSCTPM[i].getIdPhieuMuon().equals(idctpm)) {
+                chiSoTimThay[dem] = i;
+                dem++;
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay chi tiet phieu muon voi ID: " + idctpm);
+        } else {
+            System.out.println("Tim thay " + dem + " chi tiet phieu muon voi ID: " + idctpm);
+            for (int i = 0; i < dem; i++) {
+                System.out.println((i + 1) + ". " + dSCTPM[chiSoTimThay[i]].toString());
+            }
+        }
     }
 
     public void themCTPM(String id) {
@@ -81,16 +94,39 @@ public class DanhSachChiTietPhieuMuon {
     }
 
     public void suaCTPM(String idcansua) {
-        ChiTietPhieuMuon ctpm = timKiemCTPMTheoID(idcansua);
-        if (ctpm == null) {
-            System.out.println("Khong co phieu muon voi ID " + idcansua);
+        int[] chiSoTimThay = new int[soluong];
+        int dem = 0;
+    
+        for (int i = 0; i < soluong; i++) {
+            if (dSCTPM[i].getIdPhieuMuon().equals(idcansua)) {
+                chiSoTimThay[dem] = i;
+                dem++;
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong co chi tiet phieu muon voi ID " + idcansua);
             return;
         }
-        System.out.println("Phieu muon voi ID = " + idcansua);
+        System.out.println("Tim thay " + dem + " chi tiet phieu muon voi ID " + idcansua + ":");
+        for (int i = 0; i < dem; i++) {
+            System.out.println((i + 1) + ". " + dSCTPM[chiSoTimThay[i]].toString());
+        }
+    
+        System.out.print("Ban can sua chi tiet phieu muon thu may?\n" + "Nhap stt cua CTPM can sua: ");
+        int luaChon = sc.nextInt();
+        if (luaChon < 1 || luaChon > dem) {
+            System.out.println("Lua chon khong hop le!");
+            return;
+        }
+    
+        int index = chiSoTimThay[luaChon - 1];
+        ChiTietPhieuMuon ctpm = dSCTPM[index];
+        System.out.println("Chi tiet phieu muon duoc chon:");
         System.out.println(ctpm.toString());
-        ctpm.nhapCTPM(); 
+        ctpm.nhapCTPM();
 
-        System.out.println("Chi tiet phieu muon da duoc cap nhap. ");
+        System.out.println("Chi tiet phieu muon da duoc cap nhat.");
         System.out.println(ctpm.toString());
     }
 
@@ -118,6 +154,51 @@ public class DanhSachChiTietPhieuMuon {
         System.out.println("Da xoa CTPM voi ID phieu muon: " + idPhieuMuon);
     }
 
+    public void xoaCTPM1(String idPhieuMuon) {
+        int[] chiSoTimThay = new int[soluong];
+        int dem = 0;
+        for (int i = 0; i < soluong; i++) {
+            if (dSCTPM[i].getIdPhieuMuon().equals(idPhieuMuon)) {
+                chiSoTimThay[dem] = i;
+                dem++;
+            }
+        }
+
+        if (dem == 0) {
+            System.out.println("Khong tim thay chi tiet phieu muon voi ID phieu muon: " + idPhieuMuon);
+            return;
+        }
+        System.out.println("Tim thay " + dem + " chi tiet phieu muon voi ID " + idPhieuMuon + ":");
+        for (int i = 0; i < dem; i++) {
+            System.out.println((i + 1) + ". " + dSCTPM[chiSoTimThay[i]].toString());
+        }
+        System.out.println( (dem+1) + ". Xoa tat ca CTPM voi ID: " + idPhieuMuon);
+        System.out.print("Ban can xoa chi tiet phieu muon thu may?\n" + "Nhap stt cua CTPM can xoa: ");
+        int luaChon = sc.nextInt();
+        if (luaChon < 1 || luaChon > dem+1) {
+            System.out.println("Lua chon khong hop le!");
+            return;
+        }
+        if (luaChon == dem + 1) {
+            for (int i = 0; i < dem; i++) {
+                for (int j = chiSoTimThay[i]; j < soluong - 1; j++) {
+                    dSCTPM[j] = dSCTPM[j + 1];
+                }
+                dSCTPM[soluong - 1] = null;
+                soluong--;
+            }
+            System.out.println("Da xoa tat ca chi tiet phieu muon voi ID phieu muon: " + idPhieuMuon);
+        } else {
+            int index = chiSoTimThay[luaChon - 1];
+            for (int i = index; i < soluong - 1; i++) {
+                dSCTPM[i] = dSCTPM[i + 1];
+            }
+            dSCTPM[soluong - 1] = null;
+            soluong--;
+    
+            System.out.println("Da xoa CTPM thanh cong. ");
+        }
+    }
 
     public void readFile (String filename) {
         try (Scanner filesc = new Scanner (new File(filename))) {

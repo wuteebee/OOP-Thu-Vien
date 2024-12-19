@@ -74,7 +74,7 @@ public class MenuMuon implements ThucHienMenu {
             case 9:
                 System.out.print("Nhap ID CTPM can xoa: ");
                 String xoa = Menu.input.nextLine();
-                SharedData.dSCTPM.xoaCTPM(xoa);
+                SharedData.dSCTPM.xoaCTPM1(xoa);
                 break;
             case 10:
                 SharedData.dSCTPM.timCTPM();
